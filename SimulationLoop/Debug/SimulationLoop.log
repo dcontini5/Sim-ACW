@@ -1,0 +1,4 @@
+﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  Sphere.cpp
+ContactManifold.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  SimulationLoop.vcxproj -> C:\Users\618757\Documents\SimulationLoop_2017-18\Debug\SimulationLoop.exe
