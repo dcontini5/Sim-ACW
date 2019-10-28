@@ -44,6 +44,9 @@ void Game::Update()
 
 void Game::SimulationLoop()
 {
+
+
+	
 	// calculate dt based on the simulation loop rate using a timer
 	QueryPerformanceCounter(&end);
 	m_dt = static_cast<float>((end.QuadPart - start.QuadPart) / static_cast<double>(frequency.QuadPart));

@@ -6,6 +6,8 @@
 #include <cmath>
 #include "TextureLoader.h"
 
+struct Derivative;
+struct State;
 int Sphere::countID = 0;
 
 Sphere::Sphere(void) : m_mass(1), m_radius(5)
@@ -202,8 +204,6 @@ void Sphere::Render() const
 	glPopMatrix();
 }
 
-//_Derivative Sphere::Evaluate(
-//
-//	const _State
-//
-//)
+
+Derivative Evaluate(const State &initial, float t, float dt, const Derivative &d);
+
