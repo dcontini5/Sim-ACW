@@ -6,8 +6,6 @@
 #include <cmath>
 #include "TextureLoader.h"
 
-struct Derivative;
-struct State;
 int Sphere::countID = 0;
 
 Sphere::Sphere(void) : m_mass(1), m_radius(5)
@@ -205,5 +203,12 @@ void Sphere::Render() const
 }
 
 
-Derivative Evaluate(const State &initial, float t, float dt, const Derivative &d);
+Derivative Sphere::Evaluate(const State &initial, float t, float dt, const Derivative &d) {
+
+	State state;
+	state.x = initial.x + d.dx * dt;
+	state.v = initial.v + d.dv * dt;
+
+	
+}
 
