@@ -1,8 +1,5 @@
 ﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
   Sphere.cpp
-c:\users\618757\documents\sim-acw\simulationloop\sphere.cpp(206): error C2039: 'Evaluate': is not a member of 'Sphere'
-  c:\users\618757\documents\sim-acw\simulationloop\sphere.h(8): note: see declaration of 'Sphere'
-c:\users\618757\documents\sim-acw\simulationloop\sphere.cpp(206): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\618757\documents\sim-acw\simulationloop\sphere.cpp(206): error C2146: syntax error: missing ';' before identifier 'Evaluate'
-c:\users\618757\documents\sim-acw\simulationloop\sphere.cpp(206): error C2143: syntax error: missing ';' before '{'
-c:\users\618757\documents\sim-acw\simulationloop\sphere.cpp(206): error C2447: '{': missing function header (old-style formal list?)
+d:\projects\sim-acw\simulationloop\sphere.cpp(47): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+d:\projects\sim-acw\simulationloop\sphere.cpp(245): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  SimulationLoop.vcxproj -> D:\Projects\Sim-ACW\Debug\SimulationLoop.exe
