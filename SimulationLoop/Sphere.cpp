@@ -44,43 +44,15 @@ void Sphere::SetMass(float mass)
 }
 
 #define RK 1
-#if RK 1
+#if RK
 
 void Sphere::CalculatePhysics(float t, float dt)
 {
-	// Calcuate total force for this sphere, e.g. F = F1+F2+F3+...
-	//Vector2f force(0.0f, -9.81f * m_mass);
-
-	// Calculate acceleration
-	//Vector2f accel = force / m_mass;
-	//Vector2f accel = acceleration(m_state, dt);
-
-	// Integrate accel to get the new velocity (using Euler)
-	//m_newVelocity = m_state.velocity + (accel * dt);
-
-	// Integrate old velocity to get the new position (using Euler)
-	//m_newPos = m_pos + (m_velocity * dt);
-
-	// Integration /w improved Euler
-	//m_newPos = m_state.position + ((m_state.velocity + m_newVelocity) / 2 * dt);
 
 	// Integration /w Runge-Kutta
 	integrate(m_state, t, dt);
 
-	// ****************************************************************
-	// ******** This implementation is very basic and does not ********
-	// ******** accurately model collisions with a plane       ********
-	// ****************************************************************
-	// ******** Replace with better collision detection code   ********
-	// ****************************************************************
-	//if(m_newPos.GetY() < -20.0f+m_radius)
-	//{
-	//	m_newPos.Set(m_newPos.GetX(), -20.0f + m_radius);
-	//	m_newVelocity.Set(m_newVelocity.GetX(), 0.0f);
-	//}
 }
-
-
 #else
 void Sphere::CalculatePhysics(float dt)
 {
@@ -115,7 +87,7 @@ void Sphere::CalculatePhysics(float dt)
 	//	m_newVelocity.Set(m_newVelocity.GetX(), 0.0f);
 	//}
 }
-#endif
+#endif;
 
 
 

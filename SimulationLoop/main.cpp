@@ -1,11 +1,16 @@
-#include <stdio.h>
+#include "gl.h"
+#include <GLFW/glfw3.h>
 #include <Windows.h>
 #include "Game.h"
+#include <iostream>
 
-const char TITLE[] = "Window Creation";
+
 
 Game *game;
 
+#define OPENGL3 0
+
+#if OPENGL3
 //********************OpenGL Initialization********************************
 #include <gl\gl.h>                                // Header File For The OpenGL32 Library
 #include <gl\glu.h>                               // Header File For The GLu32 Library
@@ -239,3 +244,51 @@ int WINAPI WinMain(HINSTANCE hinstance,
 
 
 //************************ END OF WIN MAIN ***********************
+#else
+
+int main(int argc, char *argv[], char *envp[]){
+
+	glfwInit();
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	
+	GLFWwindow * window = glfwCreateWindow(800, 600, "Simulation Loop", nullptr, nullptr);
+
+	if(!window) {
+
+		std::cout << "Failed to create GLFW window" << std::endl;
+		glfwTerminate();
+		return -1;
+		
+	}
+	glfwMakeContextCurrent(window);
+
+	glViewport(0, 0, 800, 600);
+
+	float vertices[] = {
+	-0.5f, -0.5f, 0.0f,
+	 0.5f, -0.5f, 0.0f,
+	 0.0f,  0.5f, 0.0f
+	};
+
+	unsigned int VBO;
+
+	
+
+	while (!glfwWindowShouldClose(window)) {
+
+		
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+		
+
+	}
+
+	glfwTerminate();
+	return 0;
+	
+}
+
+
+#endif

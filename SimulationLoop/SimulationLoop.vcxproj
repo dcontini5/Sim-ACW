@@ -73,6 +73,7 @@
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <AdditionalLibraryDirectories>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86</AdditionalLibraryDirectories>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -98,6 +99,7 @@
   <ItemGroup>
     <ClCompile Include="ContactManifold.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="gl.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
@@ -106,11 +108,22 @@
   <ItemGroup>
     <ClInclude Include="ContactManifold.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="gl.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="Vector2f.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\glfw.3.3.0.1\build\native\glfw.targets" Condition="Exists('..\packages\glfw.3.3.0.1\build\native\glfw.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\glfw.3.3.0.1\build\native\glfw.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glfw.3.3.0.1\build\native\glfw.targets'))" />
+  </Target>
 </Project>
