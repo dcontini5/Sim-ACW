@@ -47,7 +47,7 @@
     <ClInclude Include="TextureLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="G:\Docs\SimulationLoop_2017-18\SimulationLoop\Sphere.h">
+    <ClInclude Include="Sphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

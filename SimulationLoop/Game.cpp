@@ -72,12 +72,26 @@ void Game::SimulationLoop()
 
 
 //**************************Update the physics calculations on each object***********************
+#define RK 1
+#if RK
+void Game::CalculateObjectPhysics()
+{
+	m_sphere1->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
+	m_sphere2->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
+	m_sphere3->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
+}
+#else
 void Game::CalculateObjectPhysics()
 {
 	m_sphere1->CalculatePhysics(m_dt);
 	m_sphere2->CalculatePhysics(m_dt);
 	m_sphere3->CalculatePhysics(m_dt);
 }
+
+#endif
+
+
+
 
 //**************************Handle dynamic collisions***********************
 void Game::DynamicCollisionDetection()

@@ -9,14 +9,14 @@ Game *game;
 //********************OpenGL Initialization********************************
 #include <gl\gl.h>                                // Header File For The OpenGL32 Library
 #include <gl\glu.h>                               // Header File For The GLu32 Library
-HDC			hDC=NULL;		// Private GDI Device Context
+HDC			hDC = NULL;		// Private GDI Device Context
 //*****************************************************************************
 
 //************************ MESSAGE HANDLER **************************
 
-LRESULT CALLBACK WindowProc(HWND hwnd, 
-	UINT msg, 
-	WPARAM wparam, 
+LRESULT CALLBACK WindowProc(HWND hwnd,
+	UINT msg,
+	WPARAM wparam,
 	LPARAM lparam)
 {
 	// this is the main message handler of the system
@@ -24,46 +24,46 @@ LRESULT CALLBACK WindowProc(HWND hwnd,
 	HDC				hdc;	// handle to a device context
 
 	// what is the message 
-	switch(msg)
-	{	
-	case WM_CREATE: 
-		{
-			// do initialization stuff here
-			return(0);
-		} 
+	switch (msg)
+	{
+	case WM_CREATE:
+	{
+		// do initialization stuff here
+		return(0);
+	}
 
-	case WM_PAINT: 
-		{
-			// validate the window
-			hdc = BeginPaint(hwnd,&ps);	 
-			EndPaint(hwnd,&ps);
-			return(0);
-		} 
+	case WM_PAINT:
+	{
+		// validate the window
+		hdc = BeginPaint(hwnd, &ps);
+		EndPaint(hwnd, &ps);
+		return(0);
+	}
 
 	case WM_KEYDOWN:
+	{
+		// Handle any non-accelerated key commands
+		switch (wparam)
 		{
-			// Handle any non-accelerated key commands
-			switch (wparam)
-			{
-			case VK_ESCAPE:
-			case VK_F12:
-				PostMessage(hwnd, WM_CLOSE, 0, 0);
-				return (0);
-			default:
-				char message[15];
-				sprintf_s(message, "Key Pressed: %c", (char)wparam);
-				MessageBox(NULL, message, "Key Pressed", MB_OK);
-			}
-			break;
+		case VK_ESCAPE:
+		case VK_F12:
+			PostMessage(hwnd, WM_CLOSE, 0, 0);
+			return (0);
+		default:
+			char message[15];
+			sprintf_s(message, "Key Pressed: %c", (char)wparam);
+			MessageBox(NULL, message, "Key Pressed", MB_OK);
 		}
+		break;
+	}
 
-	case WM_DESTROY: 
-		{
-			// kill the application			
-			PostQuitMessage(0);
+	case WM_DESTROY:
+	{
+		// kill the application			
+		PostQuitMessage(0);
 
-			return(0);
-		}
+		return(0);
+	}
 
 	default:
 		break;
@@ -79,11 +79,11 @@ LRESULT CALLBACK WindowProc(HWND hwnd,
 
 //**************************Setup OpenGL***********************
 void InitializeOpenGL(HWND hwnd, int width, int height)
-{ 
+{
 	GLuint		PixelFormat;			// Holds The Results After Searching For A Match
-	HGLRC		hRC=NULL;		// Permanent Rendering Context
+	HGLRC		hRC = NULL;		// Permanent Rendering Context
 
-	static	PIXELFORMATDESCRIPTOR pfd=				// pfd Tells Windows How We Want Things To Be
+	static	PIXELFORMATDESCRIPTOR pfd =				// pfd Tells Windows How We Want Things To Be
 	{
 		sizeof(PIXELFORMATDESCRIPTOR),				// Size Of This Pixel Format Descriptor
 		1,											// Version Number
@@ -105,47 +105,47 @@ void InitializeOpenGL(HWND hwnd, int width, int height)
 		0, 0, 0										// Layer Masks Ignored
 	};
 
-	if (!(hDC=GetDC(hwnd)))							// Did We Get A Device Context?
+	if (!(hDC = GetDC(hwnd)))							// Did We Get A Device Context?
 	{
-		MessageBox(NULL,"Can't Create A GL Device Context.","ERROR",MB_OK|MB_ICONEXCLAMATION);
+		MessageBox(NULL, "Can't Create A GL Device Context.", "ERROR", MB_OK | MB_ICONEXCLAMATION);
 	}
 
-	if (!(PixelFormat=ChoosePixelFormat(hDC,&pfd)))	// Did Windows Find A Matching Pixel Format?
+	if (!(PixelFormat = ChoosePixelFormat(hDC, &pfd)))	// Did Windows Find A Matching Pixel Format?
 	{
-		MessageBox(NULL,"Can't Find A Suitable PixelFormat.","ERROR",MB_OK|MB_ICONEXCLAMATION);
+		MessageBox(NULL, "Can't Find A Suitable PixelFormat.", "ERROR", MB_OK | MB_ICONEXCLAMATION);
 	}
 
-	if(!SetPixelFormat(hDC,PixelFormat,&pfd))		// Are We Able To Set The Pixel Format?
+	if (!SetPixelFormat(hDC, PixelFormat, &pfd))		// Are We Able To Set The Pixel Format?
 	{
-		MessageBox(NULL,"Can't Set The PixelFormat.","ERROR",MB_OK|MB_ICONEXCLAMATION);
+		MessageBox(NULL, "Can't Set The PixelFormat.", "ERROR", MB_OK | MB_ICONEXCLAMATION);
 	}
 
-	if (!(hRC=wglCreateContext(hDC)))				// Are We Able To Get A Rendering Context?
+	if (!(hRC = wglCreateContext(hDC)))				// Are We Able To Get A Rendering Context?
 	{
-		MessageBox(NULL,"Can't Create A GL Rendering Context.","ERROR",MB_OK|MB_ICONEXCLAMATION);
+		MessageBox(NULL, "Can't Create A GL Rendering Context.", "ERROR", MB_OK | MB_ICONEXCLAMATION);
 	}
 
-	if(!wglMakeCurrent(hDC,hRC))					// Try To Activate The Rendering Context
+	if (!wglMakeCurrent(hDC, hRC))					// Try To Activate The Rendering Context
 	{
-		MessageBox(NULL,"Can't Activate The GL Rendering Context.","ERROR",MB_OK|MB_ICONEXCLAMATION);
+		MessageBox(NULL, "Can't Activate The GL Rendering Context.", "ERROR", MB_OK | MB_ICONEXCLAMATION);
 	}
 
-	ShowWindow(hwnd,SW_SHOW);						// Show The Window
+	ShowWindow(hwnd, SW_SHOW);						// Show The Window
 	SetForegroundWindow(hwnd);						// Slightly Higher Priority
 	SetFocus(hwnd);									// Sets Keyboard Focus To The Window
 
-	if (height==0)										// Prevent A Divide By Zero By
+	if (height == 0)										// Prevent A Divide By Zero By
 	{
-		height=1;										// Making Height Equal One
+		height = 1;										// Making Height Equal One
 	}
 
-	glViewport(0,0,width,height);						// Reset The Current Viewport
+	glViewport(0, 0, width, height);						// Reset The Current Viewport
 
 	glMatrixMode(GL_PROJECTION);						// Select The Projection Matrix
 	glLoadIdentity();									// Reset The Projection Matrix
 
 	// Calculate The Aspect Ratio Of The Window
-	gluPerspective(45.0f,(GLfloat)width/(GLfloat)height,0.1f,1000.0f);
+	gluPerspective(45.0f, (GLfloat)width / (GLfloat)height, 0.1f, 1000.0f);
 	//glOrtho(-25,25,-25,25,-10, 10);
 
 	glMatrixMode(GL_MODELVIEW);							// Select The Modelview Matrix
@@ -164,7 +164,7 @@ void InitializeOpenGL(HWND hwnd, int width, int height)
 
 //************************ WIN MAIN***********************
 
-int WINAPI WinMain( HINSTANCE hinstance,
+int WINAPI WinMain(HINSTANCE hinstance,
 	HINSTANCE hprevinstance,
 	LPSTR lpcmdline,
 	int ncmdshow)
@@ -174,23 +174,23 @@ int WINAPI WinMain( HINSTANCE hinstance,
 	MSG			msg;		// generic message
 
 	// first fill in the window class stucture
-	winclass.style			= CS_HREDRAW | CS_VREDRAW;                  
-	winclass.lpfnWndProc	= WindowProc;
-	winclass.cbClsExtra		= 0;
-	winclass.cbWndExtra		= 0;
-	winclass.hInstance		= hinstance;
-	winclass.hIcon			= LoadIcon(NULL, IDI_APPLICATION);
-	winclass.hCursor		= LoadCursor(NULL, IDC_ARROW);
-	winclass.hbrBackground  = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	winclass.lpszMenuName	= NULL;
-	winclass.lpszClassName	= "WindowCreation";
+	winclass.style = CS_HREDRAW | CS_VREDRAW;
+	winclass.lpfnWndProc = WindowProc;
+	winclass.cbClsExtra = 0;
+	winclass.cbWndExtra = 0;
+	winclass.hInstance = hinstance;
+	winclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	winclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	winclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	winclass.lpszMenuName = NULL;
+	winclass.lpszClassName = "WindowCreation";
 
 	// register the window class
 	if (!RegisterClass(&winclass))
 		return(0);
 
 	// create the window
-	if (!(hwnd = CreateWindow( "WindowCreation", // class
+	if (!(hwnd = CreateWindow("WindowCreation", // class
 		TITLE,	     // title
 		WS_OVERLAPPEDWINDOW | WS_VISIBLE,
 		0,
@@ -212,10 +212,10 @@ int WINAPI WinMain( HINSTANCE hinstance,
 
 	// enter main event loop
 	bool quit = false;
-	while(!quit)
+	while (!quit)
 	{
-		if (PeekMessage(&msg,NULL,0,0,PM_REMOVE))
-		{ 
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		{
 			// test if this is a quit
 			if (msg.message == WM_QUIT) quit = true;
 
