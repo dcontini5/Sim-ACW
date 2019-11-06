@@ -63,1091 +63,983 @@ static void* GalogenGetProcAddress(const char *name)
 #endif
 
 
-static void  GL_APIENTRY _impl_glRotated(GLdouble angle, GLdouble x, GLdouble y, GLdouble z) {
-	_glptr_glRotated = (PFN_glRotated)GalogenGetProcAddress("glRotated");
-	_glptr_glRotated(angle, x, y, z);
+static void  GL_APIENTRY _impl_glVertexAttribP4uiv(GLuint index, GLenum type, GLboolean normalized, const GLuint * value) {
+	_glptr_glVertexAttribP4uiv = (PFN_glVertexAttribP4uiv)GalogenGetProcAddress("glVertexAttribP4uiv");
+	_glptr_glVertexAttribP4uiv(index, type, normalized, value);
 }
-PFN_glRotated _glptr_glRotated = _impl_glRotated;
+PFN_glVertexAttribP4uiv _glptr_glVertexAttribP4uiv = _impl_glVertexAttribP4uiv;
 
-static void  GL_APIENTRY _impl_glPushMatrix() {
-	_glptr_glPushMatrix = (PFN_glPushMatrix)GalogenGetProcAddress("glPushMatrix");
-	_glptr_glPushMatrix();
+static void  GL_APIENTRY _impl_glVertexAttribP3uiv(GLuint index, GLenum type, GLboolean normalized, const GLuint * value) {
+	_glptr_glVertexAttribP3uiv = (PFN_glVertexAttribP3uiv)GalogenGetProcAddress("glVertexAttribP3uiv");
+	_glptr_glVertexAttribP3uiv(index, type, normalized, value);
 }
-PFN_glPushMatrix _glptr_glPushMatrix = _impl_glPushMatrix;
+PFN_glVertexAttribP3uiv _glptr_glVertexAttribP3uiv = _impl_glVertexAttribP3uiv;
 
-static void  GL_APIENTRY _impl_glPopMatrix() {
-	_glptr_glPopMatrix = (PFN_glPopMatrix)GalogenGetProcAddress("glPopMatrix");
-	_glptr_glPopMatrix();
+static void  GL_APIENTRY _impl_glVertexAttribP2uiv(GLuint index, GLenum type, GLboolean normalized, const GLuint * value) {
+	_glptr_glVertexAttribP2uiv = (PFN_glVertexAttribP2uiv)GalogenGetProcAddress("glVertexAttribP2uiv");
+	_glptr_glVertexAttribP2uiv(index, type, normalized, value);
 }
-PFN_glPopMatrix _glptr_glPopMatrix = _impl_glPopMatrix;
+PFN_glVertexAttribP2uiv _glptr_glVertexAttribP2uiv = _impl_glVertexAttribP2uiv;
 
-static void  GL_APIENTRY _impl_glMultMatrixf(const GLfloat * m) {
-	_glptr_glMultMatrixf = (PFN_glMultMatrixf)GalogenGetProcAddress("glMultMatrixf");
-	_glptr_glMultMatrixf(m);
+static void  GL_APIENTRY _impl_glVertexAttribP2ui(GLuint index, GLenum type, GLboolean normalized, GLuint value) {
+	_glptr_glVertexAttribP2ui = (PFN_glVertexAttribP2ui)GalogenGetProcAddress("glVertexAttribP2ui");
+	_glptr_glVertexAttribP2ui(index, type, normalized, value);
 }
-PFN_glMultMatrixf _glptr_glMultMatrixf = _impl_glMultMatrixf;
+PFN_glVertexAttribP2ui _glptr_glVertexAttribP2ui = _impl_glVertexAttribP2ui;
 
-static void  GL_APIENTRY _impl_glFrustum(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar) {
-	_glptr_glFrustum = (PFN_glFrustum)GalogenGetProcAddress("glFrustum");
-	_glptr_glFrustum(left, right, bottom, top, zNear, zFar);
+static void  GL_APIENTRY _impl_glVertexAttribP1uiv(GLuint index, GLenum type, GLboolean normalized, const GLuint * value) {
+	_glptr_glVertexAttribP1uiv = (PFN_glVertexAttribP1uiv)GalogenGetProcAddress("glVertexAttribP1uiv");
+	_glptr_glVertexAttribP1uiv(index, type, normalized, value);
 }
-PFN_glFrustum _glptr_glFrustum = _impl_glFrustum;
+PFN_glVertexAttribP1uiv _glptr_glVertexAttribP1uiv = _impl_glVertexAttribP1uiv;
 
-static void  GL_APIENTRY _impl_glGetTexGenfv(GLenum coord, GLenum pname, GLfloat * params) {
-	_glptr_glGetTexGenfv = (PFN_glGetTexGenfv)GalogenGetProcAddress("glGetTexGenfv");
-	_glptr_glGetTexGenfv(coord, pname, params);
+static void  GL_APIENTRY _impl_glGetQueryObjectui64v(GLuint id, GLenum pname, GLuint64 * params) {
+	_glptr_glGetQueryObjectui64v = (PFN_glGetQueryObjectui64v)GalogenGetProcAddress("glGetQueryObjectui64v");
+	_glptr_glGetQueryObjectui64v(id, pname, params);
 }
-PFN_glGetTexGenfv _glptr_glGetTexGenfv = _impl_glGetTexGenfv;
+PFN_glGetQueryObjectui64v _glptr_glGetQueryObjectui64v = _impl_glGetQueryObjectui64v;
 
-static void  GL_APIENTRY _impl_glGetPixelMapusv(GLenum map, GLushort * values) {
-	_glptr_glGetPixelMapusv = (PFN_glGetPixelMapusv)GalogenGetProcAddress("glGetPixelMapusv");
-	_glptr_glGetPixelMapusv(map, values);
+static void  GL_APIENTRY _impl_glGetSamplerParameterfv(GLuint sampler, GLenum pname, GLfloat * params) {
+	_glptr_glGetSamplerParameterfv = (PFN_glGetSamplerParameterfv)GalogenGetProcAddress("glGetSamplerParameterfv");
+	_glptr_glGetSamplerParameterfv(sampler, pname, params);
 }
-PFN_glGetPixelMapusv _glptr_glGetPixelMapusv = _impl_glGetPixelMapusv;
+PFN_glGetSamplerParameterfv _glptr_glGetSamplerParameterfv = _impl_glGetSamplerParameterfv;
 
-static void  GL_APIENTRY _impl_glGetPixelMapuiv(GLenum map, GLuint * values) {
-	_glptr_glGetPixelMapuiv = (PFN_glGetPixelMapuiv)GalogenGetProcAddress("glGetPixelMapuiv");
-	_glptr_glGetPixelMapuiv(map, values);
+static void  GL_APIENTRY _impl_glSamplerParameterIuiv(GLuint sampler, GLenum pname, const GLuint * param) {
+	_glptr_glSamplerParameterIuiv = (PFN_glSamplerParameterIuiv)GalogenGetProcAddress("glSamplerParameterIuiv");
+	_glptr_glSamplerParameterIuiv(sampler, pname, param);
 }
-PFN_glGetPixelMapuiv _glptr_glGetPixelMapuiv = _impl_glGetPixelMapuiv;
+PFN_glSamplerParameterIuiv _glptr_glSamplerParameterIuiv = _impl_glSamplerParameterIuiv;
 
-static void  GL_APIENTRY _impl_glGetMaterialiv(GLenum face, GLenum pname, GLint * params) {
-	_glptr_glGetMaterialiv = (PFN_glGetMaterialiv)GalogenGetProcAddress("glGetMaterialiv");
-	_glptr_glGetMaterialiv(face, pname, params);
+static void  GL_APIENTRY _impl_glSamplerParameterfv(GLuint sampler, GLenum pname, const GLfloat * param) {
+	_glptr_glSamplerParameterfv = (PFN_glSamplerParameterfv)GalogenGetProcAddress("glSamplerParameterfv");
+	_glptr_glSamplerParameterfv(sampler, pname, param);
 }
-PFN_glGetMaterialiv _glptr_glGetMaterialiv = _impl_glGetMaterialiv;
+PFN_glSamplerParameterfv _glptr_glSamplerParameterfv = _impl_glSamplerParameterfv;
 
-static void  GL_APIENTRY _impl_glGetMapiv(GLenum target, GLenum query, GLint * v) {
-	_glptr_glGetMapiv = (PFN_glGetMapiv)GalogenGetProcAddress("glGetMapiv");
-	_glptr_glGetMapiv(target, query, v);
+static void  GL_APIENTRY _impl_glSamplerParameteriv(GLuint sampler, GLenum pname, const GLint * param) {
+	_glptr_glSamplerParameteriv = (PFN_glSamplerParameteriv)GalogenGetProcAddress("glSamplerParameteriv");
+	_glptr_glSamplerParameteriv(sampler, pname, param);
 }
-PFN_glGetMapiv _glptr_glGetMapiv = _impl_glGetMapiv;
+PFN_glSamplerParameteriv _glptr_glSamplerParameteriv = _impl_glSamplerParameteriv;
 
-static void  GL_APIENTRY _impl_glGetMapfv(GLenum target, GLenum query, GLfloat * v) {
-	_glptr_glGetMapfv = (PFN_glGetMapfv)GalogenGetProcAddress("glGetMapfv");
-	_glptr_glGetMapfv(target, query, v);
+static void  GL_APIENTRY _impl_glSamplerParameteri(GLuint sampler, GLenum pname, GLint param) {
+	_glptr_glSamplerParameteri = (PFN_glSamplerParameteri)GalogenGetProcAddress("glSamplerParameteri");
+	_glptr_glSamplerParameteri(sampler, pname, param);
 }
-PFN_glGetMapfv _glptr_glGetMapfv = _impl_glGetMapfv;
+PFN_glSamplerParameteri _glptr_glSamplerParameteri = _impl_glSamplerParameteri;
 
-static void  GL_APIENTRY _impl_glGetMapdv(GLenum target, GLenum query, GLdouble * v) {
-	_glptr_glGetMapdv = (PFN_glGetMapdv)GalogenGetProcAddress("glGetMapdv");
-	_glptr_glGetMapdv(target, query, v);
+static void  GL_APIENTRY _impl_glBindSampler(GLuint unit, GLuint sampler) {
+	_glptr_glBindSampler = (PFN_glBindSampler)GalogenGetProcAddress("glBindSampler");
+	_glptr_glBindSampler(unit, sampler);
 }
-PFN_glGetMapdv _glptr_glGetMapdv = _impl_glGetMapdv;
+PFN_glBindSampler _glptr_glBindSampler = _impl_glBindSampler;
 
-static void  GL_APIENTRY _impl_glGetLightiv(GLenum light, GLenum pname, GLint * params) {
-	_glptr_glGetLightiv = (PFN_glGetLightiv)GalogenGetProcAddress("glGetLightiv");
-	_glptr_glGetLightiv(light, pname, params);
+static void  GL_APIENTRY _impl_glSamplerParameterf(GLuint sampler, GLenum pname, GLfloat param) {
+	_glptr_glSamplerParameterf = (PFN_glSamplerParameterf)GalogenGetProcAddress("glSamplerParameterf");
+	_glptr_glSamplerParameterf(sampler, pname, param);
 }
-PFN_glGetLightiv _glptr_glGetLightiv = _impl_glGetLightiv;
+PFN_glSamplerParameterf _glptr_glSamplerParameterf = _impl_glSamplerParameterf;
 
-static void  GL_APIENTRY _impl_glGetLightfv(GLenum light, GLenum pname, GLfloat * params) {
-	_glptr_glGetLightfv = (PFN_glGetLightfv)GalogenGetProcAddress("glGetLightfv");
-	_glptr_glGetLightfv(light, pname, params);
+static GLboolean GL_APIENTRY _impl_glIsSampler(GLuint sampler) {
+	_glptr_glIsSampler = (PFN_glIsSampler)GalogenGetProcAddress("glIsSampler");
+	return _glptr_glIsSampler(sampler);
 }
-PFN_glGetLightfv _glptr_glGetLightfv = _impl_glGetLightfv;
+PFN_glIsSampler _glptr_glIsSampler = _impl_glIsSampler;
 
-static void  GL_APIENTRY _impl_glDrawPixels(GLsizei width, GLsizei height, GLenum format, GLenum type, const void * pixels) {
-	_glptr_glDrawPixels = (PFN_glDrawPixels)GalogenGetProcAddress("glDrawPixels");
-	_glptr_glDrawPixels(width, height, format, type, pixels);
+static void  GL_APIENTRY _impl_glGenSamplers(GLsizei count, GLuint * samplers) {
+	_glptr_glGenSamplers = (PFN_glGenSamplers)GalogenGetProcAddress("glGenSamplers");
+	_glptr_glGenSamplers(count, samplers);
 }
-PFN_glDrawPixels _glptr_glDrawPixels = _impl_glDrawPixels;
+PFN_glGenSamplers _glptr_glGenSamplers = _impl_glGenSamplers;
 
-static void  GL_APIENTRY _impl_glPixelMapusv(GLenum map, GLsizei mapsize, const GLushort * values) {
-	_glptr_glPixelMapusv = (PFN_glPixelMapusv)GalogenGetProcAddress("glPixelMapusv");
-	_glptr_glPixelMapusv(map, mapsize, values);
+static void  GL_APIENTRY _impl_glBindFragDataLocationIndexed(GLuint program, GLuint colorNumber, GLuint index, const GLchar * name) {
+	_glptr_glBindFragDataLocationIndexed = (PFN_glBindFragDataLocationIndexed)GalogenGetProcAddress("glBindFragDataLocationIndexed");
+	_glptr_glBindFragDataLocationIndexed(program, colorNumber, index, name);
 }
-PFN_glPixelMapusv _glptr_glPixelMapusv = _impl_glPixelMapusv;
+PFN_glBindFragDataLocationIndexed _glptr_glBindFragDataLocationIndexed = _impl_glBindFragDataLocationIndexed;
 
-static void  GL_APIENTRY _impl_glPixelTransferi(GLenum pname, GLint param) {
-	_glptr_glPixelTransferi = (PFN_glPixelTransferi)GalogenGetProcAddress("glPixelTransferi");
-	_glptr_glPixelTransferi(pname, param);
+static void  GL_APIENTRY _impl_glGetMultisamplefv(GLenum pname, GLuint index, GLfloat * val) {
+	_glptr_glGetMultisamplefv = (PFN_glGetMultisamplefv)GalogenGetProcAddress("glGetMultisamplefv");
+	_glptr_glGetMultisamplefv(pname, index, val);
 }
-PFN_glPixelTransferi _glptr_glPixelTransferi = _impl_glPixelTransferi;
+PFN_glGetMultisamplefv _glptr_glGetMultisamplefv = _impl_glGetMultisamplefv;
 
-static void  GL_APIENTRY _impl_glPixelTransferf(GLenum pname, GLfloat param) {
-	_glptr_glPixelTransferf = (PFN_glPixelTransferf)GalogenGetProcAddress("glPixelTransferf");
-	_glptr_glPixelTransferf(pname, param);
+static void  GL_APIENTRY _impl_glTexImage3DMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLboolean fixedsamplelocations) {
+	_glptr_glTexImage3DMultisample = (PFN_glTexImage3DMultisample)GalogenGetProcAddress("glTexImage3DMultisample");
+	_glptr_glTexImage3DMultisample(target, samples, internalformat, width, height, depth, fixedsamplelocations);
 }
-PFN_glPixelTransferf _glptr_glPixelTransferf = _impl_glPixelTransferf;
+PFN_glTexImage3DMultisample _glptr_glTexImage3DMultisample = _impl_glTexImage3DMultisample;
 
-static void  GL_APIENTRY _impl_glEvalPoint2(GLint i, GLint j) {
-	_glptr_glEvalPoint2 = (PFN_glEvalPoint2)GalogenGetProcAddress("glEvalPoint2");
-	_glptr_glEvalPoint2(i, j);
+static void  GL_APIENTRY _impl_glFramebufferTexture(GLenum target, GLenum attachment, GLuint texture, GLint level) {
+	_glptr_glFramebufferTexture = (PFN_glFramebufferTexture)GalogenGetProcAddress("glFramebufferTexture");
+	_glptr_glFramebufferTexture(target, attachment, texture, level);
 }
-PFN_glEvalPoint2 _glptr_glEvalPoint2 = _impl_glEvalPoint2;
+PFN_glFramebufferTexture _glptr_glFramebufferTexture = _impl_glFramebufferTexture;
 
-static void  GL_APIENTRY _impl_glRotatef(GLfloat angle, GLfloat x, GLfloat y, GLfloat z) {
-	_glptr_glRotatef = (PFN_glRotatef)GalogenGetProcAddress("glRotatef");
-	_glptr_glRotatef(angle, x, y, z);
+static void  GL_APIENTRY _impl_glGetBufferParameteri64v(GLenum target, GLenum pname, GLint64 * params) {
+	_glptr_glGetBufferParameteri64v = (PFN_glGetBufferParameteri64v)GalogenGetProcAddress("glGetBufferParameteri64v");
+	_glptr_glGetBufferParameteri64v(target, pname, params);
 }
-PFN_glRotatef _glptr_glRotatef = _impl_glRotatef;
+PFN_glGetBufferParameteri64v _glptr_glGetBufferParameteri64v = _impl_glGetBufferParameteri64v;
 
-static void  GL_APIENTRY _impl_glEvalPoint1(GLint i) {
-	_glptr_glEvalPoint1 = (PFN_glEvalPoint1)GalogenGetProcAddress("glEvalPoint1");
-	_glptr_glEvalPoint1(i);
+static void  GL_APIENTRY _impl_glGetInteger64i_v(GLenum target, GLuint index, GLint64 * data) {
+	_glptr_glGetInteger64i_v = (PFN_glGetInteger64i_v)GalogenGetProcAddress("glGetInteger64i_v");
+	_glptr_glGetInteger64i_v(target, index, data);
 }
-PFN_glEvalPoint1 _glptr_glEvalPoint1 = _impl_glEvalPoint1;
+PFN_glGetInteger64i_v _glptr_glGetInteger64i_v = _impl_glGetInteger64i_v;
 
-static void  GL_APIENTRY _impl_glEvalMesh1(GLenum mode, GLint i1, GLint i2) {
-	_glptr_glEvalMesh1 = (PFN_glEvalMesh1)GalogenGetProcAddress("glEvalMesh1");
-	_glptr_glEvalMesh1(mode, i1, i2);
+static void  GL_APIENTRY _impl_glWaitSync(GLsync sync, GLbitfield flags, GLuint64 timeout) {
+	_glptr_glWaitSync = (PFN_glWaitSync)GalogenGetProcAddress("glWaitSync");
+	_glptr_glWaitSync(sync, flags, timeout);
 }
-PFN_glEvalMesh1 _glptr_glEvalMesh1 = _impl_glEvalMesh1;
+PFN_glWaitSync _glptr_glWaitSync = _impl_glWaitSync;
 
-static void  GL_APIENTRY _impl_glEvalCoord2fv(const GLfloat * u) {
-	_glptr_glEvalCoord2fv = (PFN_glEvalCoord2fv)GalogenGetProcAddress("glEvalCoord2fv");
-	_glptr_glEvalCoord2fv(u);
+static GLboolean GL_APIENTRY _impl_glIsSync(GLsync sync) {
+	_glptr_glIsSync = (PFN_glIsSync)GalogenGetProcAddress("glIsSync");
+	return _glptr_glIsSync(sync);
 }
-PFN_glEvalCoord2fv _glptr_glEvalCoord2fv = _impl_glEvalCoord2fv;
+PFN_glIsSync _glptr_glIsSync = _impl_glIsSync;
 
-static void  GL_APIENTRY _impl_glEvalCoord2dv(const GLdouble * u) {
-	_glptr_glEvalCoord2dv = (PFN_glEvalCoord2dv)GalogenGetProcAddress("glEvalCoord2dv");
-	_glptr_glEvalCoord2dv(u);
+static GLsync GL_APIENTRY _impl_glFenceSync(GLenum condition, GLbitfield flags) {
+	_glptr_glFenceSync = (PFN_glFenceSync)GalogenGetProcAddress("glFenceSync");
+	return _glptr_glFenceSync(condition, flags);
 }
-PFN_glEvalCoord2dv _glptr_glEvalCoord2dv = _impl_glEvalCoord2dv;
+PFN_glFenceSync _glptr_glFenceSync = _impl_glFenceSync;
 
-static void  GL_APIENTRY _impl_glTranslatef(GLfloat x, GLfloat y, GLfloat z) {
-	_glptr_glTranslatef = (PFN_glTranslatef)GalogenGetProcAddress("glTranslatef");
-	_glptr_glTranslatef(x, y, z);
+static void  GL_APIENTRY _impl_glMultiDrawElementsBaseVertex(GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei drawcount, const GLint * basevertex) {
+	_glptr_glMultiDrawElementsBaseVertex = (PFN_glMultiDrawElementsBaseVertex)GalogenGetProcAddress("glMultiDrawElementsBaseVertex");
+	_glptr_glMultiDrawElementsBaseVertex(mode, count, type, indices, drawcount, basevertex);
 }
-PFN_glTranslatef _glptr_glTranslatef = _impl_glTranslatef;
+PFN_glMultiDrawElementsBaseVertex _glptr_glMultiDrawElementsBaseVertex = _impl_glMultiDrawElementsBaseVertex;
 
-static void  GL_APIENTRY _impl_glCopyPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum type) {
-	_glptr_glCopyPixels = (PFN_glCopyPixels)GalogenGetProcAddress("glCopyPixels");
-	_glptr_glCopyPixels(x, y, width, height, type);
+static void  GL_APIENTRY _impl_glDrawElementsInstancedBaseVertex(GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount, GLint basevertex) {
+	_glptr_glDrawElementsInstancedBaseVertex = (PFN_glDrawElementsInstancedBaseVertex)GalogenGetProcAddress("glDrawElementsInstancedBaseVertex");
+	_glptr_glDrawElementsInstancedBaseVertex(mode, count, type, indices, instancecount, basevertex);
 }
-PFN_glCopyPixels _glptr_glCopyPixels = _impl_glCopyPixels;
+PFN_glDrawElementsInstancedBaseVertex _glptr_glDrawElementsInstancedBaseVertex = _impl_glDrawElementsInstancedBaseVertex;
 
-static void  GL_APIENTRY _impl_glEvalCoord1d(GLdouble u) {
-	_glptr_glEvalCoord1d = (PFN_glEvalCoord1d)GalogenGetProcAddress("glEvalCoord1d");
-	_glptr_glEvalCoord1d(u);
+static void  GL_APIENTRY _impl_glGetActiveUniformBlockName(GLuint program, GLuint uniformBlockIndex, GLsizei bufSize, GLsizei * length, GLchar * uniformBlockName) {
+	_glptr_glGetActiveUniformBlockName = (PFN_glGetActiveUniformBlockName)GalogenGetProcAddress("glGetActiveUniformBlockName");
+	_glptr_glGetActiveUniformBlockName(program, uniformBlockIndex, bufSize, length, uniformBlockName);
 }
-PFN_glEvalCoord1d _glptr_glEvalCoord1d = _impl_glEvalCoord1d;
+PFN_glGetActiveUniformBlockName _glptr_glGetActiveUniformBlockName = _impl_glGetActiveUniformBlockName;
 
-static void  GL_APIENTRY _impl_glMapGrid2f(GLint un, GLfloat u1, GLfloat u2, GLint vn, GLfloat v1, GLfloat v2) {
-	_glptr_glMapGrid2f = (PFN_glMapGrid2f)GalogenGetProcAddress("glMapGrid2f");
-	_glptr_glMapGrid2f(un, u1, u2, vn, v1, v2);
+static GLuint GL_APIENTRY _impl_glGetUniformBlockIndex(GLuint program, const GLchar * uniformBlockName) {
+	_glptr_glGetUniformBlockIndex = (PFN_glGetUniformBlockIndex)GalogenGetProcAddress("glGetUniformBlockIndex");
+	return _glptr_glGetUniformBlockIndex(program, uniformBlockName);
 }
-PFN_glMapGrid2f _glptr_glMapGrid2f = _impl_glMapGrid2f;
+PFN_glGetUniformBlockIndex _glptr_glGetUniformBlockIndex = _impl_glGetUniformBlockIndex;
 
-static void  GL_APIENTRY _impl_glMapGrid1d(GLint un, GLdouble u1, GLdouble u2) {
-	_glptr_glMapGrid1d = (PFN_glMapGrid1d)GalogenGetProcAddress("glMapGrid1d");
-	_glptr_glMapGrid1d(un, u1, u2);
+static void  GL_APIENTRY _impl_glGetActiveUniformName(GLuint program, GLuint uniformIndex, GLsizei bufSize, GLsizei * length, GLchar * uniformName) {
+	_glptr_glGetActiveUniformName = (PFN_glGetActiveUniformName)GalogenGetProcAddress("glGetActiveUniformName");
+	_glptr_glGetActiveUniformName(program, uniformIndex, bufSize, length, uniformName);
 }
-PFN_glMapGrid1d _glptr_glMapGrid1d = _impl_glMapGrid1d;
+PFN_glGetActiveUniformName _glptr_glGetActiveUniformName = _impl_glGetActiveUniformName;
 
-static void  GL_APIENTRY _impl_glMap2d(GLenum target, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder, const GLdouble * points) {
-	_glptr_glMap2d = (PFN_glMap2d)GalogenGetProcAddress("glMap2d");
-	_glptr_glMap2d(target, u1, u2, ustride, uorder, v1, v2, vstride, vorder, points);
+static void  GL_APIENTRY _impl_glGetUniformIndices(GLuint program, GLsizei uniformCount, const GLchar *const* uniformNames, GLuint * uniformIndices) {
+	_glptr_glGetUniformIndices = (PFN_glGetUniformIndices)GalogenGetProcAddress("glGetUniformIndices");
+	_glptr_glGetUniformIndices(program, uniformCount, uniformNames, uniformIndices);
 }
-PFN_glMap2d _glptr_glMap2d = _impl_glMap2d;
+PFN_glGetUniformIndices _glptr_glGetUniformIndices = _impl_glGetUniformIndices;
 
-static void  GL_APIENTRY _impl_glMap1f(GLenum target, GLfloat u1, GLfloat u2, GLint stride, GLint order, const GLfloat * points) {
-	_glptr_glMap1f = (PFN_glMap1f)GalogenGetProcAddress("glMap1f");
-	_glptr_glMap1f(target, u1, u2, stride, order, points);
+static void  GL_APIENTRY _impl_glTexBuffer(GLenum target, GLenum internalformat, GLuint buffer) {
+	_glptr_glTexBuffer = (PFN_glTexBuffer)GalogenGetProcAddress("glTexBuffer");
+	_glptr_glTexBuffer(target, internalformat, buffer);
 }
-PFN_glMap1f _glptr_glMap1f = _impl_glMap1f;
+PFN_glTexBuffer _glptr_glTexBuffer = _impl_glTexBuffer;
 
-static void  GL_APIENTRY _impl_glPushAttrib(GLbitfield mask) {
-	_glptr_glPushAttrib = (PFN_glPushAttrib)GalogenGetProcAddress("glPushAttrib");
-	_glptr_glPushAttrib(mask);
+static GLboolean GL_APIENTRY _impl_glIsVertexArray(GLuint array) {
+	_glptr_glIsVertexArray = (PFN_glIsVertexArray)GalogenGetProcAddress("glIsVertexArray");
+	return _glptr_glIsVertexArray(array);
 }
-PFN_glPushAttrib _glptr_glPushAttrib = _impl_glPushAttrib;
+PFN_glIsVertexArray _glptr_glIsVertexArray = _impl_glIsVertexArray;
 
-static void  GL_APIENTRY _impl_glGetTexGendv(GLenum coord, GLenum pname, GLdouble * params) {
-	_glptr_glGetTexGendv = (PFN_glGetTexGendv)GalogenGetProcAddress("glGetTexGendv");
-	_glptr_glGetTexGendv(coord, pname, params);
+static void  GL_APIENTRY _impl_glBindVertexArray(GLuint array) {
+	_glptr_glBindVertexArray = (PFN_glBindVertexArray)GalogenGetProcAddress("glBindVertexArray");
+	_glptr_glBindVertexArray(array);
 }
-PFN_glGetTexGendv _glptr_glGetTexGendv = _impl_glGetTexGendv;
+PFN_glBindVertexArray _glptr_glBindVertexArray = _impl_glBindVertexArray;
 
-static void  GL_APIENTRY _impl_glGetTexEnviv(GLenum target, GLenum pname, GLint * params) {
-	_glptr_glGetTexEnviv = (PFN_glGetTexEnviv)GalogenGetProcAddress("glGetTexEnviv");
-	_glptr_glGetTexEnviv(target, pname, params);
+static void  GL_APIENTRY _impl_glFlushMappedBufferRange(GLenum target, GLintptr offset, GLsizeiptr length) {
+	_glptr_glFlushMappedBufferRange = (PFN_glFlushMappedBufferRange)GalogenGetProcAddress("glFlushMappedBufferRange");
+	_glptr_glFlushMappedBufferRange(target, offset, length);
 }
-PFN_glGetTexEnviv _glptr_glGetTexEnviv = _impl_glGetTexEnviv;
+PFN_glFlushMappedBufferRange _glptr_glFlushMappedBufferRange = _impl_glFlushMappedBufferRange;
 
-static void  GL_APIENTRY _impl_glPopAttrib() {
-	_glptr_glPopAttrib = (PFN_glPopAttrib)GalogenGetProcAddress("glPopAttrib");
-	_glptr_glPopAttrib();
+static void * GL_APIENTRY _impl_glMapBufferRange(GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access) {
+	_glptr_glMapBufferRange = (PFN_glMapBufferRange)GalogenGetProcAddress("glMapBufferRange");
+	return _glptr_glMapBufferRange(target, offset, length, access);
 }
-PFN_glPopAttrib _glptr_glPopAttrib = _impl_glPopAttrib;
+PFN_glMapBufferRange _glptr_glMapBufferRange = _impl_glMapBufferRange;
 
-static void  GL_APIENTRY _impl_glAccum(GLenum op, GLfloat value) {
-	_glptr_glAccum = (PFN_glAccum)GalogenGetProcAddress("glAccum");
-	_glptr_glAccum(op, value);
+static void  GL_APIENTRY _impl_glGetActiveUniformsiv(GLuint program, GLsizei uniformCount, const GLuint * uniformIndices, GLenum pname, GLint * params) {
+	_glptr_glGetActiveUniformsiv = (PFN_glGetActiveUniformsiv)GalogenGetProcAddress("glGetActiveUniformsiv");
+	_glptr_glGetActiveUniformsiv(program, uniformCount, uniformIndices, pname, params);
 }
-PFN_glAccum _glptr_glAccum = _impl_glAccum;
+PFN_glGetActiveUniformsiv _glptr_glGetActiveUniformsiv = _impl_glGetActiveUniformsiv;
 
-static void  GL_APIENTRY _impl_glClearIndex(GLfloat c) {
-	_glptr_glClearIndex = (PFN_glClearIndex)GalogenGetProcAddress("glClearIndex");
-	_glptr_glClearIndex(c);
+static void  GL_APIENTRY _impl_glFramebufferTextureLayer(GLenum target, GLenum attachment, GLuint texture, GLint level, GLint layer) {
+	_glptr_glFramebufferTextureLayer = (PFN_glFramebufferTextureLayer)GalogenGetProcAddress("glFramebufferTextureLayer");
+	_glptr_glFramebufferTextureLayer(target, attachment, texture, level, layer);
 }
-PFN_glClearIndex _glptr_glClearIndex = _impl_glClearIndex;
+PFN_glFramebufferTextureLayer _glptr_glFramebufferTextureLayer = _impl_glFramebufferTextureLayer;
 
-static void  GL_APIENTRY _impl_glPixelMapuiv(GLenum map, GLsizei mapsize, const GLuint * values) {
-	_glptr_glPixelMapuiv = (PFN_glPixelMapuiv)GalogenGetProcAddress("glPixelMapuiv");
-	_glptr_glPixelMapuiv(map, mapsize, values);
+static void  GL_APIENTRY _impl_glGetFramebufferAttachmentParameteriv(GLenum target, GLenum attachment, GLenum pname, GLint * params) {
+	_glptr_glGetFramebufferAttachmentParameteriv = (PFN_glGetFramebufferAttachmentParameteriv)GalogenGetProcAddress("glGetFramebufferAttachmentParameteriv");
+	_glptr_glGetFramebufferAttachmentParameteriv(target, attachment, pname, params);
 }
-PFN_glPixelMapuiv _glptr_glPixelMapuiv = _impl_glPixelMapuiv;
+PFN_glGetFramebufferAttachmentParameteriv _glptr_glGetFramebufferAttachmentParameteriv = _impl_glGetFramebufferAttachmentParameteriv;
 
-static void  GL_APIENTRY _impl_glClearAccum(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) {
-	_glptr_glClearAccum = (PFN_glClearAccum)GalogenGetProcAddress("glClearAccum");
-	_glptr_glClearAccum(red, green, blue, alpha);
+static void  GL_APIENTRY _impl_glFramebufferTexture3D(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level, GLint zoffset) {
+	_glptr_glFramebufferTexture3D = (PFN_glFramebufferTexture3D)GalogenGetProcAddress("glFramebufferTexture3D");
+	_glptr_glFramebufferTexture3D(target, attachment, textarget, texture, level, zoffset);
 }
-PFN_glClearAccum _glptr_glClearAccum = _impl_glClearAccum;
+PFN_glFramebufferTexture3D _glptr_glFramebufferTexture3D = _impl_glFramebufferTexture3D;
 
-static void  GL_APIENTRY _impl_glPopName() {
-	_glptr_glPopName = (PFN_glPopName)GalogenGetProcAddress("glPopName");
-	_glptr_glPopName();
+static void  GL_APIENTRY _impl_glFramebufferTexture1D(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level) {
+	_glptr_glFramebufferTexture1D = (PFN_glFramebufferTexture1D)GalogenGetProcAddress("glFramebufferTexture1D");
+	_glptr_glFramebufferTexture1D(target, attachment, textarget, texture, level);
 }
-PFN_glPopName _glptr_glPopName = _impl_glPopName;
+PFN_glFramebufferTexture1D _glptr_glFramebufferTexture1D = _impl_glFramebufferTexture1D;
 
-static void  GL_APIENTRY _impl_glPassThrough(GLfloat token) {
-	_glptr_glPassThrough = (PFN_glPassThrough)GalogenGetProcAddress("glPassThrough");
-	_glptr_glPassThrough(token);
+static void  GL_APIENTRY _impl_glGenFramebuffers(GLsizei n, GLuint * framebuffers) {
+	_glptr_glGenFramebuffers = (PFN_glGenFramebuffers)GalogenGetProcAddress("glGenFramebuffers");
+	_glptr_glGenFramebuffers(n, framebuffers);
 }
-PFN_glPassThrough _glptr_glPassThrough = _impl_glPassThrough;
+PFN_glGenFramebuffers _glptr_glGenFramebuffers = _impl_glGenFramebuffers;
 
-static void  GL_APIENTRY _impl_glLoadName(GLuint name) {
-	_glptr_glLoadName = (PFN_glLoadName)GalogenGetProcAddress("glLoadName");
-	_glptr_glLoadName(name);
+static void  GL_APIENTRY _impl_glBindFramebuffer(GLenum target, GLuint framebuffer) {
+	_glptr_glBindFramebuffer = (PFN_glBindFramebuffer)GalogenGetProcAddress("glBindFramebuffer");
+	_glptr_glBindFramebuffer(target, framebuffer);
 }
-PFN_glLoadName _glptr_glLoadName = _impl_glLoadName;
+PFN_glBindFramebuffer _glptr_glBindFramebuffer = _impl_glBindFramebuffer;
 
-static void  GL_APIENTRY _impl_glInitNames() {
-	_glptr_glInitNames = (PFN_glInitNames)GalogenGetProcAddress("glInitNames");
-	_glptr_glInitNames();
+static void  GL_APIENTRY _impl_glGetQueryObjecti64v(GLuint id, GLenum pname, GLint64 * params) {
+	_glptr_glGetQueryObjecti64v = (PFN_glGetQueryObjecti64v)GalogenGetProcAddress("glGetQueryObjecti64v");
+	_glptr_glGetQueryObjecti64v(id, pname, params);
 }
-PFN_glInitNames _glptr_glInitNames = _impl_glInitNames;
+PFN_glGetQueryObjecti64v _glptr_glGetQueryObjecti64v = _impl_glGetQueryObjecti64v;
 
-static GLint GL_APIENTRY _impl_glRenderMode(GLenum mode) {
-	_glptr_glRenderMode = (PFN_glRenderMode)GalogenGetProcAddress("glRenderMode");
-	return _glptr_glRenderMode(mode);
+static void  GL_APIENTRY _impl_glGetInteger64v(GLenum pname, GLint64 * data) {
+	_glptr_glGetInteger64v = (PFN_glGetInteger64v)GalogenGetProcAddress("glGetInteger64v");
+	_glptr_glGetInteger64v(pname, data);
 }
-PFN_glRenderMode _glptr_glRenderMode = _impl_glRenderMode;
+PFN_glGetInteger64v _glptr_glGetInteger64v = _impl_glGetInteger64v;
 
-static void  GL_APIENTRY _impl_glSelectBuffer(GLsizei size, GLuint * buffer) {
-	_glptr_glSelectBuffer = (PFN_glSelectBuffer)GalogenGetProcAddress("glSelectBuffer");
-	_glptr_glSelectBuffer(size, buffer);
+static GLboolean GL_APIENTRY _impl_glIsFramebuffer(GLuint framebuffer) {
+	_glptr_glIsFramebuffer = (PFN_glIsFramebuffer)GalogenGetProcAddress("glIsFramebuffer");
+	return _glptr_glIsFramebuffer(framebuffer);
 }
-PFN_glSelectBuffer _glptr_glSelectBuffer = _impl_glSelectBuffer;
+PFN_glIsFramebuffer _glptr_glIsFramebuffer = _impl_glIsFramebuffer;
 
-static void  GL_APIENTRY _impl_glFeedbackBuffer(GLsizei size, GLenum type, GLfloat * buffer) {
-	_glptr_glFeedbackBuffer = (PFN_glFeedbackBuffer)GalogenGetProcAddress("glFeedbackBuffer");
-	_glptr_glFeedbackBuffer(size, type, buffer);
+static void  GL_APIENTRY _impl_glGetRenderbufferParameteriv(GLenum target, GLenum pname, GLint * params) {
+	_glptr_glGetRenderbufferParameteriv = (PFN_glGetRenderbufferParameteriv)GalogenGetProcAddress("glGetRenderbufferParameteriv");
+	_glptr_glGetRenderbufferParameteriv(target, pname, params);
 }
-PFN_glFeedbackBuffer _glptr_glFeedbackBuffer = _impl_glFeedbackBuffer;
+PFN_glGetRenderbufferParameteriv _glptr_glGetRenderbufferParameteriv = _impl_glGetRenderbufferParameteriv;
 
-static void  GL_APIENTRY _impl_glTranslated(GLdouble x, GLdouble y, GLdouble z) {
-	_glptr_glTranslated = (PFN_glTranslated)GalogenGetProcAddress("glTranslated");
-	_glptr_glTranslated(x, y, z);
+static void  GL_APIENTRY _impl_glBindRenderbuffer(GLenum target, GLuint renderbuffer) {
+	_glptr_glBindRenderbuffer = (PFN_glBindRenderbuffer)GalogenGetProcAddress("glBindRenderbuffer");
+	_glptr_glBindRenderbuffer(target, renderbuffer);
 }
-PFN_glTranslated _glptr_glTranslated = _impl_glTranslated;
+PFN_glBindRenderbuffer _glptr_glBindRenderbuffer = _impl_glBindRenderbuffer;
 
-static void  GL_APIENTRY _impl_glTexGeni(GLenum coord, GLenum pname, GLint param) {
-	_glptr_glTexGeni = (PFN_glTexGeni)GalogenGetProcAddress("glTexGeni");
-	_glptr_glTexGeni(coord, pname, param);
+static GLboolean GL_APIENTRY _impl_glIsRenderbuffer(GLuint renderbuffer) {
+	_glptr_glIsRenderbuffer = (PFN_glIsRenderbuffer)GalogenGetProcAddress("glIsRenderbuffer");
+	return _glptr_glIsRenderbuffer(renderbuffer);
 }
-PFN_glTexGeni _glptr_glTexGeni = _impl_glTexGeni;
+PFN_glIsRenderbuffer _glptr_glIsRenderbuffer = _impl_glIsRenderbuffer;
 
-static void  GL_APIENTRY _impl_glTexGenf(GLenum coord, GLenum pname, GLfloat param) {
-	_glptr_glTexGenf = (PFN_glTexGenf)GalogenGetProcAddress("glTexGenf");
-	_glptr_glTexGenf(coord, pname, param);
+static const GLubyte * GL_APIENTRY _impl_glGetStringi(GLenum name, GLuint index) {
+	_glptr_glGetStringi = (PFN_glGetStringi)GalogenGetProcAddress("glGetStringi");
+	return _glptr_glGetStringi(name, index);
 }
-PFN_glTexGenf _glptr_glTexGenf = _impl_glTexGenf;
+PFN_glGetStringi _glptr_glGetStringi = _impl_glGetStringi;
 
-static void  GL_APIENTRY _impl_glTexGendv(GLenum coord, GLenum pname, const GLdouble * params) {
-	_glptr_glTexGendv = (PFN_glTexGendv)GalogenGetProcAddress("glTexGendv");
-	_glptr_glTexGendv(coord, pname, params);
+static void  GL_APIENTRY _impl_glClearBufferfi(GLenum buffer, GLint drawbuffer, GLfloat depth, GLint stencil) {
+	_glptr_glClearBufferfi = (PFN_glClearBufferfi)GalogenGetProcAddress("glClearBufferfi");
+	_glptr_glClearBufferfi(buffer, drawbuffer, depth, stencil);
 }
-PFN_glTexGendv _glptr_glTexGendv = _impl_glTexGendv;
+PFN_glClearBufferfi _glptr_glClearBufferfi = _impl_glClearBufferfi;
 
-static void  GL_APIENTRY _impl_glTexGend(GLenum coord, GLenum pname, GLdouble param) {
-	_glptr_glTexGend = (PFN_glTexGend)GalogenGetProcAddress("glTexGend");
-	_glptr_glTexGend(coord, pname, param);
+static void  GL_APIENTRY _impl_glClearBufferfv(GLenum buffer, GLint drawbuffer, const GLfloat * value) {
+	_glptr_glClearBufferfv = (PFN_glClearBufferfv)GalogenGetProcAddress("glClearBufferfv");
+	_glptr_glClearBufferfv(buffer, drawbuffer, value);
 }
-PFN_glTexGend _glptr_glTexGend = _impl_glTexGend;
+PFN_glClearBufferfv _glptr_glClearBufferfv = _impl_glClearBufferfv;
 
-static void  GL_APIENTRY _impl_glGetPolygonStipple(GLubyte * mask) {
-	_glptr_glGetPolygonStipple = (PFN_glGetPolygonStipple)GalogenGetProcAddress("glGetPolygonStipple");
-	_glptr_glGetPolygonStipple(mask);
+static void  GL_APIENTRY _impl_glGetTexParameterIiv(GLenum target, GLenum pname, GLint * params) {
+	_glptr_glGetTexParameterIiv = (PFN_glGetTexParameterIiv)GalogenGetProcAddress("glGetTexParameterIiv");
+	_glptr_glGetTexParameterIiv(target, pname, params);
 }
-PFN_glGetPolygonStipple _glptr_glGetPolygonStipple = _impl_glGetPolygonStipple;
+PFN_glGetTexParameterIiv _glptr_glGetTexParameterIiv = _impl_glGetTexParameterIiv;
 
-static void  GL_APIENTRY _impl_glPushName(GLuint name) {
-	_glptr_glPushName = (PFN_glPushName)GalogenGetProcAddress("glPushName");
-	_glptr_glPushName(name);
+static void  GL_APIENTRY _impl_glGetSamplerParameterIuiv(GLuint sampler, GLenum pname, GLuint * params) {
+	_glptr_glGetSamplerParameterIuiv = (PFN_glGetSamplerParameterIuiv)GalogenGetProcAddress("glGetSamplerParameterIuiv");
+	_glptr_glGetSamplerParameterIuiv(sampler, pname, params);
 }
-PFN_glPushName _glptr_glPushName = _impl_glPushName;
+PFN_glGetSamplerParameterIuiv _glptr_glGetSamplerParameterIuiv = _impl_glGetSamplerParameterIuiv;
 
-static void  GL_APIENTRY _impl_glTexEnviv(GLenum target, GLenum pname, const GLint * params) {
-	_glptr_glTexEnviv = (PFN_glTexEnviv)GalogenGetProcAddress("glTexEnviv");
-	_glptr_glTexEnviv(target, pname, params);
+static void  GL_APIENTRY _impl_glTexParameterIiv(GLenum target, GLenum pname, const GLint * params) {
+	_glptr_glTexParameterIiv = (PFN_glTexParameterIiv)GalogenGetProcAddress("glTexParameterIiv");
+	_glptr_glTexParameterIiv(target, pname, params);
 }
-PFN_glTexEnviv _glptr_glTexEnviv = _impl_glTexEnviv;
+PFN_glTexParameterIiv _glptr_glTexParameterIiv = _impl_glTexParameterIiv;
 
-static void  GL_APIENTRY _impl_glMap2f(GLenum target, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder, const GLfloat * points) {
-	_glptr_glMap2f = (PFN_glMap2f)GalogenGetProcAddress("glMap2f");
-	_glptr_glMap2f(target, u1, u2, ustride, uorder, v1, v2, vstride, vorder, points);
+static void  GL_APIENTRY _impl_glUniform4uiv(GLint location, GLsizei count, const GLuint * value) {
+	_glptr_glUniform4uiv = (PFN_glUniform4uiv)GalogenGetProcAddress("glUniform4uiv");
+	_glptr_glUniform4uiv(location, count, value);
 }
-PFN_glMap2f _glptr_glMap2f = _impl_glMap2f;
+PFN_glUniform4uiv _glptr_glUniform4uiv = _impl_glUniform4uiv;
 
-static void  GL_APIENTRY _impl_glTexEnvfv(GLenum target, GLenum pname, const GLfloat * params) {
-	_glptr_glTexEnvfv = (PFN_glTexEnvfv)GalogenGetProcAddress("glTexEnvfv");
-	_glptr_glTexEnvfv(target, pname, params);
+static void  GL_APIENTRY _impl_glUniform3ui(GLint location, GLuint v0, GLuint v1, GLuint v2) {
+	_glptr_glUniform3ui = (PFN_glUniform3ui)GalogenGetProcAddress("glUniform3ui");
+	_glptr_glUniform3ui(location, v0, v1, v2);
 }
-PFN_glTexEnvfv _glptr_glTexEnvfv = _impl_glTexEnvfv;
+PFN_glUniform3ui _glptr_glUniform3ui = _impl_glUniform3ui;
 
-static void  GL_APIENTRY _impl_glMaterialfv(GLenum face, GLenum pname, const GLfloat * params) {
-	_glptr_glMaterialfv = (PFN_glMaterialfv)GalogenGetProcAddress("glMaterialfv");
-	_glptr_glMaterialfv(face, pname, params);
+static void  GL_APIENTRY _impl_glUniform1ui(GLint location, GLuint v0) {
+	_glptr_glUniform1ui = (PFN_glUniform1ui)GalogenGetProcAddress("glUniform1ui");
+	_glptr_glUniform1ui(location, v0);
 }
-PFN_glMaterialfv _glptr_glMaterialfv = _impl_glMaterialfv;
+PFN_glUniform1ui _glptr_glUniform1ui = _impl_glUniform1ui;
 
-static void  GL_APIENTRY _impl_glMaterialf(GLenum face, GLenum pname, GLfloat param) {
-	_glptr_glMaterialf = (PFN_glMaterialf)GalogenGetProcAddress("glMaterialf");
-	_glptr_glMaterialf(face, pname, param);
+static GLint GL_APIENTRY _impl_glGetFragDataLocation(GLuint program, const GLchar * name) {
+	_glptr_glGetFragDataLocation = (PFN_glGetFragDataLocation)GalogenGetProcAddress("glGetFragDataLocation");
+	return _glptr_glGetFragDataLocation(program, name);
 }
-PFN_glMaterialf _glptr_glMaterialf = _impl_glMaterialf;
+PFN_glGetFragDataLocation _glptr_glGetFragDataLocation = _impl_glGetFragDataLocation;
 
-static void  GL_APIENTRY _impl_glLightModeliv(GLenum pname, const GLint * params) {
-	_glptr_glLightModeliv = (PFN_glLightModeliv)GalogenGetProcAddress("glLightModeliv");
-	_glptr_glLightModeliv(pname, params);
+static void  GL_APIENTRY _impl_glBindFragDataLocation(GLuint program, GLuint color, const GLchar * name) {
+	_glptr_glBindFragDataLocation = (PFN_glBindFragDataLocation)GalogenGetProcAddress("glBindFragDataLocation");
+	_glptr_glBindFragDataLocation(program, color, name);
 }
-PFN_glLightModeliv _glptr_glLightModeliv = _impl_glLightModeliv;
+PFN_glBindFragDataLocation _glptr_glBindFragDataLocation = _impl_glBindFragDataLocation;
 
-static void  GL_APIENTRY _impl_glTexGeniv(GLenum coord, GLenum pname, const GLint * params) {
-	_glptr_glTexGeniv = (PFN_glTexGeniv)GalogenGetProcAddress("glTexGeniv");
-	_glptr_glTexGeniv(coord, pname, params);
+static void  GL_APIENTRY _impl_glVertexAttribI4iv(GLuint index, const GLint * v) {
+	_glptr_glVertexAttribI4iv = (PFN_glVertexAttribI4iv)GalogenGetProcAddress("glVertexAttribI4iv");
+	_glptr_glVertexAttribI4iv(index, v);
 }
-PFN_glTexGeniv _glptr_glTexGeniv = _impl_glTexGeniv;
+PFN_glVertexAttribI4iv _glptr_glVertexAttribI4iv = _impl_glVertexAttribI4iv;
 
-static void  GL_APIENTRY _impl_glLightModelfv(GLenum pname, const GLfloat * params) {
-	_glptr_glLightModelfv = (PFN_glLightModelfv)GalogenGetProcAddress("glLightModelfv");
-	_glptr_glLightModelfv(pname, params);
+static void  GL_APIENTRY _impl_glVertexAttribI2iv(GLuint index, const GLint * v) {
+	_glptr_glVertexAttribI2iv = (PFN_glVertexAttribI2iv)GalogenGetProcAddress("glVertexAttribI2iv");
+	_glptr_glVertexAttribI2iv(index, v);
 }
-PFN_glLightModelfv _glptr_glLightModelfv = _impl_glLightModelfv;
+PFN_glVertexAttribI2iv _glptr_glVertexAttribI2iv = _impl_glVertexAttribI2iv;
 
-static void  GL_APIENTRY _impl_glLoadIdentity() {
-	_glptr_glLoadIdentity = (PFN_glLoadIdentity)GalogenGetProcAddress("glLoadIdentity");
-	_glptr_glLoadIdentity();
+static void  GL_APIENTRY _impl_glVertexAttribI1iv(GLuint index, const GLint * v) {
+	_glptr_glVertexAttribI1iv = (PFN_glVertexAttribI1iv)GalogenGetProcAddress("glVertexAttribI1iv");
+	_glptr_glVertexAttribI1iv(index, v);
 }
-PFN_glLoadIdentity _glptr_glLoadIdentity = _impl_glLoadIdentity;
+PFN_glVertexAttribI1iv _glptr_glVertexAttribI1iv = _impl_glVertexAttribI1iv;
 
-static void  GL_APIENTRY _impl_glLightModelf(GLenum pname, GLfloat param) {
-	_glptr_glLightModelf = (PFN_glLightModelf)GalogenGetProcAddress("glLightModelf");
-	_glptr_glLightModelf(pname, param);
+static void  GL_APIENTRY _impl_glVertexAttribI4ui(GLuint index, GLuint x, GLuint y, GLuint z, GLuint w) {
+	_glptr_glVertexAttribI4ui = (PFN_glVertexAttribI4ui)GalogenGetProcAddress("glVertexAttribI4ui");
+	_glptr_glVertexAttribI4ui(index, x, y, z, w);
 }
-PFN_glLightModelf _glptr_glLightModelf = _impl_glLightModelf;
+PFN_glVertexAttribI4ui _glptr_glVertexAttribI4ui = _impl_glVertexAttribI4ui;
 
-static void  GL_APIENTRY _impl_glLightiv(GLenum light, GLenum pname, const GLint * params) {
-	_glptr_glLightiv = (PFN_glLightiv)GalogenGetProcAddress("glLightiv");
-	_glptr_glLightiv(light, pname, params);
+static void  GL_APIENTRY _impl_glVertexAttribI2ui(GLuint index, GLuint x, GLuint y) {
+	_glptr_glVertexAttribI2ui = (PFN_glVertexAttribI2ui)GalogenGetProcAddress("glVertexAttribI2ui");
+	_glptr_glVertexAttribI2ui(index, x, y);
 }
-PFN_glLightiv _glptr_glLightiv = _impl_glLightiv;
+PFN_glVertexAttribI2ui _glptr_glVertexAttribI2ui = _impl_glVertexAttribI2ui;
 
-static void  GL_APIENTRY _impl_glLighti(GLenum light, GLenum pname, GLint param) {
-	_glptr_glLighti = (PFN_glLighti)GalogenGetProcAddress("glLighti");
-	_glptr_glLighti(light, pname, param);
+static void  GL_APIENTRY _impl_glVertexAttribI1ui(GLuint index, GLuint x) {
+	_glptr_glVertexAttribI1ui = (PFN_glVertexAttribI1ui)GalogenGetProcAddress("glVertexAttribI1ui");
+	_glptr_glVertexAttribI1ui(index, x);
 }
-PFN_glLighti _glptr_glLighti = _impl_glLighti;
+PFN_glVertexAttribI1ui _glptr_glVertexAttribI1ui = _impl_glVertexAttribI1ui;
 
-static void  GL_APIENTRY _impl_glFogi(GLenum pname, GLint param) {
-	_glptr_glFogi = (PFN_glFogi)GalogenGetProcAddress("glFogi");
-	_glptr_glFogi(pname, param);
+static void  GL_APIENTRY _impl_glVertexAttribI4i(GLuint index, GLint x, GLint y, GLint z, GLint w) {
+	_glptr_glVertexAttribI4i = (PFN_glVertexAttribI4i)GalogenGetProcAddress("glVertexAttribI4i");
+	_glptr_glVertexAttribI4i(index, x, y, z, w);
 }
-PFN_glFogi _glptr_glFogi = _impl_glFogi;
+PFN_glVertexAttribI4i _glptr_glVertexAttribI4i = _impl_glVertexAttribI4i;
 
-static void  GL_APIENTRY _impl_glEvalCoord1fv(const GLfloat * u) {
-	_glptr_glEvalCoord1fv = (PFN_glEvalCoord1fv)GalogenGetProcAddress("glEvalCoord1fv");
-	_glptr_glEvalCoord1fv(u);
+static void  GL_APIENTRY _impl_glVertexAttribI4bv(GLuint index, const GLbyte * v) {
+	_glptr_glVertexAttribI4bv = (PFN_glVertexAttribI4bv)GalogenGetProcAddress("glVertexAttribI4bv");
+	_glptr_glVertexAttribI4bv(index, v);
 }
-PFN_glEvalCoord1fv _glptr_glEvalCoord1fv = _impl_glEvalCoord1fv;
+PFN_glVertexAttribI4bv _glptr_glVertexAttribI4bv = _impl_glVertexAttribI4bv;
 
-static void  GL_APIENTRY _impl_glFogf(GLenum pname, GLfloat param) {
-	_glptr_glFogf = (PFN_glFogf)GalogenGetProcAddress("glFogf");
-	_glptr_glFogf(pname, param);
+static void  GL_APIENTRY _impl_glVertexAttribI2i(GLuint index, GLint x, GLint y) {
+	_glptr_glVertexAttribI2i = (PFN_glVertexAttribI2i)GalogenGetProcAddress("glVertexAttribI2i");
+	_glptr_glVertexAttribI2i(index, x, y);
 }
-PFN_glFogf _glptr_glFogf = _impl_glFogf;
+PFN_glVertexAttribI2i _glptr_glVertexAttribI2i = _impl_glVertexAttribI2i;
 
-static void  GL_APIENTRY _impl_glColorMaterial(GLenum face, GLenum mode) {
-	_glptr_glColorMaterial = (PFN_glColorMaterial)GalogenGetProcAddress("glColorMaterial");
-	_glptr_glColorMaterial(face, mode);
+static void  GL_APIENTRY _impl_glVertexAttribI1i(GLuint index, GLint x) {
+	_glptr_glVertexAttribI1i = (PFN_glVertexAttribI1i)GalogenGetProcAddress("glVertexAttribI1i");
+	_glptr_glVertexAttribI1i(index, x);
 }
-PFN_glColorMaterial _glptr_glColorMaterial = _impl_glColorMaterial;
+PFN_glVertexAttribI1i _glptr_glVertexAttribI1i = _impl_glVertexAttribI1i;
 
-static void  GL_APIENTRY _impl_glClipPlane(GLenum plane, const GLdouble * equation) {
-	_glptr_glClipPlane = (PFN_glClipPlane)GalogenGetProcAddress("glClipPlane");
-	_glptr_glClipPlane(plane, equation);
+static void  GL_APIENTRY _impl_glGetVertexAttribIiv(GLuint index, GLenum pname, GLint * params) {
+	_glptr_glGetVertexAttribIiv = (PFN_glGetVertexAttribIiv)GalogenGetProcAddress("glGetVertexAttribIiv");
+	_glptr_glGetVertexAttribIiv(index, pname, params);
 }
-PFN_glClipPlane _glptr_glClipPlane = _impl_glClipPlane;
+PFN_glGetVertexAttribIiv _glptr_glGetVertexAttribIiv = _impl_glGetVertexAttribIiv;
 
-static void  GL_APIENTRY _impl_glVertex4sv(const GLshort * v) {
-	_glptr_glVertex4sv = (PFN_glVertex4sv)GalogenGetProcAddress("glVertex4sv");
-	_glptr_glVertex4sv(v);
+static void  GL_APIENTRY _impl_glVertexAttribIPointer(GLuint index, GLint size, GLenum type, GLsizei stride, const void * pointer) {
+	_glptr_glVertexAttribIPointer = (PFN_glVertexAttribIPointer)GalogenGetProcAddress("glVertexAttribIPointer");
+	_glptr_glVertexAttribIPointer(index, size, type, stride, pointer);
 }
-PFN_glVertex4sv _glptr_glVertex4sv = _impl_glVertex4sv;
+PFN_glVertexAttribIPointer _glptr_glVertexAttribIPointer = _impl_glVertexAttribIPointer;
 
-static void  GL_APIENTRY _impl_glVertex4s(GLshort x, GLshort y, GLshort z, GLshort w) {
-	_glptr_glVertex4s = (PFN_glVertex4s)GalogenGetProcAddress("glVertex4s");
-	_glptr_glVertex4s(x, y, z, w);
+static void  GL_APIENTRY _impl_glBeginConditionalRender(GLuint id, GLenum mode) {
+	_glptr_glBeginConditionalRender = (PFN_glBeginConditionalRender)GalogenGetProcAddress("glBeginConditionalRender");
+	_glptr_glBeginConditionalRender(id, mode);
 }
-PFN_glVertex4s _glptr_glVertex4s = _impl_glVertex4s;
+PFN_glBeginConditionalRender _glptr_glBeginConditionalRender = _impl_glBeginConditionalRender;
 
-static void  GL_APIENTRY _impl_glEvalCoord1dv(const GLdouble * u) {
-	_glptr_glEvalCoord1dv = (PFN_glEvalCoord1dv)GalogenGetProcAddress("glEvalCoord1dv");
-	_glptr_glEvalCoord1dv(u);
+static void  GL_APIENTRY _impl_glClampColor(GLenum target, GLenum clamp) {
+	_glptr_glClampColor = (PFN_glClampColor)GalogenGetProcAddress("glClampColor");
+	_glptr_glClampColor(target, clamp);
 }
-PFN_glEvalCoord1dv _glptr_glEvalCoord1dv = _impl_glEvalCoord1dv;
+PFN_glClampColor _glptr_glClampColor = _impl_glClampColor;
 
-static void  GL_APIENTRY _impl_glFogfv(GLenum pname, const GLfloat * params) {
-	_glptr_glFogfv = (PFN_glFogfv)GalogenGetProcAddress("glFogfv");
-	_glptr_glFogfv(pname, params);
+static void  GL_APIENTRY _impl_glBindBufferBase(GLenum target, GLuint index, GLuint buffer) {
+	_glptr_glBindBufferBase = (PFN_glBindBufferBase)GalogenGetProcAddress("glBindBufferBase");
+	_glptr_glBindBufferBase(target, index, buffer);
 }
-PFN_glFogfv _glptr_glFogfv = _impl_glFogfv;
+PFN_glBindBufferBase _glptr_glBindBufferBase = _impl_glBindBufferBase;
 
-static void  GL_APIENTRY _impl_glVertex4fv(const GLfloat * v) {
-	_glptr_glVertex4fv = (PFN_glVertex4fv)GalogenGetProcAddress("glVertex4fv");
-	_glptr_glVertex4fv(v);
+static void  GL_APIENTRY _impl_glBindBufferRange(GLenum target, GLuint index, GLuint buffer, GLintptr offset, GLsizeiptr size) {
+	_glptr_glBindBufferRange = (PFN_glBindBufferRange)GalogenGetProcAddress("glBindBufferRange");
+	_glptr_glBindBufferRange(target, index, buffer, offset, size);
 }
-PFN_glVertex4fv _glptr_glVertex4fv = _impl_glVertex4fv;
+PFN_glBindBufferRange _glptr_glBindBufferRange = _impl_glBindBufferRange;
 
-static void  GL_APIENTRY _impl_glVertex4d(GLdouble x, GLdouble y, GLdouble z, GLdouble w) {
-	_glptr_glVertex4d = (PFN_glVertex4d)GalogenGetProcAddress("glVertex4d");
-	_glptr_glVertex4d(x, y, z, w);
+static void  GL_APIENTRY _impl_glBeginTransformFeedback(GLenum primitiveMode) {
+	_glptr_glBeginTransformFeedback = (PFN_glBeginTransformFeedback)GalogenGetProcAddress("glBeginTransformFeedback");
+	_glptr_glBeginTransformFeedback(primitiveMode);
 }
-PFN_glVertex4d _glptr_glVertex4d = _impl_glVertex4d;
+PFN_glBeginTransformFeedback _glptr_glBeginTransformFeedback = _impl_glBeginTransformFeedback;
 
-static void  GL_APIENTRY _impl_glTexCoord1d(GLdouble s) {
-	_glptr_glTexCoord1d = (PFN_glTexCoord1d)GalogenGetProcAddress("glTexCoord1d");
-	_glptr_glTexCoord1d(s);
+static GLboolean GL_APIENTRY _impl_glIsEnabledi(GLenum target, GLuint index) {
+	_glptr_glIsEnabledi = (PFN_glIsEnabledi)GalogenGetProcAddress("glIsEnabledi");
+	return _glptr_glIsEnabledi(target, index);
 }
-PFN_glTexCoord1d _glptr_glTexCoord1d = _impl_glTexCoord1d;
+PFN_glIsEnabledi _glptr_glIsEnabledi = _impl_glIsEnabledi;
 
-static void  GL_APIENTRY _impl_glVertex3f(GLfloat x, GLfloat y, GLfloat z) {
-	_glptr_glVertex3f = (PFN_glVertex3f)GalogenGetProcAddress("glVertex3f");
-	_glptr_glVertex3f(x, y, z);
+static void  GL_APIENTRY _impl_glGetIntegeri_v(GLenum target, GLuint index, GLint * data) {
+	_glptr_glGetIntegeri_v = (PFN_glGetIntegeri_v)GalogenGetProcAddress("glGetIntegeri_v");
+	_glptr_glGetIntegeri_v(target, index, data);
 }
-PFN_glVertex3f _glptr_glVertex3f = _impl_glVertex3f;
+PFN_glGetIntegeri_v _glptr_glGetIntegeri_v = _impl_glGetIntegeri_v;
 
-static void  GL_APIENTRY _impl_glVertex3dv(const GLdouble * v) {
-	_glptr_glVertex3dv = (PFN_glVertex3dv)GalogenGetProcAddress("glVertex3dv");
-	_glptr_glVertex3dv(v);
+static void  GL_APIENTRY _impl_glColorMaski(GLuint index, GLboolean r, GLboolean g, GLboolean b, GLboolean a) {
+	_glptr_glColorMaski = (PFN_glColorMaski)GalogenGetProcAddress("glColorMaski");
+	_glptr_glColorMaski(index, r, g, b, a);
 }
-PFN_glVertex3dv _glptr_glVertex3dv = _impl_glVertex3dv;
+PFN_glColorMaski _glptr_glColorMaski = _impl_glColorMaski;
 
-static void  GL_APIENTRY _impl_glEvalMesh2(GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2) {
-	_glptr_glEvalMesh2 = (PFN_glEvalMesh2)GalogenGetProcAddress("glEvalMesh2");
-	_glptr_glEvalMesh2(mode, i1, i2, j1, j2);
+static void  GL_APIENTRY _impl_glUniformMatrix4x3fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value) {
+	_glptr_glUniformMatrix4x3fv = (PFN_glUniformMatrix4x3fv)GalogenGetProcAddress("glUniformMatrix4x3fv");
+	_glptr_glUniformMatrix4x3fv(location, count, transpose, value);
 }
-PFN_glEvalMesh2 _glptr_glEvalMesh2 = _impl_glEvalMesh2;
+PFN_glUniformMatrix4x3fv _glptr_glUniformMatrix4x3fv = _impl_glUniformMatrix4x3fv;
 
-static void  GL_APIENTRY _impl_glGetFloatv(GLenum pname, GLfloat * data) {
-	_glptr_glGetFloatv = (PFN_glGetFloatv)GalogenGetProcAddress("glGetFloatv");
-	_glptr_glGetFloatv(pname, data);
+static void  GL_APIENTRY _impl_glUniformMatrix3x4fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value) {
+	_glptr_glUniformMatrix3x4fv = (PFN_glUniformMatrix3x4fv)GalogenGetProcAddress("glUniformMatrix3x4fv");
+	_glptr_glUniformMatrix3x4fv(location, count, transpose, value);
 }
-PFN_glGetFloatv _glptr_glGetFloatv = _impl_glGetFloatv;
+PFN_glUniformMatrix3x4fv _glptr_glUniformMatrix3x4fv = _impl_glUniformMatrix3x4fv;
 
-static void  GL_APIENTRY _impl_glBegin(GLenum mode) {
-	_glptr_glBegin = (PFN_glBegin)GalogenGetProcAddress("glBegin");
-	_glptr_glBegin(mode);
+static void  GL_APIENTRY _impl_glUniformMatrix2x4fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value) {
+	_glptr_glUniformMatrix2x4fv = (PFN_glUniformMatrix2x4fv)GalogenGetProcAddress("glUniformMatrix2x4fv");
+	_glptr_glUniformMatrix2x4fv(location, count, transpose, value);
 }
-PFN_glBegin _glptr_glBegin = _impl_glBegin;
+PFN_glUniformMatrix2x4fv _glptr_glUniformMatrix2x4fv = _impl_glUniformMatrix2x4fv;
 
-static void  GL_APIENTRY _impl_glVertex3d(GLdouble x, GLdouble y, GLdouble z) {
-	_glptr_glVertex3d = (PFN_glVertex3d)GalogenGetProcAddress("glVertex3d");
-	_glptr_glVertex3d(x, y, z);
+static void  GL_APIENTRY _impl_glUniformMatrix3x2fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value) {
+	_glptr_glUniformMatrix3x2fv = (PFN_glUniformMatrix3x2fv)GalogenGetProcAddress("glUniformMatrix3x2fv");
+	_glptr_glUniformMatrix3x2fv(location, count, transpose, value);
 }
-PFN_glVertex3d _glptr_glVertex3d = _impl_glVertex3d;
+PFN_glUniformMatrix3x2fv _glptr_glUniformMatrix3x2fv = _impl_glUniformMatrix3x2fv;
 
-static void  GL_APIENTRY _impl_glVertex2iv(const GLint * v) {
-	_glptr_glVertex2iv = (PFN_glVertex2iv)GalogenGetProcAddress("glVertex2iv");
-	_glptr_glVertex2iv(v);
+static void  GL_APIENTRY _impl_glUniformMatrix2x3fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value) {
+	_glptr_glUniformMatrix2x3fv = (PFN_glUniformMatrix2x3fv)GalogenGetProcAddress("glUniformMatrix2x3fv");
+	_glptr_glUniformMatrix2x3fv(location, count, transpose, value);
 }
-PFN_glVertex2iv _glptr_glVertex2iv = _impl_glVertex2iv;
+PFN_glUniformMatrix2x3fv _glptr_glUniformMatrix2x3fv = _impl_glUniformMatrix2x3fv;
 
-static void  GL_APIENTRY _impl_glTexCoord4sv(const GLshort * v) {
-	_glptr_glTexCoord4sv = (PFN_glTexCoord4sv)GalogenGetProcAddress("glTexCoord4sv");
-	_glptr_glTexCoord4sv(v);
+static void  GL_APIENTRY _impl_glVertexAttribP4ui(GLuint index, GLenum type, GLboolean normalized, GLuint value) {
+	_glptr_glVertexAttribP4ui = (PFN_glVertexAttribP4ui)GalogenGetProcAddress("glVertexAttribP4ui");
+	_glptr_glVertexAttribP4ui(index, type, normalized, value);
 }
-PFN_glTexCoord4sv _glptr_glTexCoord4sv = _impl_glTexCoord4sv;
+PFN_glVertexAttribP4ui _glptr_glVertexAttribP4ui = _impl_glVertexAttribP4ui;
 
-static void  GL_APIENTRY _impl_glTexCoord4i(GLint s, GLint t, GLint r, GLint q) {
-	_glptr_glTexCoord4i = (PFN_glTexCoord4i)GalogenGetProcAddress("glTexCoord4i");
-	_glptr_glTexCoord4i(s, t, r, q);
+static void  GL_APIENTRY _impl_glVertexAttrib4ubv(GLuint index, const GLubyte * v) {
+	_glptr_glVertexAttrib4ubv = (PFN_glVertexAttrib4ubv)GalogenGetProcAddress("glVertexAttrib4ubv");
+	_glptr_glVertexAttrib4ubv(index, v);
 }
-PFN_glTexCoord4i _glptr_glTexCoord4i = _impl_glTexCoord4i;
+PFN_glVertexAttrib4ubv _glptr_glVertexAttrib4ubv = _impl_glVertexAttrib4ubv;
 
-static void  GL_APIENTRY _impl_glVertex2d(GLdouble x, GLdouble y) {
-	_glptr_glVertex2d = (PFN_glVertex2d)GalogenGetProcAddress("glVertex2d");
-	_glptr_glVertex2d(x, y);
+static void  GL_APIENTRY _impl_glVertexAttrib4sv(GLuint index, const GLshort * v) {
+	_glptr_glVertexAttrib4sv = (PFN_glVertexAttrib4sv)GalogenGetProcAddress("glVertexAttrib4sv");
+	_glptr_glVertexAttrib4sv(index, v);
 }
-PFN_glVertex2d _glptr_glVertex2d = _impl_glVertex2d;
+PFN_glVertexAttrib4sv _glptr_glVertexAttrib4sv = _impl_glVertexAttrib4sv;
 
-static void  GL_APIENTRY _impl_glTexCoord4dv(const GLdouble * v) {
-	_glptr_glTexCoord4dv = (PFN_glTexCoord4dv)GalogenGetProcAddress("glTexCoord4dv");
-	_glptr_glTexCoord4dv(v);
+static void  GL_APIENTRY _impl_glVertexAttrib4fv(GLuint index, const GLfloat * v) {
+	_glptr_glVertexAttrib4fv = (PFN_glVertexAttrib4fv)GalogenGetProcAddress("glVertexAttrib4fv");
+	_glptr_glVertexAttrib4fv(index, v);
 }
-PFN_glTexCoord4dv _glptr_glTexCoord4dv = _impl_glTexCoord4dv;
+PFN_glVertexAttrib4fv _glptr_glVertexAttrib4fv = _impl_glVertexAttrib4fv;
 
-static void  GL_APIENTRY _impl_glEdgeFlagv(const GLboolean * flag) {
-	_glptr_glEdgeFlagv = (PFN_glEdgeFlagv)GalogenGetProcAddress("glEdgeFlagv");
-	_glptr_glEdgeFlagv(flag);
+static void  GL_APIENTRY _impl_glVertexAttrib4Nusv(GLuint index, const GLushort * v) {
+	_glptr_glVertexAttrib4Nusv = (PFN_glVertexAttrib4Nusv)GalogenGetProcAddress("glVertexAttrib4Nusv");
+	_glptr_glVertexAttrib4Nusv(index, v);
 }
-PFN_glEdgeFlagv _glptr_glEdgeFlagv = _impl_glEdgeFlagv;
+PFN_glVertexAttrib4Nusv _glptr_glVertexAttrib4Nusv = _impl_glVertexAttrib4Nusv;
 
-static void  GL_APIENTRY _impl_glTexCoord4d(GLdouble s, GLdouble t, GLdouble r, GLdouble q) {
-	_glptr_glTexCoord4d = (PFN_glTexCoord4d)GalogenGetProcAddress("glTexCoord4d");
-	_glptr_glTexCoord4d(s, t, r, q);
+static void  GL_APIENTRY _impl_glVertexAttrib4Nuiv(GLuint index, const GLuint * v) {
+	_glptr_glVertexAttrib4Nuiv = (PFN_glVertexAttrib4Nuiv)GalogenGetProcAddress("glVertexAttrib4Nuiv");
+	_glptr_glVertexAttrib4Nuiv(index, v);
 }
-PFN_glTexCoord4d _glptr_glTexCoord4d = _impl_glTexCoord4d;
+PFN_glVertexAttrib4Nuiv _glptr_glVertexAttrib4Nuiv = _impl_glVertexAttrib4Nuiv;
 
-static void  GL_APIENTRY _impl_glTexCoord2fv(const GLfloat * v) {
-	_glptr_glTexCoord2fv = (PFN_glTexCoord2fv)GalogenGetProcAddress("glTexCoord2fv");
-	_glptr_glTexCoord2fv(v);
+static void  GL_APIENTRY _impl_glVertexAttrib4Nubv(GLuint index, const GLubyte * v) {
+	_glptr_glVertexAttrib4Nubv = (PFN_glVertexAttrib4Nubv)GalogenGetProcAddress("glVertexAttrib4Nubv");
+	_glptr_glVertexAttrib4Nubv(index, v);
 }
-PFN_glTexCoord2fv _glptr_glTexCoord2fv = _impl_glTexCoord2fv;
+PFN_glVertexAttrib4Nubv _glptr_glVertexAttrib4Nubv = _impl_glVertexAttrib4Nubv;
 
-static void  GL_APIENTRY _impl_glTexCoord3i(GLint s, GLint t, GLint r) {
-	_glptr_glTexCoord3i = (PFN_glTexCoord3i)GalogenGetProcAddress("glTexCoord3i");
-	_glptr_glTexCoord3i(s, t, r);
+static void  GL_APIENTRY _impl_glProvokingVertex(GLenum mode) {
+	_glptr_glProvokingVertex = (PFN_glProvokingVertex)GalogenGetProcAddress("glProvokingVertex");
+	_glptr_glProvokingVertex(mode);
 }
-PFN_glTexCoord3i _glptr_glTexCoord3i = _impl_glTexCoord3i;
+PFN_glProvokingVertex _glptr_glProvokingVertex = _impl_glProvokingVertex;
 
-static void  GL_APIENTRY _impl_glTexCoord3fv(const GLfloat * v) {
-	_glptr_glTexCoord3fv = (PFN_glTexCoord3fv)GalogenGetProcAddress("glTexCoord3fv");
-	_glptr_glTexCoord3fv(v);
+static void  GL_APIENTRY _impl_glVertexAttrib4Nsv(GLuint index, const GLshort * v) {
+	_glptr_glVertexAttrib4Nsv = (PFN_glVertexAttrib4Nsv)GalogenGetProcAddress("glVertexAttrib4Nsv");
+	_glptr_glVertexAttrib4Nsv(index, v);
 }
-PFN_glTexCoord3fv _glptr_glTexCoord3fv = _impl_glTexCoord3fv;
+PFN_glVertexAttrib4Nsv _glptr_glVertexAttrib4Nsv = _impl_glVertexAttrib4Nsv;
 
-static void  GL_APIENTRY _impl_glTexCoord4fv(const GLfloat * v) {
-	_glptr_glTexCoord4fv = (PFN_glTexCoord4fv)GalogenGetProcAddress("glTexCoord4fv");
-	_glptr_glTexCoord4fv(v);
+static void  GL_APIENTRY _impl_glVertexAttrib3f(GLuint index, GLfloat x, GLfloat y, GLfloat z) {
+	_glptr_glVertexAttrib3f = (PFN_glVertexAttrib3f)GalogenGetProcAddress("glVertexAttrib3f");
+	_glptr_glVertexAttrib3f(index, x, y, z);
 }
-PFN_glTexCoord4fv _glptr_glTexCoord4fv = _impl_glTexCoord4fv;
+PFN_glVertexAttrib3f _glptr_glVertexAttrib3f = _impl_glVertexAttrib3f;
 
-static void  GL_APIENTRY _impl_glTexCoord2sv(const GLshort * v) {
-	_glptr_glTexCoord2sv = (PFN_glTexCoord2sv)GalogenGetProcAddress("glTexCoord2sv");
-	_glptr_glTexCoord2sv(v);
+static void  GL_APIENTRY _impl_glVertexAttribI1uiv(GLuint index, const GLuint * v) {
+	_glptr_glVertexAttribI1uiv = (PFN_glVertexAttribI1uiv)GalogenGetProcAddress("glVertexAttribI1uiv");
+	_glptr_glVertexAttribI1uiv(index, v);
 }
-PFN_glTexCoord2sv _glptr_glTexCoord2sv = _impl_glTexCoord2sv;
+PFN_glVertexAttribI1uiv _glptr_glVertexAttribI1uiv = _impl_glVertexAttribI1uiv;
 
-static void  GL_APIENTRY _impl_glRasterPos2dv(const GLdouble * v) {
-	_glptr_glRasterPos2dv = (PFN_glRasterPos2dv)GalogenGetProcAddress("glRasterPos2dv");
-	_glptr_glRasterPos2dv(v);
+static void  GL_APIENTRY _impl_glVertexAttrib3dv(GLuint index, const GLdouble * v) {
+	_glptr_glVertexAttrib3dv = (PFN_glVertexAttrib3dv)GalogenGetProcAddress("glVertexAttrib3dv");
+	_glptr_glVertexAttrib3dv(index, v);
 }
-PFN_glRasterPos2dv _glptr_glRasterPos2dv = _impl_glRasterPos2dv;
+PFN_glVertexAttrib3dv _glptr_glVertexAttrib3dv = _impl_glVertexAttrib3dv;
 
-static void  GL_APIENTRY _impl_glColor3dv(const GLdouble * v) {
-	_glptr_glColor3dv = (PFN_glColor3dv)GalogenGetProcAddress("glColor3dv");
-	_glptr_glColor3dv(v);
+static void  GL_APIENTRY _impl_glVertexAttrib3d(GLuint index, GLdouble x, GLdouble y, GLdouble z) {
+	_glptr_glVertexAttrib3d = (PFN_glVertexAttrib3d)GalogenGetProcAddress("glVertexAttrib3d");
+	_glptr_glVertexAttrib3d(index, x, y, z);
 }
-PFN_glColor3dv _glptr_glColor3dv = _impl_glColor3dv;
+PFN_glVertexAttrib3d _glptr_glVertexAttrib3d = _impl_glVertexAttrib3d;
 
-static void  GL_APIENTRY _impl_glTexCoord2i(GLint s, GLint t) {
-	_glptr_glTexCoord2i = (PFN_glTexCoord2i)GalogenGetProcAddress("glTexCoord2i");
-	_glptr_glTexCoord2i(s, t);
+static void  GL_APIENTRY _impl_glVertexAttrib2sv(GLuint index, const GLshort * v) {
+	_glptr_glVertexAttrib2sv = (PFN_glVertexAttrib2sv)GalogenGetProcAddress("glVertexAttrib2sv");
+	_glptr_glVertexAttrib2sv(index, v);
 }
-PFN_glTexCoord2i _glptr_glTexCoord2i = _impl_glTexCoord2i;
+PFN_glVertexAttrib2sv _glptr_glVertexAttrib2sv = _impl_glVertexAttrib2sv;
 
-static void  GL_APIENTRY _impl_glTexCoord2f(GLfloat s, GLfloat t) {
-	_glptr_glTexCoord2f = (PFN_glTexCoord2f)GalogenGetProcAddress("glTexCoord2f");
-	_glptr_glTexCoord2f(s, t);
+static void  GL_APIENTRY _impl_glVertexAttrib2fv(GLuint index, const GLfloat * v) {
+	_glptr_glVertexAttrib2fv = (PFN_glVertexAttrib2fv)GalogenGetProcAddress("glVertexAttrib2fv");
+	_glptr_glVertexAttrib2fv(index, v);
 }
-PFN_glTexCoord2f _glptr_glTexCoord2f = _impl_glTexCoord2f;
+PFN_glVertexAttrib2fv _glptr_glVertexAttrib2fv = _impl_glVertexAttrib2fv;
 
-static void  GL_APIENTRY _impl_glFlush() {
-	_glptr_glFlush = (PFN_glFlush)GalogenGetProcAddress("glFlush");
-	_glptr_glFlush();
+static void  GL_APIENTRY _impl_glVertexAttrib2dv(GLuint index, const GLdouble * v) {
+	_glptr_glVertexAttrib2dv = (PFN_glVertexAttrib2dv)GalogenGetProcAddress("glVertexAttrib2dv");
+	_glptr_glVertexAttrib2dv(index, v);
 }
-PFN_glFlush _glptr_glFlush = _impl_glFlush;
+PFN_glVertexAttrib2dv _glptr_glVertexAttrib2dv = _impl_glVertexAttrib2dv;
 
-static void  GL_APIENTRY _impl_glTexCoord1sv(const GLshort * v) {
-	_glptr_glTexCoord1sv = (PFN_glTexCoord1sv)GalogenGetProcAddress("glTexCoord1sv");
-	_glptr_glTexCoord1sv(v);
+static void  GL_APIENTRY _impl_glVertexAttrib2d(GLuint index, GLdouble x, GLdouble y) {
+	_glptr_glVertexAttrib2d = (PFN_glVertexAttrib2d)GalogenGetProcAddress("glVertexAttrib2d");
+	_glptr_glVertexAttrib2d(index, x, y);
 }
-PFN_glTexCoord1sv _glptr_glTexCoord1sv = _impl_glTexCoord1sv;
+PFN_glVertexAttrib2d _glptr_glVertexAttrib2d = _impl_glVertexAttrib2d;
 
-static void  GL_APIENTRY _impl_glLoadMatrixf(const GLfloat * m) {
-	_glptr_glLoadMatrixf = (PFN_glLoadMatrixf)GalogenGetProcAddress("glLoadMatrixf");
-	_glptr_glLoadMatrixf(m);
+static void  GL_APIENTRY _impl_glVertexAttrib2f(GLuint index, GLfloat x, GLfloat y) {
+	_glptr_glVertexAttrib2f = (PFN_glVertexAttrib2f)GalogenGetProcAddress("glVertexAttrib2f");
+	_glptr_glVertexAttrib2f(index, x, y);
 }
-PFN_glLoadMatrixf _glptr_glLoadMatrixf = _impl_glLoadMatrixf;
+PFN_glVertexAttrib2f _glptr_glVertexAttrib2f = _impl_glVertexAttrib2f;
 
-static void  GL_APIENTRY _impl_glTexCoord1iv(const GLint * v) {
-	_glptr_glTexCoord1iv = (PFN_glTexCoord1iv)GalogenGetProcAddress("glTexCoord1iv");
-	_glptr_glTexCoord1iv(v);
+static void  GL_APIENTRY _impl_glVertexAttrib1s(GLuint index, GLshort x) {
+	_glptr_glVertexAttrib1s = (PFN_glVertexAttrib1s)GalogenGetProcAddress("glVertexAttrib1s");
+	_glptr_glVertexAttrib1s(index, x);
 }
-PFN_glTexCoord1iv _glptr_glTexCoord1iv = _impl_glTexCoord1iv;
+PFN_glVertexAttrib1s _glptr_glVertexAttrib1s = _impl_glVertexAttrib1s;
 
-static void  GL_APIENTRY _impl_glTexCoord1i(GLint s) {
-	_glptr_glTexCoord1i = (PFN_glTexCoord1i)GalogenGetProcAddress("glTexCoord1i");
-	_glptr_glTexCoord1i(s);
+static void  GL_APIENTRY _impl_glVertexAttrib1fv(GLuint index, const GLfloat * v) {
+	_glptr_glVertexAttrib1fv = (PFN_glVertexAttrib1fv)GalogenGetProcAddress("glVertexAttrib1fv");
+	_glptr_glVertexAttrib1fv(index, v);
 }
-PFN_glTexCoord1i _glptr_glTexCoord1i = _impl_glTexCoord1i;
+PFN_glVertexAttrib1fv _glptr_glVertexAttrib1fv = _impl_glVertexAttrib1fv;
 
-static void  GL_APIENTRY _impl_glTexCoord1fv(const GLfloat * v) {
-	_glptr_glTexCoord1fv = (PFN_glTexCoord1fv)GalogenGetProcAddress("glTexCoord1fv");
-	_glptr_glTexCoord1fv(v);
+static void  GL_APIENTRY _impl_glVertexAttrib1f(GLuint index, GLfloat x) {
+	_glptr_glVertexAttrib1f = (PFN_glVertexAttrib1f)GalogenGetProcAddress("glVertexAttrib1f");
+	_glptr_glVertexAttrib1f(index, x);
 }
-PFN_glTexCoord1fv _glptr_glTexCoord1fv = _impl_glTexCoord1fv;
+PFN_glVertexAttrib1f _glptr_glVertexAttrib1f = _impl_glVertexAttrib1f;
 
-static void  GL_APIENTRY _impl_glTexCoord1dv(const GLdouble * v) {
-	_glptr_glTexCoord1dv = (PFN_glTexCoord1dv)GalogenGetProcAddress("glTexCoord1dv");
-	_glptr_glTexCoord1dv(v);
+static void  GL_APIENTRY _impl_glVertexAttrib1dv(GLuint index, const GLdouble * v) {
+	_glptr_glVertexAttrib1dv = (PFN_glVertexAttrib1dv)GalogenGetProcAddress("glVertexAttrib1dv");
+	_glptr_glVertexAttrib1dv(index, v);
 }
-PFN_glTexCoord1dv _glptr_glTexCoord1dv = _impl_glTexCoord1dv;
+PFN_glVertexAttrib1dv _glptr_glVertexAttrib1dv = _impl_glVertexAttrib1dv;
 
-static void  GL_APIENTRY _impl_glRectfv(const GLfloat * v1, const GLfloat * v2) {
-	_glptr_glRectfv = (PFN_glRectfv)GalogenGetProcAddress("glRectfv");
-	_glptr_glRectfv(v1, v2);
+static void  GL_APIENTRY _impl_glClearBufferuiv(GLenum buffer, GLint drawbuffer, const GLuint * value) {
+	_glptr_glClearBufferuiv = (PFN_glClearBufferuiv)GalogenGetProcAddress("glClearBufferuiv");
+	_glptr_glClearBufferuiv(buffer, drawbuffer, value);
 }
-PFN_glRectfv _glptr_glRectfv = _impl_glRectfv;
+PFN_glClearBufferuiv _glptr_glClearBufferuiv = _impl_glClearBufferuiv;
 
-static void  GL_APIENTRY _impl_glRectdv(const GLdouble * v1, const GLdouble * v2) {
-	_glptr_glRectdv = (PFN_glRectdv)GalogenGetProcAddress("glRectdv");
-	_glptr_glRectdv(v1, v2);
+static void  GL_APIENTRY _impl_glUniformMatrix3fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value) {
+	_glptr_glUniformMatrix3fv = (PFN_glUniformMatrix3fv)GalogenGetProcAddress("glUniformMatrix3fv");
+	_glptr_glUniformMatrix3fv(location, count, transpose, value);
 }
-PFN_glRectdv _glptr_glRectdv = _impl_glRectdv;
+PFN_glUniformMatrix3fv _glptr_glUniformMatrix3fv = _impl_glUniformMatrix3fv;
 
-static void  GL_APIENTRY _impl_glRectd(GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2) {
-	_glptr_glRectd = (PFN_glRectd)GalogenGetProcAddress("glRectd");
-	_glptr_glRectd(x1, y1, x2, y2);
+static void  GL_APIENTRY _impl_glDeleteRenderbuffers(GLsizei n, const GLuint * renderbuffers) {
+	_glptr_glDeleteRenderbuffers = (PFN_glDeleteRenderbuffers)GalogenGetProcAddress("glDeleteRenderbuffers");
+	_glptr_glDeleteRenderbuffers(n, renderbuffers);
 }
-PFN_glRectd _glptr_glRectd = _impl_glRectd;
+PFN_glDeleteRenderbuffers _glptr_glDeleteRenderbuffers = _impl_glDeleteRenderbuffers;
 
-static void  GL_APIENTRY _impl_glRasterPos3i(GLint x, GLint y, GLint z) {
-	_glptr_glRasterPos3i = (PFN_glRasterPos3i)GalogenGetProcAddress("glRasterPos3i");
-	_glptr_glRasterPos3i(x, y, z);
+static void  GL_APIENTRY _impl_glUniformMatrix2fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value) {
+	_glptr_glUniformMatrix2fv = (PFN_glUniformMatrix2fv)GalogenGetProcAddress("glUniformMatrix2fv");
+	_glptr_glUniformMatrix2fv(location, count, transpose, value);
 }
-PFN_glRasterPos3i _glptr_glRasterPos3i = _impl_glRasterPos3i;
+PFN_glUniformMatrix2fv _glptr_glUniformMatrix2fv = _impl_glUniformMatrix2fv;
 
-static void  GL_APIENTRY _impl_glRasterPos4sv(const GLshort * v) {
-	_glptr_glRasterPos4sv = (PFN_glRasterPos4sv)GalogenGetProcAddress("glRasterPos4sv");
-	_glptr_glRasterPos4sv(v);
+static void  GL_APIENTRY _impl_glUniform4iv(GLint location, GLsizei count, const GLint * value) {
+	_glptr_glUniform4iv = (PFN_glUniform4iv)GalogenGetProcAddress("glUniform4iv");
+	_glptr_glUniform4iv(location, count, value);
 }
-PFN_glRasterPos4sv _glptr_glRasterPos4sv = _impl_glRasterPos4sv;
+PFN_glUniform4iv _glptr_glUniform4iv = _impl_glUniform4iv;
 
-static void  GL_APIENTRY _impl_glTexCoord1s(GLshort s) {
-	_glptr_glTexCoord1s = (PFN_glTexCoord1s)GalogenGetProcAddress("glTexCoord1s");
-	_glptr_glTexCoord1s(s);
+static void  GL_APIENTRY _impl_glUniform1iv(GLint location, GLsizei count, const GLint * value) {
+	_glptr_glUniform1iv = (PFN_glUniform1iv)GalogenGetProcAddress("glUniform1iv");
+	_glptr_glUniform1iv(location, count, value);
 }
-PFN_glTexCoord1s _glptr_glTexCoord1s = _impl_glTexCoord1s;
+PFN_glUniform1iv _glptr_glUniform1iv = _impl_glUniform1iv;
 
-static void  GL_APIENTRY _impl_glRasterPos4s(GLshort x, GLshort y, GLshort z, GLshort w) {
-	_glptr_glRasterPos4s = (PFN_glRasterPos4s)GalogenGetProcAddress("glRasterPos4s");
-	_glptr_glRasterPos4s(x, y, z, w);
+static void  GL_APIENTRY _impl_glUniform4fv(GLint location, GLsizei count, const GLfloat * value) {
+	_glptr_glUniform4fv = (PFN_glUniform4fv)GalogenGetProcAddress("glUniform4fv");
+	_glptr_glUniform4fv(location, count, value);
 }
-PFN_glRasterPos4s _glptr_glRasterPos4s = _impl_glRasterPos4s;
+PFN_glUniform4fv _glptr_glUniform4fv = _impl_glUniform4fv;
 
-static void  GL_APIENTRY _impl_glRasterPos3f(GLfloat x, GLfloat y, GLfloat z) {
-	_glptr_glRasterPos3f = (PFN_glRasterPos3f)GalogenGetProcAddress("glRasterPos3f");
-	_glptr_glRasterPos3f(x, y, z);
+static void  GL_APIENTRY _impl_glUniform2fv(GLint location, GLsizei count, const GLfloat * value) {
+	_glptr_glUniform2fv = (PFN_glUniform2fv)GalogenGetProcAddress("glUniform2fv");
+	_glptr_glUniform2fv(location, count, value);
 }
-PFN_glRasterPos3f _glptr_glRasterPos3f = _impl_glRasterPos3f;
+PFN_glUniform2fv _glptr_glUniform2fv = _impl_glUniform2fv;
 
-static void  GL_APIENTRY _impl_glRasterPos4fv(const GLfloat * v) {
-	_glptr_glRasterPos4fv = (PFN_glRasterPos4fv)GalogenGetProcAddress("glRasterPos4fv");
-	_glptr_glRasterPos4fv(v);
+static void  GL_APIENTRY _impl_glUniform3i(GLint location, GLint v0, GLint v1, GLint v2) {
+	_glptr_glUniform3i = (PFN_glUniform3i)GalogenGetProcAddress("glUniform3i");
+	_glptr_glUniform3i(location, v0, v1, v2);
 }
-PFN_glRasterPos4fv _glptr_glRasterPos4fv = _impl_glRasterPos4fv;
+PFN_glUniform3i _glptr_glUniform3i = _impl_glUniform3i;
 
-static void  GL_APIENTRY _impl_glIndexiv(const GLint * c) {
-	_glptr_glIndexiv = (PFN_glIndexiv)GalogenGetProcAddress("glIndexiv");
-	_glptr_glIndexiv(c);
+static void  GL_APIENTRY _impl_glUniform2i(GLint location, GLint v0, GLint v1) {
+	_glptr_glUniform2i = (PFN_glUniform2i)GalogenGetProcAddress("glUniform2i");
+	_glptr_glUniform2i(location, v0, v1);
 }
-PFN_glIndexiv _glptr_glIndexiv = _impl_glIndexiv;
+PFN_glUniform2i _glptr_glUniform2i = _impl_glUniform2i;
 
-static void  GL_APIENTRY _impl_glVertex2dv(const GLdouble * v) {
-	_glptr_glVertex2dv = (PFN_glVertex2dv)GalogenGetProcAddress("glVertex2dv");
-	_glptr_glVertex2dv(v);
+static void  GL_APIENTRY _impl_glUniform4f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2, GLfloat v3) {
+	_glptr_glUniform4f = (PFN_glUniform4f)GalogenGetProcAddress("glUniform4f");
+	_glptr_glUniform4f(location, v0, v1, v2, v3);
 }
-PFN_glVertex2dv _glptr_glVertex2dv = _impl_glVertex2dv;
+PFN_glUniform4f _glptr_glUniform4f = _impl_glUniform4f;
 
-static void  GL_APIENTRY _impl_glRasterPos2i(GLint x, GLint y) {
-	_glptr_glRasterPos2i = (PFN_glRasterPos2i)GalogenGetProcAddress("glRasterPos2i");
-	_glptr_glRasterPos2i(x, y);
+static void  GL_APIENTRY _impl_glUniform3f(GLint location, GLfloat v0, GLfloat v1, GLfloat v2) {
+	_glptr_glUniform3f = (PFN_glUniform3f)GalogenGetProcAddress("glUniform3f");
+	_glptr_glUniform3f(location, v0, v1, v2);
 }
-PFN_glRasterPos2i _glptr_glRasterPos2i = _impl_glRasterPos2i;
+PFN_glUniform3f _glptr_glUniform3f = _impl_glUniform3f;
 
-static void  GL_APIENTRY _impl_glRasterPos4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w) {
-	_glptr_glRasterPos4f = (PFN_glRasterPos4f)GalogenGetProcAddress("glRasterPos4f");
-	_glptr_glRasterPos4f(x, y, z, w);
+static void  GL_APIENTRY _impl_glUniform1f(GLint location, GLfloat v0) {
+	_glptr_glUniform1f = (PFN_glUniform1f)GalogenGetProcAddress("glUniform1f");
+	_glptr_glUniform1f(location, v0);
 }
-PFN_glRasterPos4f _glptr_glRasterPos4f = _impl_glRasterPos4f;
+PFN_glUniform1f _glptr_glUniform1f = _impl_glUniform1f;
 
-static void  GL_APIENTRY _impl_glVertex3fv(const GLfloat * v) {
-	_glptr_glVertex3fv = (PFN_glVertex3fv)GalogenGetProcAddress("glVertex3fv");
-	_glptr_glVertex3fv(v);
+static void  GL_APIENTRY _impl_glUseProgram(GLuint program) {
+	_glptr_glUseProgram = (PFN_glUseProgram)GalogenGetProcAddress("glUseProgram");
+	_glptr_glUseProgram(program);
 }
-PFN_glVertex3fv _glptr_glVertex3fv = _impl_glVertex3fv;
+PFN_glUseProgram _glptr_glUseProgram = _impl_glUseProgram;
 
-static void  GL_APIENTRY _impl_glRasterPos4dv(const GLdouble * v) {
-	_glptr_glRasterPos4dv = (PFN_glRasterPos4dv)GalogenGetProcAddress("glRasterPos4dv");
-	_glptr_glRasterPos4dv(v);
+static void  GL_APIENTRY _impl_glShaderSource(GLuint shader, GLsizei count, const GLchar *const* string, const GLint * length) {
+	_glptr_glShaderSource = (PFN_glShaderSource)GalogenGetProcAddress("glShaderSource");
+	_glptr_glShaderSource(shader, count, string, length);
 }
-PFN_glRasterPos4dv _glptr_glRasterPos4dv = _impl_glRasterPos4dv;
+PFN_glShaderSource _glptr_glShaderSource = _impl_glShaderSource;
 
-static void  GL_APIENTRY _impl_glRasterPos4d(GLdouble x, GLdouble y, GLdouble z, GLdouble w) {
-	_glptr_glRasterPos4d = (PFN_glRasterPos4d)GalogenGetProcAddress("glRasterPos4d");
-	_glptr_glRasterPos4d(x, y, z, w);
+static void  GL_APIENTRY _impl_glLinkProgram(GLuint program) {
+	_glptr_glLinkProgram = (PFN_glLinkProgram)GalogenGetProcAddress("glLinkProgram");
+	_glptr_glLinkProgram(program);
 }
-PFN_glRasterPos4d _glptr_glRasterPos4d = _impl_glRasterPos4d;
+PFN_glLinkProgram _glptr_glLinkProgram = _impl_glLinkProgram;
 
-static void  GL_APIENTRY _impl_glRasterPos3s(GLshort x, GLshort y, GLshort z) {
-	_glptr_glRasterPos3s = (PFN_glRasterPos3s)GalogenGetProcAddress("glRasterPos3s");
-	_glptr_glRasterPos3s(x, y, z);
+static GLboolean GL_APIENTRY _impl_glIsShader(GLuint shader) {
+	_glptr_glIsShader = (PFN_glIsShader)GalogenGetProcAddress("glIsShader");
+	return _glptr_glIsShader(shader);
 }
-PFN_glRasterPos3s _glptr_glRasterPos3s = _impl_glRasterPos3s;
+PFN_glIsShader _glptr_glIsShader = _impl_glIsShader;
 
-static void  GL_APIENTRY _impl_glColorMask(GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha) {
-	_glptr_glColorMask = (PFN_glColorMask)GalogenGetProcAddress("glColorMask");
-	_glptr_glColorMask(red, green, blue, alpha);
+static void  GL_APIENTRY _impl_glGetVertexAttribPointerv(GLuint index, GLenum pname, void ** pointer) {
+	_glptr_glGetVertexAttribPointerv = (PFN_glGetVertexAttribPointerv)GalogenGetProcAddress("glGetVertexAttribPointerv");
+	_glptr_glGetVertexAttribPointerv(index, pname, pointer);
 }
-PFN_glColorMask _glptr_glColorMask = _impl_glColorMask;
+PFN_glGetVertexAttribPointerv _glptr_glGetVertexAttribPointerv = _impl_glGetVertexAttribPointerv;
 
-static void  GL_APIENTRY _impl_glRasterPos4iv(const GLint * v) {
-	_glptr_glRasterPos4iv = (PFN_glRasterPos4iv)GalogenGetProcAddress("glRasterPos4iv");
-	_glptr_glRasterPos4iv(v);
+static void  GL_APIENTRY _impl_glGetVertexAttribiv(GLuint index, GLenum pname, GLint * params) {
+	_glptr_glGetVertexAttribiv = (PFN_glGetVertexAttribiv)GalogenGetProcAddress("glGetVertexAttribiv");
+	_glptr_glGetVertexAttribiv(index, pname, params);
 }
-PFN_glRasterPos4iv _glptr_glRasterPos4iv = _impl_glRasterPos4iv;
+PFN_glGetVertexAttribiv _glptr_glGetVertexAttribiv = _impl_glGetVertexAttribiv;
 
-static void  GL_APIENTRY _impl_glVertex4dv(const GLdouble * v) {
-	_glptr_glVertex4dv = (PFN_glVertex4dv)GalogenGetProcAddress("glVertex4dv");
-	_glptr_glVertex4dv(v);
+static void  GL_APIENTRY _impl_glGetVertexAttribfv(GLuint index, GLenum pname, GLfloat * params) {
+	_glptr_glGetVertexAttribfv = (PFN_glGetVertexAttribfv)GalogenGetProcAddress("glGetVertexAttribfv");
+	_glptr_glGetVertexAttribfv(index, pname, params);
 }
-PFN_glVertex4dv _glptr_glVertex4dv = _impl_glVertex4dv;
+PFN_glGetVertexAttribfv _glptr_glGetVertexAttribfv = _impl_glGetVertexAttribfv;
 
-static void  GL_APIENTRY _impl_glEvalCoord2f(GLfloat u, GLfloat v) {
-	_glptr_glEvalCoord2f = (PFN_glEvalCoord2f)GalogenGetProcAddress("glEvalCoord2f");
-	_glptr_glEvalCoord2f(u, v);
+static void  GL_APIENTRY _impl_glUniformBlockBinding(GLuint program, GLuint uniformBlockIndex, GLuint uniformBlockBinding) {
+	_glptr_glUniformBlockBinding = (PFN_glUniformBlockBinding)GalogenGetProcAddress("glUniformBlockBinding");
+	_glptr_glUniformBlockBinding(program, uniformBlockIndex, uniformBlockBinding);
 }
-PFN_glEvalCoord2f _glptr_glEvalCoord2f = _impl_glEvalCoord2f;
+PFN_glUniformBlockBinding _glptr_glUniformBlockBinding = _impl_glUniformBlockBinding;
 
-static void  GL_APIENTRY _impl_glGetDoublev(GLenum pname, GLdouble * data) {
-	_glptr_glGetDoublev = (PFN_glGetDoublev)GalogenGetProcAddress("glGetDoublev");
-	_glptr_glGetDoublev(pname, data);
+static GLint GL_APIENTRY _impl_glGetUniformLocation(GLuint program, const GLchar * name) {
+	_glptr_glGetUniformLocation = (PFN_glGetUniformLocation)GalogenGetProcAddress("glGetUniformLocation");
+	return _glptr_glGetUniformLocation(program, name);
 }
-PFN_glGetDoublev _glptr_glGetDoublev = _impl_glGetDoublev;
+PFN_glGetUniformLocation _glptr_glGetUniformLocation = _impl_glGetUniformLocation;
 
-static void  GL_APIENTRY _impl_glRasterPos3iv(const GLint * v) {
-	_glptr_glRasterPos3iv = (PFN_glRasterPos3iv)GalogenGetProcAddress("glRasterPos3iv");
-	_glptr_glRasterPos3iv(v);
+static void  GL_APIENTRY _impl_glGetShaderiv(GLuint shader, GLenum pname, GLint * params) {
+	_glptr_glGetShaderiv = (PFN_glGetShaderiv)GalogenGetProcAddress("glGetShaderiv");
+	_glptr_glGetShaderiv(shader, pname, params);
 }
-PFN_glRasterPos3iv _glptr_glRasterPos3iv = _impl_glRasterPos3iv;
+PFN_glGetShaderiv _glptr_glGetShaderiv = _impl_glGetShaderiv;
 
-static void  GL_APIENTRY _impl_glPixelStoref(GLenum pname, GLfloat param) {
-	_glptr_glPixelStoref = (PFN_glPixelStoref)GalogenGetProcAddress("glPixelStoref");
-	_glptr_glPixelStoref(pname, param);
+static void  GL_APIENTRY _impl_glGetProgramInfoLog(GLuint program, GLsizei bufSize, GLsizei * length, GLchar * infoLog) {
+	_glptr_glGetProgramInfoLog = (PFN_glGetProgramInfoLog)GalogenGetProcAddress("glGetProgramInfoLog");
+	_glptr_glGetProgramInfoLog(program, bufSize, length, infoLog);
 }
-PFN_glPixelStoref _glptr_glPixelStoref = _impl_glPixelStoref;
+PFN_glGetProgramInfoLog _glptr_glGetProgramInfoLog = _impl_glGetProgramInfoLog;
 
-static void  GL_APIENTRY _impl_glRasterPos3d(GLdouble x, GLdouble y, GLdouble z) {
-	_glptr_glRasterPos3d = (PFN_glRasterPos3d)GalogenGetProcAddress("glRasterPos3d");
-	_glptr_glRasterPos3d(x, y, z);
+static GLint GL_APIENTRY _impl_glGetAttribLocation(GLuint program, const GLchar * name) {
+	_glptr_glGetAttribLocation = (PFN_glGetAttribLocation)GalogenGetProcAddress("glGetAttribLocation");
+	return _glptr_glGetAttribLocation(program, name);
 }
-PFN_glRasterPos3d _glptr_glRasterPos3d = _impl_glRasterPos3d;
+PFN_glGetAttribLocation _glptr_glGetAttribLocation = _impl_glGetAttribLocation;
 
-static void  GL_APIENTRY _impl_glTexCoord1f(GLfloat s) {
-	_glptr_glTexCoord1f = (PFN_glTexCoord1f)GalogenGetProcAddress("glTexCoord1f");
-	_glptr_glTexCoord1f(s);
+static void  GL_APIENTRY _impl_glGetAttachedShaders(GLuint program, GLsizei maxCount, GLsizei * count, GLuint * shaders) {
+	_glptr_glGetAttachedShaders = (PFN_glGetAttachedShaders)GalogenGetProcAddress("glGetAttachedShaders");
+	_glptr_glGetAttachedShaders(program, maxCount, count, shaders);
 }
-PFN_glTexCoord1f _glptr_glTexCoord1f = _impl_glTexCoord1f;
+PFN_glGetAttachedShaders _glptr_glGetAttachedShaders = _impl_glGetAttachedShaders;
 
-static void  GL_APIENTRY _impl_glLightModeli(GLenum pname, GLint param) {
-	_glptr_glLightModeli = (PFN_glLightModeli)GalogenGetProcAddress("glLightModeli");
-	_glptr_glLightModeli(pname, param);
+static void  GL_APIENTRY _impl_glGetActiveUniform(GLuint program, GLuint index, GLsizei bufSize, GLsizei * length, GLint * size, GLenum * type, GLchar * name) {
+	_glptr_glGetActiveUniform = (PFN_glGetActiveUniform)GalogenGetProcAddress("glGetActiveUniform");
+	_glptr_glGetActiveUniform(program, index, bufSize, length, size, type, name);
 }
-PFN_glLightModeli _glptr_glLightModeli = _impl_glLightModeli;
+PFN_glGetActiveUniform _glptr_glGetActiveUniform = _impl_glGetActiveUniform;
 
-static void  GL_APIENTRY _impl_glColor3d(GLdouble red, GLdouble green, GLdouble blue) {
-	_glptr_glColor3d = (PFN_glColor3d)GalogenGetProcAddress("glColor3d");
-	_glptr_glColor3d(red, green, blue);
+static void  GL_APIENTRY _impl_glGetActiveAttrib(GLuint program, GLuint index, GLsizei bufSize, GLsizei * length, GLint * size, GLenum * type, GLchar * name) {
+	_glptr_glGetActiveAttrib = (PFN_glGetActiveAttrib)GalogenGetProcAddress("glGetActiveAttrib");
+	_glptr_glGetActiveAttrib(program, index, bufSize, length, size, type, name);
 }
-PFN_glColor3d _glptr_glColor3d = _impl_glColor3d;
+PFN_glGetActiveAttrib _glptr_glGetActiveAttrib = _impl_glGetActiveAttrib;
 
-static void  GL_APIENTRY _impl_glRasterPos2s(GLshort x, GLshort y) {
-	_glptr_glRasterPos2s = (PFN_glRasterPos2s)GalogenGetProcAddress("glRasterPos2s");
-	_glptr_glRasterPos2s(x, y);
+static void  GL_APIENTRY _impl_glVertexAttrib4iv(GLuint index, const GLint * v) {
+	_glptr_glVertexAttrib4iv = (PFN_glVertexAttrib4iv)GalogenGetProcAddress("glVertexAttrib4iv");
+	_glptr_glVertexAttrib4iv(index, v);
 }
-PFN_glRasterPos2s _glptr_glRasterPos2s = _impl_glRasterPos2s;
+PFN_glVertexAttrib4iv _glptr_glVertexAttrib4iv = _impl_glVertexAttrib4iv;
 
-static void  GL_APIENTRY _impl_glRasterPos2iv(const GLint * v) {
-	_glptr_glRasterPos2iv = (PFN_glRasterPos2iv)GalogenGetProcAddress("glRasterPos2iv");
-	_glptr_glRasterPos2iv(v);
+static void  GL_APIENTRY _impl_glDisableVertexAttribArray(GLuint index) {
+	_glptr_glDisableVertexAttribArray = (PFN_glDisableVertexAttribArray)GalogenGetProcAddress("glDisableVertexAttribArray");
+	_glptr_glDisableVertexAttribArray(index);
 }
-PFN_glRasterPos2iv _glptr_glRasterPos2iv = _impl_glRasterPos2iv;
+PFN_glDisableVertexAttribArray _glptr_glDisableVertexAttribArray = _impl_glDisableVertexAttribArray;
 
-static void  GL_APIENTRY _impl_glRasterPos2d(GLdouble x, GLdouble y) {
-	_glptr_glRasterPos2d = (PFN_glRasterPos2d)GalogenGetProcAddress("glRasterPos2d");
-	_glptr_glRasterPos2d(x, y);
+static void  GL_APIENTRY _impl_glDeleteShader(GLuint shader) {
+	_glptr_glDeleteShader = (PFN_glDeleteShader)GalogenGetProcAddress("glDeleteShader");
+	_glptr_glDeleteShader(shader);
 }
-PFN_glRasterPos2d _glptr_glRasterPos2d = _impl_glRasterPos2d;
+PFN_glDeleteShader _glptr_glDeleteShader = _impl_glDeleteShader;
 
-static void  GL_APIENTRY _impl_glNormal3sv(const GLshort * v) {
-	_glptr_glNormal3sv = (PFN_glNormal3sv)GalogenGetProcAddress("glNormal3sv");
-	_glptr_glNormal3sv(v);
+static void  GL_APIENTRY _impl_glDeleteProgram(GLuint program) {
+	_glptr_glDeleteProgram = (PFN_glDeleteProgram)GalogenGetProcAddress("glDeleteProgram");
+	_glptr_glDeleteProgram(program);
 }
-PFN_glNormal3sv _glptr_glNormal3sv = _impl_glNormal3sv;
+PFN_glDeleteProgram _glptr_glDeleteProgram = _impl_glDeleteProgram;
 
-static void  GL_APIENTRY _impl_glNormal3s(GLshort nx, GLshort ny, GLshort nz) {
-	_glptr_glNormal3s = (PFN_glNormal3s)GalogenGetProcAddress("glNormal3s");
-	_glptr_glNormal3s(nx, ny, nz);
+static void  GL_APIENTRY _impl_glGetBooleani_v(GLenum target, GLuint index, GLboolean * data) {
+	_glptr_glGetBooleani_v = (PFN_glGetBooleani_v)GalogenGetProcAddress("glGetBooleani_v");
+	_glptr_glGetBooleani_v(target, index, data);
 }
-PFN_glNormal3s _glptr_glNormal3s = _impl_glNormal3s;
+PFN_glGetBooleani_v _glptr_glGetBooleani_v = _impl_glGetBooleani_v;
 
-static void  GL_APIENTRY _impl_glNormal3iv(const GLint * v) {
-	_glptr_glNormal3iv = (PFN_glNormal3iv)GalogenGetProcAddress("glNormal3iv");
-	_glptr_glNormal3iv(v);
+static void  GL_APIENTRY _impl_glCompileShader(GLuint shader) {
+	_glptr_glCompileShader = (PFN_glCompileShader)GalogenGetProcAddress("glCompileShader");
+	_glptr_glCompileShader(shader);
 }
-PFN_glNormal3iv _glptr_glNormal3iv = _impl_glNormal3iv;
+PFN_glCompileShader _glptr_glCompileShader = _impl_glCompileShader;
 
-static void  GL_APIENTRY _impl_glRasterPos4i(GLint x, GLint y, GLint z, GLint w) {
-	_glptr_glRasterPos4i = (PFN_glRasterPos4i)GalogenGetProcAddress("glRasterPos4i");
-	_glptr_glRasterPos4i(x, y, z, w);
+static void  GL_APIENTRY _impl_glStencilFuncSeparate(GLenum face, GLenum func, GLint ref, GLuint mask) {
+	_glptr_glStencilFuncSeparate = (PFN_glStencilFuncSeparate)GalogenGetProcAddress("glStencilFuncSeparate");
+	_glptr_glStencilFuncSeparate(face, func, ref, mask);
 }
-PFN_glRasterPos4i _glptr_glRasterPos4i = _impl_glRasterPos4i;
+PFN_glStencilFuncSeparate _glptr_glStencilFuncSeparate = _impl_glStencilFuncSeparate;
 
-static void  GL_APIENTRY _impl_glNormal3i(GLint nx, GLint ny, GLint nz) {
-	_glptr_glNormal3i = (PFN_glNormal3i)GalogenGetProcAddress("glNormal3i");
-	_glptr_glNormal3i(nx, ny, nz);
+static void  GL_APIENTRY _impl_glStencilOpSeparate(GLenum face, GLenum sfail, GLenum dpfail, GLenum dppass) {
+	_glptr_glStencilOpSeparate = (PFN_glStencilOpSeparate)GalogenGetProcAddress("glStencilOpSeparate");
+	_glptr_glStencilOpSeparate(face, sfail, dpfail, dppass);
 }
-PFN_glNormal3i _glptr_glNormal3i = _impl_glNormal3i;
+PFN_glStencilOpSeparate _glptr_glStencilOpSeparate = _impl_glStencilOpSeparate;
 
-static void  GL_APIENTRY _impl_glRasterPos3sv(const GLshort * v) {
-	_glptr_glRasterPos3sv = (PFN_glRasterPos3sv)GalogenGetProcAddress("glRasterPos3sv");
-	_glptr_glRasterPos3sv(v);
+static void  GL_APIENTRY _impl_glRenderbufferStorageMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height) {
+	_glptr_glRenderbufferStorageMultisample = (PFN_glRenderbufferStorageMultisample)GalogenGetProcAddress("glRenderbufferStorageMultisample");
+	_glptr_glRenderbufferStorageMultisample(target, samples, internalformat, width, height);
 }
-PFN_glRasterPos3sv _glptr_glRasterPos3sv = _impl_glRasterPos3sv;
+PFN_glRenderbufferStorageMultisample _glptr_glRenderbufferStorageMultisample = _impl_glRenderbufferStorageMultisample;
 
-static void  GL_APIENTRY _impl_glNormal3f(GLfloat nx, GLfloat ny, GLfloat nz) {
-	_glptr_glNormal3f = (PFN_glNormal3f)GalogenGetProcAddress("glNormal3f");
-	_glptr_glNormal3f(nx, ny, nz);
+static void  GL_APIENTRY _impl_glDrawBuffers(GLsizei n, const GLenum * bufs) {
+	_glptr_glDrawBuffers = (PFN_glDrawBuffers)GalogenGetProcAddress("glDrawBuffers");
+	_glptr_glDrawBuffers(n, bufs);
 }
-PFN_glNormal3f _glptr_glNormal3f = _impl_glNormal3f;
+PFN_glDrawBuffers _glptr_glDrawBuffers = _impl_glDrawBuffers;
 
-static void  GL_APIENTRY _impl_glOrtho(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar) {
-	_glptr_glOrtho = (PFN_glOrtho)GalogenGetProcAddress("glOrtho");
-	_glptr_glOrtho(left, right, bottom, top, zNear, zFar);
+static void  GL_APIENTRY _impl_glGetBufferParameteriv(GLenum target, GLenum pname, GLint * params) {
+	_glptr_glGetBufferParameteriv = (PFN_glGetBufferParameteriv)GalogenGetProcAddress("glGetBufferParameteriv");
+	_glptr_glGetBufferParameteriv(target, pname, params);
 }
-PFN_glOrtho _glptr_glOrtho = _impl_glOrtho;
+PFN_glGetBufferParameteriv _glptr_glGetBufferParameteriv = _impl_glGetBufferParameteriv;
 
-static void  GL_APIENTRY _impl_glTexCoord2d(GLdouble s, GLdouble t) {
-	_glptr_glTexCoord2d = (PFN_glTexCoord2d)GalogenGetProcAddress("glTexCoord2d");
-	_glptr_glTexCoord2d(s, t);
+static void  GL_APIENTRY _impl_glVertexAttribDivisor(GLuint index, GLuint divisor) {
+	_glptr_glVertexAttribDivisor = (PFN_glVertexAttribDivisor)GalogenGetProcAddress("glVertexAttribDivisor");
+	_glptr_glVertexAttribDivisor(index, divisor);
 }
-PFN_glTexCoord2d _glptr_glTexCoord2d = _impl_glTexCoord2d;
+PFN_glVertexAttribDivisor _glptr_glVertexAttribDivisor = _impl_glVertexAttribDivisor;
 
-static void  GL_APIENTRY _impl_glNormal3dv(const GLdouble * v) {
-	_glptr_glNormal3dv = (PFN_glNormal3dv)GalogenGetProcAddress("glNormal3dv");
-	_glptr_glNormal3dv(v);
+static GLboolean GL_APIENTRY _impl_glUnmapBuffer(GLenum target) {
+	_glptr_glUnmapBuffer = (PFN_glUnmapBuffer)GalogenGetProcAddress("glUnmapBuffer");
+	return _glptr_glUnmapBuffer(target);
 }
-PFN_glNormal3dv _glptr_glNormal3dv = _impl_glNormal3dv;
+PFN_glUnmapBuffer _glptr_glUnmapBuffer = _impl_glUnmapBuffer;
 
-static void  GL_APIENTRY _impl_glScissor(GLint x, GLint y, GLsizei width, GLsizei height) {
-	_glptr_glScissor = (PFN_glScissor)GalogenGetProcAddress("glScissor");
-	_glptr_glScissor(x, y, width, height);
+static void  GL_APIENTRY _impl_glVertexAttrib4dv(GLuint index, const GLdouble * v) {
+	_glptr_glVertexAttrib4dv = (PFN_glVertexAttrib4dv)GalogenGetProcAddress("glVertexAttrib4dv");
+	_glptr_glVertexAttrib4dv(index, v);
 }
-PFN_glScissor _glptr_glScissor = _impl_glScissor;
+PFN_glVertexAttrib4dv _glptr_glVertexAttrib4dv = _impl_glVertexAttrib4dv;
 
-static void  GL_APIENTRY _impl_glNormal3d(GLdouble nx, GLdouble ny, GLdouble nz) {
-	_glptr_glNormal3d = (PFN_glNormal3d)GalogenGetProcAddress("glNormal3d");
-	_glptr_glNormal3d(nx, ny, nz);
+static void * GL_APIENTRY _impl_glMapBuffer(GLenum target, GLenum access) {
+	_glptr_glMapBuffer = (PFN_glMapBuffer)GalogenGetProcAddress("glMapBuffer");
+	return _glptr_glMapBuffer(target, access);
 }
-PFN_glNormal3d _glptr_glNormal3d = _impl_glNormal3d;
+PFN_glMapBuffer _glptr_glMapBuffer = _impl_glMapBuffer;
 
-static void  GL_APIENTRY _impl_glNormal3bv(const GLbyte * v) {
-	_glptr_glNormal3bv = (PFN_glNormal3bv)GalogenGetProcAddress("glNormal3bv");
-	_glptr_glNormal3bv(v);
+static void  GL_APIENTRY _impl_glBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, const void * data) {
+	_glptr_glBufferSubData = (PFN_glBufferSubData)GalogenGetProcAddress("glBufferSubData");
+	_glptr_glBufferSubData(target, offset, size, data);
 }
-PFN_glNormal3bv _glptr_glNormal3bv = _impl_glNormal3bv;
+PFN_glBufferSubData _glptr_glBufferSubData = _impl_glBufferSubData;
 
-static void  GL_APIENTRY _impl_glRasterPos3fv(const GLfloat * v) {
-	_glptr_glRasterPos3fv = (PFN_glRasterPos3fv)GalogenGetProcAddress("glRasterPos3fv");
-	_glptr_glRasterPos3fv(v);
+static void  GL_APIENTRY _impl_glGetQueryObjectuiv(GLuint id, GLenum pname, GLuint * params) {
+	_glptr_glGetQueryObjectuiv = (PFN_glGetQueryObjectuiv)GalogenGetProcAddress("glGetQueryObjectuiv");
+	_glptr_glGetQueryObjectuiv(id, pname, params);
 }
-PFN_glRasterPos3fv _glptr_glRasterPos3fv = _impl_glRasterPos3fv;
+PFN_glGetQueryObjectuiv _glptr_glGetQueryObjectuiv = _impl_glGetQueryObjectuiv;
 
-static void  GL_APIENTRY _impl_glNormal3b(GLbyte nx, GLbyte ny, GLbyte nz) {
-	_glptr_glNormal3b = (PFN_glNormal3b)GalogenGetProcAddress("glNormal3b");
-	_glptr_glNormal3b(nx, ny, nz);
+static void  GL_APIENTRY _impl_glGetQueryObjectiv(GLuint id, GLenum pname, GLint * params) {
+	_glptr_glGetQueryObjectiv = (PFN_glGetQueryObjectiv)GalogenGetProcAddress("glGetQueryObjectiv");
+	_glptr_glGetQueryObjectiv(id, pname, params);
 }
-PFN_glNormal3b _glptr_glNormal3b = _impl_glNormal3b;
+PFN_glGetQueryObjectiv _glptr_glGetQueryObjectiv = _impl_glGetQueryObjectiv;
 
-static void  GL_APIENTRY _impl_glIndexi(GLint c) {
-	_glptr_glIndexi = (PFN_glIndexi)GalogenGetProcAddress("glIndexi");
-	_glptr_glIndexi(c);
+static GLboolean GL_APIENTRY _impl_glIsQuery(GLuint id) {
+	_glptr_glIsQuery = (PFN_glIsQuery)GalogenGetProcAddress("glIsQuery");
+	return _glptr_glIsQuery(id);
 }
-PFN_glIndexi _glptr_glIndexi = _impl_glIndexi;
+PFN_glIsQuery _glptr_glIsQuery = _impl_glIsQuery;
 
-static void  GL_APIENTRY _impl_glScalef(GLfloat x, GLfloat y, GLfloat z) {
-	_glptr_glScalef = (PFN_glScalef)GalogenGetProcAddress("glScalef");
-	_glptr_glScalef(x, y, z);
+static void  GL_APIENTRY _impl_glDeleteQueries(GLsizei n, const GLuint * ids) {
+	_glptr_glDeleteQueries = (PFN_glDeleteQueries)GalogenGetProcAddress("glDeleteQueries");
+	_glptr_glDeleteQueries(n, ids);
 }
-PFN_glScalef _glptr_glScalef = _impl_glScalef;
+PFN_glDeleteQueries _glptr_glDeleteQueries = _impl_glDeleteQueries;
 
-static void  GL_APIENTRY _impl_glIndexf(GLfloat c) {
-	_glptr_glIndexf = (PFN_glIndexf)GalogenGetProcAddress("glIndexf");
-	_glptr_glIndexf(c);
+static void  GL_APIENTRY _impl_glGenQueries(GLsizei n, GLuint * ids) {
+	_glptr_glGenQueries = (PFN_glGenQueries)GalogenGetProcAddress("glGenQueries");
+	_glptr_glGenQueries(n, ids);
 }
-PFN_glIndexf _glptr_glIndexf = _impl_glIndexf;
+PFN_glGenQueries _glptr_glGenQueries = _impl_glGenQueries;
 
-static void  GL_APIENTRY _impl_glScaled(GLdouble x, GLdouble y, GLdouble z) {
-	_glptr_glScaled = (PFN_glScaled)GalogenGetProcAddress("glScaled");
-	_glptr_glScaled(x, y, z);
+static void  GL_APIENTRY _impl_glBlendEquation(GLenum mode) {
+	_glptr_glBlendEquation = (PFN_glBlendEquation)GalogenGetProcAddress("glBlendEquation");
+	_glptr_glBlendEquation(mode);
 }
-PFN_glScaled _glptr_glScaled = _impl_glScaled;
+PFN_glBlendEquation _glptr_glBlendEquation = _impl_glBlendEquation;
 
-static void  GL_APIENTRY _impl_glVertex4i(GLint x, GLint y, GLint z, GLint w) {
-	_glptr_glVertex4i = (PFN_glVertex4i)GalogenGetProcAddress("glVertex4i");
-	_glptr_glVertex4i(x, y, z, w);
+static void  GL_APIENTRY _impl_glVertexAttrib3sv(GLuint index, const GLshort * v) {
+	_glptr_glVertexAttrib3sv = (PFN_glVertexAttrib3sv)GalogenGetProcAddress("glVertexAttrib3sv");
+	_glptr_glVertexAttrib3sv(index, v);
 }
-PFN_glVertex4i _glptr_glVertex4i = _impl_glVertex4i;
+PFN_glVertexAttrib3sv _glptr_glVertexAttrib3sv = _impl_glVertexAttrib3sv;
 
-static void  GL_APIENTRY _impl_glEnd() {
-	_glptr_glEnd = (PFN_glEnd)GalogenGetProcAddress("glEnd");
-	_glptr_glEnd();
+static void  GL_APIENTRY _impl_glVertexAttribI3ui(GLuint index, GLuint x, GLuint y, GLuint z) {
+	_glptr_glVertexAttribI3ui = (PFN_glVertexAttribI3ui)GalogenGetProcAddress("glVertexAttribI3ui");
+	_glptr_glVertexAttribI3ui(index, x, y, z);
 }
-PFN_glEnd _glptr_glEnd = _impl_glEnd;
+PFN_glVertexAttribI3ui _glptr_glVertexAttribI3ui = _impl_glVertexAttribI3ui;
 
-static void  GL_APIENTRY _impl_glColor4uiv(const GLuint * v) {
-	_glptr_glColor4uiv = (PFN_glColor4uiv)GalogenGetProcAddress("glColor4uiv");
-	_glptr_glColor4uiv(v);
+static void  GL_APIENTRY _impl_glGenBuffers(GLsizei n, GLuint * buffers) {
+	_glptr_glGenBuffers = (PFN_glGenBuffers)GalogenGetProcAddress("glGenBuffers");
+	_glptr_glGenBuffers(n, buffers);
 }
-PFN_glColor4uiv _glptr_glColor4uiv = _impl_glColor4uiv;
+PFN_glGenBuffers _glptr_glGenBuffers = _impl_glGenBuffers;
 
-static void  GL_APIENTRY _impl_glTexCoord2s(GLshort s, GLshort t) {
-	_glptr_glTexCoord2s = (PFN_glTexCoord2s)GalogenGetProcAddress("glTexCoord2s");
-	_glptr_glTexCoord2s(s, t);
+static GLenum GL_APIENTRY _impl_glCheckFramebufferStatus(GLenum target) {
+	_glptr_glCheckFramebufferStatus = (PFN_glCheckFramebufferStatus)GalogenGetProcAddress("glCheckFramebufferStatus");
+	return _glptr_glCheckFramebufferStatus(target);
 }
-PFN_glTexCoord2s _glptr_glTexCoord2s = _impl_glTexCoord2s;
+PFN_glCheckFramebufferStatus _glptr_glCheckFramebufferStatus = _impl_glCheckFramebufferStatus;
 
-static void  GL_APIENTRY _impl_glIndexd(GLdouble c) {
-	_glptr_glIndexd = (PFN_glIndexd)GalogenGetProcAddress("glIndexd");
-	_glptr_glIndexd(c);
+static void  GL_APIENTRY _impl_glUniform4i(GLint location, GLint v0, GLint v1, GLint v2, GLint v3) {
+	_glptr_glUniform4i = (PFN_glUniform4i)GalogenGetProcAddress("glUniform4i");
+	_glptr_glUniform4i(location, v0, v1, v2, v3);
 }
-PFN_glIndexd _glptr_glIndexd = _impl_glIndexd;
+PFN_glUniform4i _glptr_glUniform4i = _impl_glUniform4i;
 
-static void  GL_APIENTRY _impl_glColor4sv(const GLshort * v) {
-	_glptr_glColor4sv = (PFN_glColor4sv)GalogenGetProcAddress("glColor4sv");
-	_glptr_glColor4sv(v);
+static void  GL_APIENTRY _impl_glPointParameteriv(GLenum pname, const GLint * params) {
+	_glptr_glPointParameteriv = (PFN_glPointParameteriv)GalogenGetProcAddress("glPointParameteriv");
+	_glptr_glPointParameteriv(pname, params);
 }
-PFN_glColor4sv _glptr_glColor4sv = _impl_glColor4sv;
+PFN_glPointParameteriv _glptr_glPointParameteriv = _impl_glPointParameteriv;
 
-static void  GL_APIENTRY _impl_glVertex2f(GLfloat x, GLfloat y) {
-	_glptr_glVertex2f = (PFN_glVertex2f)GalogenGetProcAddress("glVertex2f");
-	_glptr_glVertex2f(x, y);
+static void  GL_APIENTRY _impl_glVertexAttrib2s(GLuint index, GLshort x, GLshort y) {
+	_glptr_glVertexAttrib2s = (PFN_glVertexAttrib2s)GalogenGetProcAddress("glVertexAttrib2s");
+	_glptr_glVertexAttrib2s(index, x, y);
 }
-PFN_glVertex2f _glptr_glVertex2f = _impl_glVertex2f;
-
-static void  GL_APIENTRY _impl_glColor4iv(const GLint * v) {
-	_glptr_glColor4iv = (PFN_glColor4iv)GalogenGetProcAddress("glColor4iv");
-	_glptr_glColor4iv(v);
-}
-PFN_glColor4iv _glptr_glColor4iv = _impl_glColor4iv;
-
-static void  GL_APIENTRY _impl_glColor4f(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) {
-	_glptr_glColor4f = (PFN_glColor4f)GalogenGetProcAddress("glColor4f");
-	_glptr_glColor4f(red, green, blue, alpha);
-}
-PFN_glColor4f _glptr_glColor4f = _impl_glColor4f;
-
-static void  GL_APIENTRY _impl_glIndexMask(GLuint mask) {
-	_glptr_glIndexMask = (PFN_glIndexMask)GalogenGetProcAddress("glIndexMask");
-	_glptr_glIndexMask(mask);
-}
-PFN_glIndexMask _glptr_glIndexMask = _impl_glIndexMask;
-
-static void  GL_APIENTRY _impl_glTexCoord4s(GLshort s, GLshort t, GLshort r, GLshort q) {
-	_glptr_glTexCoord4s = (PFN_glTexCoord4s)GalogenGetProcAddress("glTexCoord4s");
-	_glptr_glTexCoord4s(s, t, r, q);
-}
-PFN_glTexCoord4s _glptr_glTexCoord4s = _impl_glTexCoord4s;
-
-static void  GL_APIENTRY _impl_glColor4bv(const GLbyte * v) {
-	_glptr_glColor4bv = (PFN_glColor4bv)GalogenGetProcAddress("glColor4bv");
-	_glptr_glColor4bv(v);
-}
-PFN_glColor4bv _glptr_glColor4bv = _impl_glColor4bv;
-
-static void  GL_APIENTRY _impl_glVertex2fv(const GLfloat * v) {
-	_glptr_glVertex2fv = (PFN_glVertex2fv)GalogenGetProcAddress("glVertex2fv");
-	_glptr_glVertex2fv(v);
-}
-PFN_glVertex2fv _glptr_glVertex2fv = _impl_glVertex2fv;
-
-static void  GL_APIENTRY _impl_glGetBooleanv(GLenum pname, GLboolean * data) {
-	_glptr_glGetBooleanv = (PFN_glGetBooleanv)GalogenGetProcAddress("glGetBooleanv");
-	_glptr_glGetBooleanv(pname, data);
-}
-PFN_glGetBooleanv _glptr_glGetBooleanv = _impl_glGetBooleanv;
-
-static void  GL_APIENTRY _impl_glColor3usv(const GLushort * v) {
-	_glptr_glColor3usv = (PFN_glColor3usv)GalogenGetProcAddress("glColor3usv");
-	_glptr_glColor3usv(v);
-}
-PFN_glColor3usv _glptr_glColor3usv = _impl_glColor3usv;
-
-static void  GL_APIENTRY _impl_glColor3us(GLushort red, GLushort green, GLushort blue) {
-	_glptr_glColor3us = (PFN_glColor3us)GalogenGetProcAddress("glColor3us");
-	_glptr_glColor3us(red, green, blue);
-}
-PFN_glColor3us _glptr_glColor3us = _impl_glColor3us;
-
-static void  GL_APIENTRY _impl_glVertex3s(GLshort x, GLshort y, GLshort z) {
-	_glptr_glVertex3s = (PFN_glVertex3s)GalogenGetProcAddress("glVertex3s");
-	_glptr_glVertex3s(x, y, z);
-}
-PFN_glVertex3s _glptr_glVertex3s = _impl_glVertex3s;
-
-static void  GL_APIENTRY _impl_glColor3uiv(const GLuint * v) {
-	_glptr_glColor3uiv = (PFN_glColor3uiv)GalogenGetProcAddress("glColor3uiv");
-	_glptr_glColor3uiv(v);
-}
-PFN_glColor3uiv _glptr_glColor3uiv = _impl_glColor3uiv;
-
-static void  GL_APIENTRY _impl_glEdgeFlag(GLboolean flag) {
-	_glptr_glEdgeFlag = (PFN_glEdgeFlag)GalogenGetProcAddress("glEdgeFlag");
-	_glptr_glEdgeFlag(flag);
-}
-PFN_glEdgeFlag _glptr_glEdgeFlag = _impl_glEdgeFlag;
-
-static void  GL_APIENTRY _impl_glBitmap(GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove, const GLubyte * bitmap) {
-	_glptr_glBitmap = (PFN_glBitmap)GalogenGetProcAddress("glBitmap");
-	_glptr_glBitmap(width, height, xorig, yorig, xmove, ymove, bitmap);
-}
-PFN_glBitmap _glptr_glBitmap = _impl_glBitmap;
-
-static void  GL_APIENTRY _impl_glColor3ui(GLuint red, GLuint green, GLuint blue) {
-	_glptr_glColor3ui = (PFN_glColor3ui)GalogenGetProcAddress("glColor3ui");
-	_glptr_glColor3ui(red, green, blue);
-}
-PFN_glColor3ui _glptr_glColor3ui = _impl_glColor3ui;
-
-static GLboolean GL_APIENTRY _impl_glIsList(GLuint list) {
-	_glptr_glIsList = (PFN_glIsList)GalogenGetProcAddress("glIsList");
-	return _glptr_glIsList(list);
-}
-PFN_glIsList _glptr_glIsList = _impl_glIsList;
-
-static void  GL_APIENTRY _impl_glColor3i(GLint red, GLint green, GLint blue) {
-	_glptr_glColor3i = (PFN_glColor3i)GalogenGetProcAddress("glColor3i");
-	_glptr_glColor3i(red, green, blue);
-}
-PFN_glColor3i _glptr_glColor3i = _impl_glColor3i;
-
-static void  GL_APIENTRY _impl_glColor4dv(const GLdouble * v) {
-	_glptr_glColor4dv = (PFN_glColor4dv)GalogenGetProcAddress("glColor4dv");
-	_glptr_glColor4dv(v);
-}
-PFN_glColor4dv _glptr_glColor4dv = _impl_glColor4dv;
-
-static void  GL_APIENTRY _impl_glPixelMapfv(GLenum map, GLsizei mapsize, const GLfloat * values) {
-	_glptr_glPixelMapfv = (PFN_glPixelMapfv)GalogenGetProcAddress("glPixelMapfv");
-	_glptr_glPixelMapfv(map, mapsize, values);
-}
-PFN_glPixelMapfv _glptr_glPixelMapfv = _impl_glPixelMapfv;
+PFN_glVertexAttrib2s _glptr_glVertexAttrib2s = _impl_glVertexAttrib2s;
 
 static void  GL_APIENTRY _impl_glFinish() {
 	_glptr_glFinish = (PFN_glFinish)GalogenGetProcAddress("glFinish");
@@ -1155,89 +1047,359 @@ static void  GL_APIENTRY _impl_glFinish() {
 }
 PFN_glFinish _glptr_glFinish = _impl_glFinish;
 
-static void  GL_APIENTRY _impl_glMultMatrixd(const GLdouble * m) {
-	_glptr_glMultMatrixd = (PFN_glMultMatrixd)GalogenGetProcAddress("glMultMatrixd");
-	_glptr_glMultMatrixd(m);
+static void  GL_APIENTRY _impl_glPointParameteri(GLenum pname, GLint param) {
+	_glptr_glPointParameteri = (PFN_glPointParameteri)GalogenGetProcAddress("glPointParameteri");
+	_glptr_glPointParameteri(pname, param);
 }
-PFN_glMultMatrixd _glptr_glMultMatrixd = _impl_glMultMatrixd;
+PFN_glPointParameteri _glptr_glPointParameteri = _impl_glPointParameteri;
 
-static void  GL_APIENTRY _impl_glMapGrid1f(GLint un, GLfloat u1, GLfloat u2) {
-	_glptr_glMapGrid1f = (PFN_glMapGrid1f)GalogenGetProcAddress("glMapGrid1f");
-	_glptr_glMapGrid1f(un, u1, u2);
+static void  GL_APIENTRY _impl_glMultiDrawArrays(GLenum mode, const GLint * first, const GLsizei * count, GLsizei drawcount) {
+	_glptr_glMultiDrawArrays = (PFN_glMultiDrawArrays)GalogenGetProcAddress("glMultiDrawArrays");
+	_glptr_glMultiDrawArrays(mode, first, count, drawcount);
 }
-PFN_glMapGrid1f _glptr_glMapGrid1f = _impl_glMapGrid1f;
+PFN_glMultiDrawArrays _glptr_glMultiDrawArrays = _impl_glMultiDrawArrays;
 
-static void  GL_APIENTRY _impl_glColor3iv(const GLint * v) {
-	_glptr_glColor3iv = (PFN_glColor3iv)GalogenGetProcAddress("glColor3iv");
-	_glptr_glColor3iv(v);
+static void  GL_APIENTRY _impl_glFramebufferRenderbuffer(GLenum target, GLenum attachment, GLenum renderbuffertarget, GLuint renderbuffer) {
+	_glptr_glFramebufferRenderbuffer = (PFN_glFramebufferRenderbuffer)GalogenGetProcAddress("glFramebufferRenderbuffer");
+	_glptr_glFramebufferRenderbuffer(target, attachment, renderbuffertarget, renderbuffer);
 }
-PFN_glColor3iv _glptr_glColor3iv = _impl_glColor3iv;
+PFN_glFramebufferRenderbuffer _glptr_glFramebufferRenderbuffer = _impl_glFramebufferRenderbuffer;
 
-static void  GL_APIENTRY _impl_glColor3ub(GLubyte red, GLubyte green, GLubyte blue) {
-	_glptr_glColor3ub = (PFN_glColor3ub)GalogenGetProcAddress("glColor3ub");
-	_glptr_glColor3ub(red, green, blue);
+static GLint GL_APIENTRY _impl_glGetFragDataIndex(GLuint program, const GLchar * name) {
+	_glptr_glGetFragDataIndex = (PFN_glGetFragDataIndex)GalogenGetProcAddress("glGetFragDataIndex");
+	return _glptr_glGetFragDataIndex(program, name);
 }
-PFN_glColor3ub _glptr_glColor3ub = _impl_glColor3ub;
+PFN_glGetFragDataIndex _glptr_glGetFragDataIndex = _impl_glGetFragDataIndex;
 
-static void  GL_APIENTRY _impl_glTexCoord4iv(const GLint * v) {
-	_glptr_glTexCoord4iv = (PFN_glTexCoord4iv)GalogenGetProcAddress("glTexCoord4iv");
-	_glptr_glTexCoord4iv(v);
+static void  GL_APIENTRY _impl_glGetQueryiv(GLenum target, GLenum pname, GLint * params) {
+	_glptr_glGetQueryiv = (PFN_glGetQueryiv)GalogenGetProcAddress("glGetQueryiv");
+	_glptr_glGetQueryiv(target, pname, params);
 }
-PFN_glTexCoord4iv _glptr_glTexCoord4iv = _impl_glTexCoord4iv;
+PFN_glGetQueryiv _glptr_glGetQueryiv = _impl_glGetQueryiv;
 
-static void  GL_APIENTRY _impl_glCallLists(GLsizei n, GLenum type, const void * lists) {
-	_glptr_glCallLists = (PFN_glCallLists)GalogenGetProcAddress("glCallLists");
-	_glptr_glCallLists(n, type, lists);
+static void  GL_APIENTRY _impl_glGetUniformfv(GLuint program, GLint location, GLfloat * params) {
+	_glptr_glGetUniformfv = (PFN_glGetUniformfv)GalogenGetProcAddress("glGetUniformfv");
+	_glptr_glGetUniformfv(program, location, params);
 }
-PFN_glCallLists _glptr_glCallLists = _impl_glCallLists;
+PFN_glGetUniformfv _glptr_glGetUniformfv = _impl_glGetUniformfv;
 
-static void  GL_APIENTRY _impl_glIndexs(GLshort c) {
-	_glptr_glIndexs = (PFN_glIndexs)GalogenGetProcAddress("glIndexs");
-	_glptr_glIndexs(c);
+static void  GL_APIENTRY _impl_glVertexAttrib4usv(GLuint index, const GLushort * v) {
+	_glptr_glVertexAttrib4usv = (PFN_glVertexAttrib4usv)GalogenGetProcAddress("glVertexAttrib4usv");
+	_glptr_glVertexAttrib4usv(index, v);
 }
-PFN_glIndexs _glptr_glIndexs = _impl_glIndexs;
+PFN_glVertexAttrib4usv _glptr_glVertexAttrib4usv = _impl_glVertexAttrib4usv;
 
-static void  GL_APIENTRY _impl_glEvalCoord1f(GLfloat u) {
-	_glptr_glEvalCoord1f = (PFN_glEvalCoord1f)GalogenGetProcAddress("glEvalCoord1f");
-	_glptr_glEvalCoord1f(u);
+static void  GL_APIENTRY _impl_glDeleteSync(GLsync sync) {
+	_glptr_glDeleteSync = (PFN_glDeleteSync)GalogenGetProcAddress("glDeleteSync");
+	_glptr_glDeleteSync(sync);
 }
-PFN_glEvalCoord1f _glptr_glEvalCoord1f = _impl_glEvalCoord1f;
+PFN_glDeleteSync _glptr_glDeleteSync = _impl_glDeleteSync;
 
-static void  GL_APIENTRY _impl_glIndexsv(const GLshort * c) {
-	_glptr_glIndexsv = (PFN_glIndexsv)GalogenGetProcAddress("glIndexsv");
-	_glptr_glIndexsv(c);
+static void  GL_APIENTRY _impl_glGetCompressedTexImage(GLenum target, GLint level, void * img) {
+	_glptr_glGetCompressedTexImage = (PFN_glGetCompressedTexImage)GalogenGetProcAddress("glGetCompressedTexImage");
+	_glptr_glGetCompressedTexImage(target, level, img);
 }
-PFN_glIndexsv _glptr_glIndexsv = _impl_glIndexsv;
+PFN_glGetCompressedTexImage _glptr_glGetCompressedTexImage = _impl_glGetCompressedTexImage;
 
-static void  GL_APIENTRY _impl_glColor3sv(const GLshort * v) {
-	_glptr_glColor3sv = (PFN_glColor3sv)GalogenGetProcAddress("glColor3sv");
-	_glptr_glColor3sv(v);
+static void  GL_APIENTRY _impl_glCompressedTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLsizei imageSize, const void * data) {
+	_glptr_glCompressedTexSubImage2D = (PFN_glCompressedTexSubImage2D)GalogenGetProcAddress("glCompressedTexSubImage2D");
+	_glptr_glCompressedTexSubImage2D(target, level, xoffset, yoffset, width, height, format, imageSize, data);
 }
-PFN_glColor3sv _glptr_glColor3sv = _impl_glColor3sv;
+PFN_glCompressedTexSubImage2D _glptr_glCompressedTexSubImage2D = _impl_glCompressedTexSubImage2D;
 
-static void  GL_APIENTRY _impl_glColor3s(GLshort red, GLshort green, GLshort blue) {
-	_glptr_glColor3s = (PFN_glColor3s)GalogenGetProcAddress("glColor3s");
-	_glptr_glColor3s(red, green, blue);
+static void  GL_APIENTRY _impl_glUniform4ui(GLint location, GLuint v0, GLuint v1, GLuint v2, GLuint v3) {
+	_glptr_glUniform4ui = (PFN_glUniform4ui)GalogenGetProcAddress("glUniform4ui");
+	_glptr_glUniform4ui(location, v0, v1, v2, v3);
 }
-PFN_glColor3s _glptr_glColor3s = _impl_glColor3s;
+PFN_glUniform4ui _glptr_glUniform4ui = _impl_glUniform4ui;
 
-static void  GL_APIENTRY _impl_glGetClipPlane(GLenum plane, GLdouble * equation) {
-	_glptr_glGetClipPlane = (PFN_glGetClipPlane)GalogenGetProcAddress("glGetClipPlane");
-	_glptr_glGetClipPlane(plane, equation);
+static void  GL_APIENTRY _impl_glVertexAttribI4usv(GLuint index, const GLushort * v) {
+	_glptr_glVertexAttribI4usv = (PFN_glVertexAttribI4usv)GalogenGetProcAddress("glVertexAttribI4usv");
+	_glptr_glVertexAttribI4usv(index, v);
 }
-PFN_glGetClipPlane _glptr_glGetClipPlane = _impl_glGetClipPlane;
+PFN_glVertexAttribI4usv _glptr_glVertexAttribI4usv = _impl_glVertexAttribI4usv;
 
-static void  GL_APIENTRY _impl_glListBase(GLuint base) {
-	_glptr_glListBase = (PFN_glListBase)GalogenGetProcAddress("glListBase");
-	_glptr_glListBase(base);
+static void  GL_APIENTRY _impl_glCompressedTexImage2D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLsizei imageSize, const void * data) {
+	_glptr_glCompressedTexImage2D = (PFN_glCompressedTexImage2D)GalogenGetProcAddress("glCompressedTexImage2D");
+	_glptr_glCompressedTexImage2D(target, level, internalformat, width, height, border, imageSize, data);
 }
-PFN_glListBase _glptr_glListBase = _impl_glListBase;
+PFN_glCompressedTexImage2D _glptr_glCompressedTexImage2D = _impl_glCompressedTexImage2D;
 
-static void  GL_APIENTRY _impl_glHint(GLenum target, GLenum mode) {
-	_glptr_glHint = (PFN_glHint)GalogenGetProcAddress("glHint");
-	_glptr_glHint(target, mode);
+static void  GL_APIENTRY _impl_glCompressedTexImage3D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLsizei imageSize, const void * data) {
+	_glptr_glCompressedTexImage3D = (PFN_glCompressedTexImage3D)GalogenGetProcAddress("glCompressedTexImage3D");
+	_glptr_glCompressedTexImage3D(target, level, internalformat, width, height, depth, border, imageSize, data);
 }
-PFN_glHint _glptr_glHint = _impl_glHint;
+PFN_glCompressedTexImage3D _glptr_glCompressedTexImage3D = _impl_glCompressedTexImage3D;
+
+static void  GL_APIENTRY _impl_glSampleCoverage(GLfloat value, GLboolean invert) {
+	_glptr_glSampleCoverage = (PFN_glSampleCoverage)GalogenGetProcAddress("glSampleCoverage");
+	_glptr_glSampleCoverage(value, invert);
+}
+PFN_glSampleCoverage _glptr_glSampleCoverage = _impl_glSampleCoverage;
+
+static void  GL_APIENTRY _impl_glActiveTexture(GLenum texture) {
+	_glptr_glActiveTexture = (PFN_glActiveTexture)GalogenGetProcAddress("glActiveTexture");
+	_glptr_glActiveTexture(texture);
+}
+PFN_glActiveTexture _glptr_glActiveTexture = _impl_glActiveTexture;
+
+static void  GL_APIENTRY _impl_glCopyTexSubImage3D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLint x, GLint y, GLsizei width, GLsizei height) {
+	_glptr_glCopyTexSubImage3D = (PFN_glCopyTexSubImage3D)GalogenGetProcAddress("glCopyTexSubImage3D");
+	_glptr_glCopyTexSubImage3D(target, level, xoffset, yoffset, zoffset, x, y, width, height);
+}
+PFN_glCopyTexSubImage3D _glptr_glCopyTexSubImage3D = _impl_glCopyTexSubImage3D;
+
+static void  GL_APIENTRY _impl_glCompressedTexImage1D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLint border, GLsizei imageSize, const void * data) {
+	_glptr_glCompressedTexImage1D = (PFN_glCompressedTexImage1D)GalogenGetProcAddress("glCompressedTexImage1D");
+	_glptr_glCompressedTexImage1D(target, level, internalformat, width, border, imageSize, data);
+}
+PFN_glCompressedTexImage1D _glptr_glCompressedTexImage1D = _impl_glCompressedTexImage1D;
+
+static void  GL_APIENTRY _impl_glTexSubImage3D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLenum type, const void * pixels) {
+	_glptr_glTexSubImage3D = (PFN_glTexSubImage3D)GalogenGetProcAddress("glTexSubImage3D");
+	_glptr_glTexSubImage3D(target, level, xoffset, yoffset, zoffset, width, height, depth, format, type, pixels);
+}
+PFN_glTexSubImage3D _glptr_glTexSubImage3D = _impl_glTexSubImage3D;
+
+static void  GL_APIENTRY _impl_glUniformMatrix4fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value) {
+	_glptr_glUniformMatrix4fv = (PFN_glUniformMatrix4fv)GalogenGetProcAddress("glUniformMatrix4fv");
+	_glptr_glUniformMatrix4fv(location, count, transpose, value);
+}
+PFN_glUniformMatrix4fv _glptr_glUniformMatrix4fv = _impl_glUniformMatrix4fv;
+
+static const GLubyte * GL_APIENTRY _impl_glGetString(GLenum name) {
+	_glptr_glGetString = (PFN_glGetString)GalogenGetProcAddress("glGetString");
+	return _glptr_glGetString(name);
+}
+PFN_glGetString _glptr_glGetString = _impl_glGetString;
+
+static void  GL_APIENTRY _impl_glRenderbufferStorage(GLenum target, GLenum internalformat, GLsizei width, GLsizei height) {
+	_glptr_glRenderbufferStorage = (PFN_glRenderbufferStorage)GalogenGetProcAddress("glRenderbufferStorage");
+	_glptr_glRenderbufferStorage(target, internalformat, width, height);
+}
+PFN_glRenderbufferStorage _glptr_glRenderbufferStorage = _impl_glRenderbufferStorage;
+
+static GLboolean GL_APIENTRY _impl_glIsTexture(GLuint texture) {
+	_glptr_glIsTexture = (PFN_glIsTexture)GalogenGetProcAddress("glIsTexture");
+	return _glptr_glIsTexture(texture);
+}
+PFN_glIsTexture _glptr_glIsTexture = _impl_glIsTexture;
+
+static void  GL_APIENTRY _impl_glGenTextures(GLsizei n, GLuint * textures) {
+	_glptr_glGenTextures = (PFN_glGenTextures)GalogenGetProcAddress("glGenTextures");
+	_glptr_glGenTextures(n, textures);
+}
+PFN_glGenTextures _glptr_glGenTextures = _impl_glGenTextures;
+
+static void  GL_APIENTRY _impl_glVertexAttribP3ui(GLuint index, GLenum type, GLboolean normalized, GLuint value) {
+	_glptr_glVertexAttribP3ui = (PFN_glVertexAttribP3ui)GalogenGetProcAddress("glVertexAttribP3ui");
+	_glptr_glVertexAttribP3ui(index, type, normalized, value);
+}
+PFN_glVertexAttribP3ui _glptr_glVertexAttribP3ui = _impl_glVertexAttribP3ui;
+
+static void  GL_APIENTRY _impl_glTexSubImage1D(GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const void * pixels) {
+	_glptr_glTexSubImage1D = (PFN_glTexSubImage1D)GalogenGetProcAddress("glTexSubImage1D");
+	_glptr_glTexSubImage1D(target, level, xoffset, width, format, type, pixels);
+}
+PFN_glTexSubImage1D _glptr_glTexSubImage1D = _impl_glTexSubImage1D;
+
+static GLenum GL_APIENTRY _impl_glClientWaitSync(GLsync sync, GLbitfield flags, GLuint64 timeout) {
+	_glptr_glClientWaitSync = (PFN_glClientWaitSync)GalogenGetProcAddress("glClientWaitSync");
+	return _glptr_glClientWaitSync(sync, flags, timeout);
+}
+PFN_glClientWaitSync _glptr_glClientWaitSync = _impl_glClientWaitSync;
+
+static void  GL_APIENTRY _impl_glCopyTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height) {
+	_glptr_glCopyTexSubImage2D = (PFN_glCopyTexSubImage2D)GalogenGetProcAddress("glCopyTexSubImage2D");
+	_glptr_glCopyTexSubImage2D(target, level, xoffset, yoffset, x, y, width, height);
+}
+PFN_glCopyTexSubImage2D _glptr_glCopyTexSubImage2D = _impl_glCopyTexSubImage2D;
+
+static void  GL_APIENTRY _impl_glCopyTexSubImage1D(GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width) {
+	_glptr_glCopyTexSubImage1D = (PFN_glCopyTexSubImage1D)GalogenGetProcAddress("glCopyTexSubImage1D");
+	_glptr_glCopyTexSubImage1D(target, level, xoffset, x, y, width);
+}
+PFN_glCopyTexSubImage1D _glptr_glCopyTexSubImage1D = _impl_glCopyTexSubImage1D;
+
+static void  GL_APIENTRY _impl_glCopyTexImage1D(GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLint border) {
+	_glptr_glCopyTexImage1D = (PFN_glCopyTexImage1D)GalogenGetProcAddress("glCopyTexImage1D");
+	_glptr_glCopyTexImage1D(target, level, internalformat, x, y, width, border);
+}
+PFN_glCopyTexImage1D _glptr_glCopyTexImage1D = _impl_glCopyTexImage1D;
+
+static void  GL_APIENTRY _impl_glPolygonOffset(GLfloat factor, GLfloat units) {
+	_glptr_glPolygonOffset = (PFN_glPolygonOffset)GalogenGetProcAddress("glPolygonOffset");
+	_glptr_glPolygonOffset(factor, units);
+}
+PFN_glPolygonOffset _glptr_glPolygonOffset = _impl_glPolygonOffset;
+
+static void  GL_APIENTRY _impl_glTexImage2DMultisample(GLenum target, GLsizei samples, GLenum internalformat, GLsizei width, GLsizei height, GLboolean fixedsamplelocations) {
+	_glptr_glTexImage2DMultisample = (PFN_glTexImage2DMultisample)GalogenGetProcAddress("glTexImage2DMultisample");
+	_glptr_glTexImage2DMultisample(target, samples, internalformat, width, height, fixedsamplelocations);
+}
+PFN_glTexImage2DMultisample _glptr_glTexImage2DMultisample = _impl_glTexImage2DMultisample;
+
+static void  GL_APIENTRY _impl_glDrawElements(GLenum mode, GLsizei count, GLenum type, const void * indices) {
+	_glptr_glDrawElements = (PFN_glDrawElements)GalogenGetProcAddress("glDrawElements");
+	_glptr_glDrawElements(mode, count, type, indices);
+}
+PFN_glDrawElements _glptr_glDrawElements = _impl_glDrawElements;
+
+static void  GL_APIENTRY _impl_glEndConditionalRender() {
+	_glptr_glEndConditionalRender = (PFN_glEndConditionalRender)GalogenGetProcAddress("glEndConditionalRender");
+	_glptr_glEndConditionalRender();
+}
+PFN_glEndConditionalRender _glptr_glEndConditionalRender = _impl_glEndConditionalRender;
+
+static void  GL_APIENTRY _impl_glGetTransformFeedbackVarying(GLuint program, GLuint index, GLsizei bufSize, GLsizei * length, GLsizei * size, GLenum * type, GLchar * name) {
+	_glptr_glGetTransformFeedbackVarying = (PFN_glGetTransformFeedbackVarying)GalogenGetProcAddress("glGetTransformFeedbackVarying");
+	_glptr_glGetTransformFeedbackVarying(program, index, bufSize, length, size, type, name);
+}
+PFN_glGetTransformFeedbackVarying _glptr_glGetTransformFeedbackVarying = _impl_glGetTransformFeedbackVarying;
+
+static void  GL_APIENTRY _impl_glTexParameteriv(GLenum target, GLenum pname, const GLint * params) {
+	_glptr_glTexParameteriv = (PFN_glTexParameteriv)GalogenGetProcAddress("glTexParameteriv");
+	_glptr_glTexParameteriv(target, pname, params);
+}
+PFN_glTexParameteriv _glptr_glTexParameteriv = _impl_glTexParameteriv;
+
+static void  GL_APIENTRY _impl_glDeleteFramebuffers(GLsizei n, const GLuint * framebuffers) {
+	_glptr_glDeleteFramebuffers = (PFN_glDeleteFramebuffers)GalogenGetProcAddress("glDeleteFramebuffers");
+	_glptr_glDeleteFramebuffers(n, framebuffers);
+}
+PFN_glDeleteFramebuffers _glptr_glDeleteFramebuffers = _impl_glDeleteFramebuffers;
+
+static void  GL_APIENTRY _impl_glBlendEquationSeparate(GLenum modeRGB, GLenum modeAlpha) {
+	_glptr_glBlendEquationSeparate = (PFN_glBlendEquationSeparate)GalogenGetProcAddress("glBlendEquationSeparate");
+	_glptr_glBlendEquationSeparate(modeRGB, modeAlpha);
+}
+PFN_glBlendEquationSeparate _glptr_glBlendEquationSeparate = _impl_glBlendEquationSeparate;
+
+static void  GL_APIENTRY _impl_glDeleteTextures(GLsizei n, const GLuint * textures) {
+	_glptr_glDeleteTextures = (PFN_glDeleteTextures)GalogenGetProcAddress("glDeleteTextures");
+	_glptr_glDeleteTextures(n, textures);
+}
+PFN_glDeleteTextures _glptr_glDeleteTextures = _impl_glDeleteTextures;
+
+static void  GL_APIENTRY _impl_glGetProgramiv(GLuint program, GLenum pname, GLint * params) {
+	_glptr_glGetProgramiv = (PFN_glGetProgramiv)GalogenGetProcAddress("glGetProgramiv");
+	_glptr_glGetProgramiv(program, pname, params);
+}
+PFN_glGetProgramiv _glptr_glGetProgramiv = _impl_glGetProgramiv;
+
+static void  GL_APIENTRY _impl_glUniform1uiv(GLint location, GLsizei count, const GLuint * value) {
+	_glptr_glUniform1uiv = (PFN_glUniform1uiv)GalogenGetProcAddress("glUniform1uiv");
+	_glptr_glUniform1uiv(location, count, value);
+}
+PFN_glUniform1uiv _glptr_glUniform1uiv = _impl_glUniform1uiv;
+
+static void  GL_APIENTRY _impl_glCopyTexImage2D(GLenum target, GLint level, GLenum internalformat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border) {
+	_glptr_glCopyTexImage2D = (PFN_glCopyTexImage2D)GalogenGetProcAddress("glCopyTexImage2D");
+	_glptr_glCopyTexImage2D(target, level, internalformat, x, y, width, height, border);
+}
+PFN_glCopyTexImage2D _glptr_glCopyTexImage2D = _impl_glCopyTexImage2D;
+
+static void  GL_APIENTRY _impl_glGetTexLevelParameterfv(GLenum target, GLint level, GLenum pname, GLfloat * params) {
+	_glptr_glGetTexLevelParameterfv = (PFN_glGetTexLevelParameterfv)GalogenGetProcAddress("glGetTexLevelParameterfv");
+	_glptr_glGetTexLevelParameterfv(target, level, pname, params);
+}
+PFN_glGetTexLevelParameterfv _glptr_glGetTexLevelParameterfv = _impl_glGetTexLevelParameterfv;
+
+static void  GL_APIENTRY _impl_glSampleMaski(GLuint maskNumber, GLbitfield mask) {
+	_glptr_glSampleMaski = (PFN_glSampleMaski)GalogenGetProcAddress("glSampleMaski");
+	_glptr_glSampleMaski(maskNumber, mask);
+}
+PFN_glSampleMaski _glptr_glSampleMaski = _impl_glSampleMaski;
+
+static void  GL_APIENTRY _impl_glBindTexture(GLenum target, GLuint texture) {
+	_glptr_glBindTexture = (PFN_glBindTexture)GalogenGetProcAddress("glBindTexture");
+	_glptr_glBindTexture(target, texture);
+}
+PFN_glBindTexture _glptr_glBindTexture = _impl_glBindTexture;
+
+static void  GL_APIENTRY _impl_glGetActiveUniformBlockiv(GLuint program, GLuint uniformBlockIndex, GLenum pname, GLint * params) {
+	_glptr_glGetActiveUniformBlockiv = (PFN_glGetActiveUniformBlockiv)GalogenGetProcAddress("glGetActiveUniformBlockiv");
+	_glptr_glGetActiveUniformBlockiv(program, uniformBlockIndex, pname, params);
+}
+PFN_glGetActiveUniformBlockiv _glptr_glGetActiveUniformBlockiv = _impl_glGetActiveUniformBlockiv;
+
+static void  GL_APIENTRY _impl_glGetUniformuiv(GLuint program, GLint location, GLuint * params) {
+	_glptr_glGetUniformuiv = (PFN_glGetUniformuiv)GalogenGetProcAddress("glGetUniformuiv");
+	_glptr_glGetUniformuiv(program, location, params);
+}
+PFN_glGetUniformuiv _glptr_glGetUniformuiv = _impl_glGetUniformuiv;
+
+static void  GL_APIENTRY _impl_glVertexAttrib4Nbv(GLuint index, const GLbyte * v) {
+	_glptr_glVertexAttrib4Nbv = (PFN_glVertexAttrib4Nbv)GalogenGetProcAddress("glVertexAttrib4Nbv");
+	_glptr_glVertexAttrib4Nbv(index, v);
+}
+PFN_glVertexAttrib4Nbv _glptr_glVertexAttrib4Nbv = _impl_glVertexAttrib4Nbv;
+
+static void  GL_APIENTRY _impl_glTexImage3D(GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLsizei depth, GLint border, GLenum format, GLenum type, const void * pixels) {
+	_glptr_glTexImage3D = (PFN_glTexImage3D)GalogenGetProcAddress("glTexImage3D");
+	_glptr_glTexImage3D(target, level, internalformat, width, height, depth, border, format, type, pixels);
+}
+PFN_glTexImage3D _glptr_glTexImage3D = _impl_glTexImage3D;
+
+static void  GL_APIENTRY _impl_glQueryCounter(GLuint id, GLenum target) {
+	_glptr_glQueryCounter = (PFN_glQueryCounter)GalogenGetProcAddress("glQueryCounter");
+	_glptr_glQueryCounter(id, target);
+}
+PFN_glQueryCounter _glptr_glQueryCounter = _impl_glQueryCounter;
+
+static void  GL_APIENTRY _impl_glVertexAttrib4f(GLuint index, GLfloat x, GLfloat y, GLfloat z, GLfloat w) {
+	_glptr_glVertexAttrib4f = (PFN_glVertexAttrib4f)GalogenGetProcAddress("glVertexAttrib4f");
+	_glptr_glVertexAttrib4f(index, x, y, z, w);
+}
+PFN_glVertexAttrib4f _glptr_glVertexAttrib4f = _impl_glVertexAttrib4f;
+
+static void  GL_APIENTRY _impl_glUniform2ui(GLint location, GLuint v0, GLuint v1) {
+	_glptr_glUniform2ui = (PFN_glUniform2ui)GalogenGetProcAddress("glUniform2ui");
+	_glptr_glUniform2ui(location, v0, v1);
+}
+PFN_glUniform2ui _glptr_glUniform2ui = _impl_glUniform2ui;
+
+static void  GL_APIENTRY _impl_glGetTexImage(GLenum target, GLint level, GLenum format, GLenum type, void * pixels) {
+	_glptr_glGetTexImage = (PFN_glGetTexImage)GalogenGetProcAddress("glGetTexImage");
+	_glptr_glGetTexImage(target, level, format, type, pixels);
+}
+PFN_glGetTexImage _glptr_glGetTexImage = _impl_glGetTexImage;
+
+static void  GL_APIENTRY _impl_glGetTexParameterIuiv(GLenum target, GLenum pname, GLuint * params) {
+	_glptr_glGetTexParameterIuiv = (PFN_glGetTexParameterIuiv)GalogenGetProcAddress("glGetTexParameterIuiv");
+	_glptr_glGetTexParameterIuiv(target, pname, params);
+}
+PFN_glGetTexParameterIuiv _glptr_glGetTexParameterIuiv = _impl_glGetTexParameterIuiv;
+
+static void  GL_APIENTRY _impl_glVertexAttrib4bv(GLuint index, const GLbyte * v) {
+	_glptr_glVertexAttrib4bv = (PFN_glVertexAttrib4bv)GalogenGetProcAddress("glVertexAttrib4bv");
+	_glptr_glVertexAttrib4bv(index, v);
+}
+PFN_glVertexAttrib4bv _glptr_glVertexAttrib4bv = _impl_glVertexAttrib4bv;
+
+static void  GL_APIENTRY _impl_glUniform2uiv(GLint location, GLsizei count, const GLuint * value) {
+	_glptr_glUniform2uiv = (PFN_glUniform2uiv)GalogenGetProcAddress("glUniform2uiv");
+	_glptr_glUniform2uiv(location, count, value);
+}
+PFN_glUniform2uiv _glptr_glUniform2uiv = _impl_glUniform2uiv;
+
+static void  GL_APIENTRY _impl_glGetShaderSource(GLuint shader, GLsizei bufSize, GLsizei * length, GLchar * source) {
+	_glptr_glGetShaderSource = (PFN_glGetShaderSource)GalogenGetProcAddress("glGetShaderSource");
+	_glptr_glGetShaderSource(shader, bufSize, length, source);
+}
+PFN_glGetShaderSource _glptr_glGetShaderSource = _impl_glGetShaderSource;
+
+static GLboolean GL_APIENTRY _impl_glIsBuffer(GLuint buffer) {
+	_glptr_glIsBuffer = (PFN_glIsBuffer)GalogenGetProcAddress("glIsBuffer");
+	return _glptr_glIsBuffer(buffer);
+}
+PFN_glIsBuffer _glptr_glIsBuffer = _impl_glIsBuffer;
+
+static void  GL_APIENTRY _impl_glGetBufferPointerv(GLenum target, GLenum pname, void ** params) {
+	_glptr_glGetBufferPointerv = (PFN_glGetBufferPointerv)GalogenGetProcAddress("glGetBufferPointerv");
+	_glptr_glGetBufferPointerv(target, pname, params);
+}
+PFN_glGetBufferPointerv _glptr_glGetBufferPointerv = _impl_glGetBufferPointerv;
 
 static void  GL_APIENTRY _impl_glPolygonMode(GLenum face, GLenum mode) {
 	_glptr_glPolygonMode = (PFN_glPolygonMode)GalogenGetProcAddress("glPolygonMode");
@@ -1245,191 +1407,131 @@ static void  GL_APIENTRY _impl_glPolygonMode(GLenum face, GLenum mode) {
 }
 PFN_glPolygonMode _glptr_glPolygonMode = _impl_glPolygonMode;
 
-static void  GL_APIENTRY _impl_glColor4us(GLushort red, GLushort green, GLushort blue, GLushort alpha) {
-	_glptr_glColor4us = (PFN_glColor4us)GalogenGetProcAddress("glColor4us");
-	_glptr_glColor4us(red, green, blue, alpha);
+static void  GL_APIENTRY _impl_glBindAttribLocation(GLuint program, GLuint index, const GLchar * name) {
+	_glptr_glBindAttribLocation = (PFN_glBindAttribLocation)GalogenGetProcAddress("glBindAttribLocation");
+	_glptr_glBindAttribLocation(program, index, name);
 }
-PFN_glColor4us _glptr_glColor4us = _impl_glColor4us;
+PFN_glBindAttribLocation _glptr_glBindAttribLocation = _impl_glBindAttribLocation;
 
-static void  GL_APIENTRY _impl_glTexCoord3s(GLshort s, GLshort t, GLshort r) {
-	_glptr_glTexCoord3s = (PFN_glTexCoord3s)GalogenGetProcAddress("glTexCoord3s");
-	_glptr_glTexCoord3s(s, t, r);
+static void  GL_APIENTRY _impl_glDeleteSamplers(GLsizei count, const GLuint * samplers) {
+	_glptr_glDeleteSamplers = (PFN_glDeleteSamplers)GalogenGetProcAddress("glDeleteSamplers");
+	_glptr_glDeleteSamplers(count, samplers);
 }
-PFN_glTexCoord3s _glptr_glTexCoord3s = _impl_glTexCoord3s;
+PFN_glDeleteSamplers _glptr_glDeleteSamplers = _impl_glDeleteSamplers;
 
-static void  GL_APIENTRY _impl_glColor4fv(const GLfloat * v) {
-	_glptr_glColor4fv = (PFN_glColor4fv)GalogenGetProcAddress("glColor4fv");
-	_glptr_glColor4fv(v);
+static void  GL_APIENTRY _impl_glUniform2f(GLint location, GLfloat v0, GLfloat v1) {
+	_glptr_glUniform2f = (PFN_glUniform2f)GalogenGetProcAddress("glUniform2f");
+	_glptr_glUniform2f(location, v0, v1);
 }
-PFN_glColor4fv _glptr_glColor4fv = _impl_glColor4fv;
+PFN_glUniform2f _glptr_glUniform2f = _impl_glUniform2f;
 
-static void  GL_APIENTRY _impl_glLoadMatrixd(const GLdouble * m) {
-	_glptr_glLoadMatrixd = (PFN_glLoadMatrixd)GalogenGetProcAddress("glLoadMatrixd");
-	_glptr_glLoadMatrixd(m);
+static void  GL_APIENTRY _impl_glPixelStoref(GLenum pname, GLfloat param) {
+	_glptr_glPixelStoref = (PFN_glPixelStoref)GalogenGetProcAddress("glPixelStoref");
+	_glptr_glPixelStoref(pname, param);
 }
-PFN_glLoadMatrixd _glptr_glLoadMatrixd = _impl_glLoadMatrixd;
+PFN_glPixelStoref _glptr_glPixelStoref = _impl_glPixelStoref;
 
-static void  GL_APIENTRY _impl_glGetTexGeniv(GLenum coord, GLenum pname, GLint * params) {
-	_glptr_glGetTexGeniv = (PFN_glGetTexGeniv)GalogenGetProcAddress("glGetTexGeniv");
-	_glptr_glGetTexGeniv(coord, pname, params);
+static void  GL_APIENTRY _impl_glLogicOp(GLenum opcode) {
+	_glptr_glLogicOp = (PFN_glLogicOp)GalogenGetProcAddress("glLogicOp");
+	_glptr_glLogicOp(opcode);
 }
-PFN_glGetTexGeniv _glptr_glGetTexGeniv = _impl_glGetTexGeniv;
+PFN_glLogicOp _glptr_glLogicOp = _impl_glLogicOp;
 
-static void  GL_APIENTRY _impl_glPixelZoom(GLfloat xfactor, GLfloat yfactor) {
-	_glptr_glPixelZoom = (PFN_glPixelZoom)GalogenGetProcAddress("glPixelZoom");
-	_glptr_glPixelZoom(xfactor, yfactor);
+static GLuint GL_APIENTRY _impl_glCreateShader(GLenum type) {
+	_glptr_glCreateShader = (PFN_glCreateShader)GalogenGetProcAddress("glCreateShader");
+	return _glptr_glCreateShader(type);
 }
-PFN_glPixelZoom _glptr_glPixelZoom = _impl_glPixelZoom;
+PFN_glCreateShader _glptr_glCreateShader = _impl_glCreateShader;
 
-static void  GL_APIENTRY _impl_glLightfv(GLenum light, GLenum pname, const GLfloat * params) {
-	_glptr_glLightfv = (PFN_glLightfv)GalogenGetProcAddress("glLightfv");
-	_glptr_glLightfv(light, pname, params);
+static void  GL_APIENTRY _impl_glTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const void * pixels) {
+	_glptr_glTexSubImage2D = (PFN_glTexSubImage2D)GalogenGetProcAddress("glTexSubImage2D");
+	_glptr_glTexSubImage2D(target, level, xoffset, yoffset, width, height, format, type, pixels);
 }
-PFN_glLightfv _glptr_glLightfv = _impl_glLightfv;
+PFN_glTexSubImage2D _glptr_glTexSubImage2D = _impl_glTexSubImage2D;
 
-static void  GL_APIENTRY _impl_glRasterPos2f(GLfloat x, GLfloat y) {
-	_glptr_glRasterPos2f = (PFN_glRasterPos2f)GalogenGetProcAddress("glRasterPos2f");
-	_glptr_glRasterPos2f(x, y);
+static void  GL_APIENTRY _impl_glClearDepth(GLdouble depth) {
+	_glptr_glClearDepth = (PFN_glClearDepth)GalogenGetProcAddress("glClearDepth");
+	_glptr_glClearDepth(depth);
 }
-PFN_glRasterPos2f _glptr_glRasterPos2f = _impl_glRasterPos2f;
+PFN_glClearDepth _glptr_glClearDepth = _impl_glClearDepth;
 
-static void  GL_APIENTRY _impl_glTexParameteri(GLenum target, GLenum pname, GLint param) {
-	_glptr_glTexParameteri = (PFN_glTexParameteri)GalogenGetProcAddress("glTexParameteri");
-	_glptr_glTexParameteri(target, pname, param);
+static void  GL_APIENTRY _impl_glGetBufferSubData(GLenum target, GLintptr offset, GLsizeiptr size, void * data) {
+	_glptr_glGetBufferSubData = (PFN_glGetBufferSubData)GalogenGetProcAddress("glGetBufferSubData");
+	_glptr_glGetBufferSubData(target, offset, size, data);
 }
-PFN_glTexParameteri _glptr_glTexParameteri = _impl_glTexParameteri;
+PFN_glGetBufferSubData _glptr_glGetBufferSubData = _impl_glGetBufferSubData;
 
-static void  GL_APIENTRY _impl_glDrawBuffer(GLenum buf) {
-	_glptr_glDrawBuffer = (PFN_glDrawBuffer)GalogenGetProcAddress("glDrawBuffer");
-	_glptr_glDrawBuffer(buf);
+static void  GL_APIENTRY _impl_glVertexAttrib4uiv(GLuint index, const GLuint * v) {
+	_glptr_glVertexAttrib4uiv = (PFN_glVertexAttrib4uiv)GalogenGetProcAddress("glVertexAttrib4uiv");
+	_glptr_glVertexAttrib4uiv(index, v);
 }
-PFN_glDrawBuffer _glptr_glDrawBuffer = _impl_glDrawBuffer;
+PFN_glVertexAttrib4uiv _glptr_glVertexAttrib4uiv = _impl_glVertexAttrib4uiv;
 
-static void  GL_APIENTRY _impl_glColor3bv(const GLbyte * v) {
-	_glptr_glColor3bv = (PFN_glColor3bv)GalogenGetProcAddress("glColor3bv");
-	_glptr_glColor3bv(v);
+static void  GL_APIENTRY _impl_glCopyBufferSubData(GLenum readTarget, GLenum writeTarget, GLintptr readOffset, GLintptr writeOffset, GLsizeiptr size) {
+	_glptr_glCopyBufferSubData = (PFN_glCopyBufferSubData)GalogenGetProcAddress("glCopyBufferSubData");
+	_glptr_glCopyBufferSubData(readTarget, writeTarget, readOffset, writeOffset, size);
 }
-PFN_glColor3bv _glptr_glColor3bv = _impl_glColor3bv;
+PFN_glCopyBufferSubData _glptr_glCopyBufferSubData = _impl_glCopyBufferSubData;
 
-static void  GL_APIENTRY _impl_glVertex2sv(const GLshort * v) {
-	_glptr_glVertex2sv = (PFN_glVertex2sv)GalogenGetProcAddress("glVertex2sv");
-	_glptr_glVertex2sv(v);
+static void  GL_APIENTRY _impl_glFramebufferTexture2D(GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level) {
+	_glptr_glFramebufferTexture2D = (PFN_glFramebufferTexture2D)GalogenGetProcAddress("glFramebufferTexture2D");
+	_glptr_glFramebufferTexture2D(target, attachment, textarget, texture, level);
 }
-PFN_glVertex2sv _glptr_glVertex2sv = _impl_glVertex2sv;
+PFN_glFramebufferTexture2D _glptr_glFramebufferTexture2D = _impl_glFramebufferTexture2D;
 
-static void  GL_APIENTRY _impl_glEnable(GLenum cap) {
-	_glptr_glEnable = (PFN_glEnable)GalogenGetProcAddress("glEnable");
-	_glptr_glEnable(cap);
+static void  GL_APIENTRY _impl_glPointParameterf(GLenum pname, GLfloat param) {
+	_glptr_glPointParameterf = (PFN_glPointParameterf)GalogenGetProcAddress("glPointParameterf");
+	_glptr_glPointParameterf(pname, param);
 }
-PFN_glEnable _glptr_glEnable = _impl_glEnable;
+PFN_glPointParameterf _glptr_glPointParameterf = _impl_glPointParameterf;
 
-static void  GL_APIENTRY _impl_glColor3b(GLbyte red, GLbyte green, GLbyte blue) {
-	_glptr_glColor3b = (PFN_glColor3b)GalogenGetProcAddress("glColor3b");
-	_glptr_glColor3b(red, green, blue);
+static void  GL_APIENTRY _impl_glDisablei(GLenum target, GLuint index) {
+	_glptr_glDisablei = (PFN_glDisablei)GalogenGetProcAddress("glDisablei");
+	_glptr_glDisablei(target, index);
 }
-PFN_glColor3b _glptr_glColor3b = _impl_glColor3b;
+PFN_glDisablei _glptr_glDisablei = _impl_glDisablei;
 
-static void  GL_APIENTRY _impl_glVertex2s(GLshort x, GLshort y) {
-	_glptr_glVertex2s = (PFN_glVertex2s)GalogenGetProcAddress("glVertex2s");
-	_glptr_glVertex2s(x, y);
+static void  GL_APIENTRY _impl_glUniformMatrix4x2fv(GLint location, GLsizei count, GLboolean transpose, const GLfloat * value) {
+	_glptr_glUniformMatrix4x2fv = (PFN_glUniformMatrix4x2fv)GalogenGetProcAddress("glUniformMatrix4x2fv");
+	_glptr_glUniformMatrix4x2fv(location, count, transpose, value);
 }
-PFN_glVertex2s _glptr_glVertex2s = _impl_glVertex2s;
+PFN_glUniformMatrix4x2fv _glptr_glUniformMatrix4x2fv = _impl_glUniformMatrix4x2fv;
 
-static void  GL_APIENTRY _impl_glColor3f(GLfloat red, GLfloat green, GLfloat blue) {
-	_glptr_glColor3f = (PFN_glColor3f)GalogenGetProcAddress("glColor3f");
-	_glptr_glColor3f(red, green, blue);
+static void  GL_APIENTRY _impl_glVertexAttrib4d(GLuint index, GLdouble x, GLdouble y, GLdouble z, GLdouble w) {
+	_glptr_glVertexAttrib4d = (PFN_glVertexAttrib4d)GalogenGetProcAddress("glVertexAttrib4d");
+	_glptr_glVertexAttrib4d(index, x, y, z, w);
 }
-PFN_glColor3f _glptr_glColor3f = _impl_glColor3f;
+PFN_glVertexAttrib4d _glptr_glVertexAttrib4d = _impl_glVertexAttrib4d;
 
-static void  GL_APIENTRY _impl_glIndexdv(const GLdouble * c) {
-	_glptr_glIndexdv = (PFN_glIndexdv)GalogenGetProcAddress("glIndexdv");
-	_glptr_glIndexdv(c);
+static void  GL_APIENTRY _impl_glTexParameterIuiv(GLenum target, GLenum pname, const GLuint * params) {
+	_glptr_glTexParameterIuiv = (PFN_glTexParameterIuiv)GalogenGetProcAddress("glTexParameterIuiv");
+	_glptr_glTexParameterIuiv(target, pname, params);
 }
-PFN_glIndexdv _glptr_glIndexdv = _impl_glIndexdv;
+PFN_glTexParameterIuiv _glptr_glTexParameterIuiv = _impl_glTexParameterIuiv;
 
-static void  GL_APIENTRY _impl_glGetMaterialfv(GLenum face, GLenum pname, GLfloat * params) {
-	_glptr_glGetMaterialfv = (PFN_glGetMaterialfv)GalogenGetProcAddress("glGetMaterialfv");
-	_glptr_glGetMaterialfv(face, pname, params);
+static void  GL_APIENTRY _impl_glGetFloatv(GLenum pname, GLfloat * data) {
+	_glptr_glGetFloatv = (PFN_glGetFloatv)GalogenGetProcAddress("glGetFloatv");
+	_glptr_glGetFloatv(pname, data);
 }
-PFN_glGetMaterialfv _glptr_glGetMaterialfv = _impl_glGetMaterialfv;
+PFN_glGetFloatv _glptr_glGetFloatv = _impl_glGetFloatv;
 
-static void  GL_APIENTRY _impl_glColor4ubv(const GLubyte * v) {
-	_glptr_glColor4ubv = (PFN_glColor4ubv)GalogenGetProcAddress("glColor4ubv");
-	_glptr_glColor4ubv(v);
+static GLuint GL_APIENTRY _impl_glCreateProgram() {
+	_glptr_glCreateProgram = (PFN_glCreateProgram)GalogenGetProcAddress("glCreateProgram");
+	return _glptr_glCreateProgram();
 }
-PFN_glColor4ubv _glptr_glColor4ubv = _impl_glColor4ubv;
+PFN_glCreateProgram _glptr_glCreateProgram = _impl_glCreateProgram;
 
-static void  GL_APIENTRY _impl_glVertex3sv(const GLshort * v) {
-	_glptr_glVertex3sv = (PFN_glVertex3sv)GalogenGetProcAddress("glVertex3sv");
-	_glptr_glVertex3sv(v);
+static void  GL_APIENTRY _impl_glTransformFeedbackVaryings(GLuint program, GLsizei count, const GLchar *const* varyings, GLenum bufferMode) {
+	_glptr_glTransformFeedbackVaryings = (PFN_glTransformFeedbackVaryings)GalogenGetProcAddress("glTransformFeedbackVaryings");
+	_glptr_glTransformFeedbackVaryings(program, count, varyings, bufferMode);
 }
-PFN_glVertex3sv _glptr_glVertex3sv = _impl_glVertex3sv;
+PFN_glTransformFeedbackVaryings _glptr_glTransformFeedbackVaryings = _impl_glTransformFeedbackVaryings;
 
-static void  GL_APIENTRY _impl_glRasterPos2fv(const GLfloat * v) {
-	_glptr_glRasterPos2fv = (PFN_glRasterPos2fv)GalogenGetProcAddress("glRasterPos2fv");
-	_glptr_glRasterPos2fv(v);
+static void  GL_APIENTRY _impl_glVertexAttrib1d(GLuint index, GLdouble x) {
+	_glptr_glVertexAttrib1d = (PFN_glVertexAttrib1d)GalogenGetProcAddress("glVertexAttrib1d");
+	_glptr_glVertexAttrib1d(index, x);
 }
-PFN_glRasterPos2fv _glptr_glRasterPos2fv = _impl_glRasterPos2fv;
-
-static void  GL_APIENTRY _impl_glTexCoord3d(GLdouble s, GLdouble t, GLdouble r) {
-	_glptr_glTexCoord3d = (PFN_glTexCoord3d)GalogenGetProcAddress("glTexCoord3d");
-	_glptr_glTexCoord3d(s, t, r);
-}
-PFN_glTexCoord3d _glptr_glTexCoord3d = _impl_glTexCoord3d;
-
-static void  GL_APIENTRY _impl_glDeleteLists(GLuint list, GLsizei range) {
-	_glptr_glDeleteLists = (PFN_glDeleteLists)GalogenGetProcAddress("glDeleteLists");
-	_glptr_glDeleteLists(list, range);
-}
-PFN_glDeleteLists _glptr_glDeleteLists = _impl_glDeleteLists;
-
-static void  GL_APIENTRY _impl_glMaterialiv(GLenum face, GLenum pname, const GLint * params) {
-	_glptr_glMaterialiv = (PFN_glMaterialiv)GalogenGetProcAddress("glMaterialiv");
-	_glptr_glMaterialiv(face, pname, params);
-}
-PFN_glMaterialiv _glptr_glMaterialiv = _impl_glMaterialiv;
-
-static void  GL_APIENTRY _impl_glStencilMask(GLuint mask) {
-	_glptr_glStencilMask = (PFN_glStencilMask)GalogenGetProcAddress("glStencilMask");
-	_glptr_glStencilMask(mask);
-}
-PFN_glStencilMask _glptr_glStencilMask = _impl_glStencilMask;
-
-static void  GL_APIENTRY _impl_glPolygonStipple(const GLubyte * mask) {
-	_glptr_glPolygonStipple = (PFN_glPolygonStipple)GalogenGetProcAddress("glPolygonStipple");
-	_glptr_glPolygonStipple(mask);
-}
-PFN_glPolygonStipple _glptr_glPolygonStipple = _impl_glPolygonStipple;
-
-static void  GL_APIENTRY _impl_glMateriali(GLenum face, GLenum pname, GLint param) {
-	_glptr_glMateriali = (PFN_glMateriali)GalogenGetProcAddress("glMateriali");
-	_glptr_glMateriali(face, pname, param);
-}
-PFN_glMateriali _glptr_glMateriali = _impl_glMateriali;
-
-static void  GL_APIENTRY _impl_glRectsv(const GLshort * v1, const GLshort * v2) {
-	_glptr_glRectsv = (PFN_glRectsv)GalogenGetProcAddress("glRectsv");
-	_glptr_glRectsv(v1, v2);
-}
-PFN_glRectsv _glptr_glRectsv = _impl_glRectsv;
-
-static void  GL_APIENTRY _impl_glEndList() {
-	_glptr_glEndList = (PFN_glEndList)GalogenGetProcAddress("glEndList");
-	_glptr_glEndList();
-}
-PFN_glEndList _glptr_glEndList = _impl_glEndList;
-
-static void  GL_APIENTRY _impl_glNormal3fv(const GLfloat * v) {
-	_glptr_glNormal3fv = (PFN_glNormal3fv)GalogenGetProcAddress("glNormal3fv");
-	_glptr_glNormal3fv(v);
-}
-PFN_glNormal3fv _glptr_glNormal3fv = _impl_glNormal3fv;
-
-static void  GL_APIENTRY _impl_glGetTexParameterfv(GLenum target, GLenum pname, GLfloat * params) {
-	_glptr_glGetTexParameterfv = (PFN_glGetTexParameterfv)GalogenGetProcAddress("glGetTexParameterfv");
-	_glptr_glGetTexParameterfv(target, pname, params);
-}
-PFN_glGetTexParameterfv _glptr_glGetTexParameterfv = _impl_glGetTexParameterfv;
+PFN_glVertexAttrib1d _glptr_glVertexAttrib1d = _impl_glVertexAttrib1d;
 
 static void  GL_APIENTRY _impl_glViewport(GLint x, GLint y, GLsizei width, GLsizei height) {
 	_glptr_glViewport = (PFN_glViewport)GalogenGetProcAddress("glViewport");
@@ -1437,29 +1539,71 @@ static void  GL_APIENTRY _impl_glViewport(GLint x, GLint y, GLsizei width, GLsiz
 }
 PFN_glViewport _glptr_glViewport = _impl_glViewport;
 
-static void  GL_APIENTRY _impl_glVertex3i(GLint x, GLint y, GLint z) {
-	_glptr_glVertex3i = (PFN_glVertex3i)GalogenGetProcAddress("glVertex3i");
-	_glptr_glVertex3i(x, y, z);
+static void  GL_APIENTRY _impl_glDeleteBuffers(GLsizei n, const GLuint * buffers) {
+	_glptr_glDeleteBuffers = (PFN_glDeleteBuffers)GalogenGetProcAddress("glDeleteBuffers");
+	_glptr_glDeleteBuffers(n, buffers);
 }
-PFN_glVertex3i _glptr_glVertex3i = _impl_glVertex3i;
+PFN_glDeleteBuffers _glptr_glDeleteBuffers = _impl_glDeleteBuffers;
 
-static void  GL_APIENTRY _impl_glColor4ub(GLubyte red, GLubyte green, GLubyte blue, GLubyte alpha) {
-	_glptr_glColor4ub = (PFN_glColor4ub)GalogenGetProcAddress("glColor4ub");
-	_glptr_glColor4ub(red, green, blue, alpha);
+static void  GL_APIENTRY _impl_glFlush() {
+	_glptr_glFlush = (PFN_glFlush)GalogenGetProcAddress("glFlush");
+	_glptr_glFlush();
 }
-PFN_glColor4ub _glptr_glColor4ub = _impl_glColor4ub;
+PFN_glFlush _glptr_glFlush = _impl_glFlush;
 
-static void  GL_APIENTRY _impl_glAlphaFunc(GLenum func, GLfloat ref) {
-	_glptr_glAlphaFunc = (PFN_glAlphaFunc)GalogenGetProcAddress("glAlphaFunc");
-	_glptr_glAlphaFunc(func, ref);
+static void  GL_APIENTRY _impl_glVertexAttribI4sv(GLuint index, const GLshort * v) {
+	_glptr_glVertexAttribI4sv = (PFN_glVertexAttribI4sv)GalogenGetProcAddress("glVertexAttribI4sv");
+	_glptr_glVertexAttribI4sv(index, v);
 }
-PFN_glAlphaFunc _glptr_glAlphaFunc = _impl_glAlphaFunc;
+PFN_glVertexAttribI4sv _glptr_glVertexAttribI4sv = _impl_glVertexAttribI4sv;
 
-static void  GL_APIENTRY _impl_glTexGenfv(GLenum coord, GLenum pname, const GLfloat * params) {
-	_glptr_glTexGenfv = (PFN_glTexGenfv)GalogenGetProcAddress("glTexGenfv");
-	_glptr_glTexGenfv(coord, pname, params);
+static void  GL_APIENTRY _impl_glDrawArrays(GLenum mode, GLint first, GLsizei count) {
+	_glptr_glDrawArrays = (PFN_glDrawArrays)GalogenGetProcAddress("glDrawArrays");
+	_glptr_glDrawArrays(mode, first, count);
 }
-PFN_glTexGenfv _glptr_glTexGenfv = _impl_glTexGenfv;
+PFN_glDrawArrays _glptr_glDrawArrays = _impl_glDrawArrays;
+
+static void  GL_APIENTRY _impl_glDrawElementsInstanced(GLenum mode, GLsizei count, GLenum type, const void * indices, GLsizei instancecount) {
+	_glptr_glDrawElementsInstanced = (PFN_glDrawElementsInstanced)GalogenGetProcAddress("glDrawElementsInstanced");
+	_glptr_glDrawElementsInstanced(mode, count, type, indices, instancecount);
+}
+PFN_glDrawElementsInstanced _glptr_glDrawElementsInstanced = _impl_glDrawElementsInstanced;
+
+static void  GL_APIENTRY _impl_glUniform3iv(GLint location, GLsizei count, const GLint * value) {
+	_glptr_glUniform3iv = (PFN_glUniform3iv)GalogenGetProcAddress("glUniform3iv");
+	_glptr_glUniform3iv(location, count, value);
+}
+PFN_glUniform3iv _glptr_glUniform3iv = _impl_glUniform3iv;
+
+static void  GL_APIENTRY _impl_glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void * pointer) {
+	_glptr_glVertexAttribPointer = (PFN_glVertexAttribPointer)GalogenGetProcAddress("glVertexAttribPointer");
+	_glptr_glVertexAttribPointer(index, size, type, normalized, stride, pointer);
+}
+PFN_glVertexAttribPointer _glptr_glVertexAttribPointer = _impl_glVertexAttribPointer;
+
+static void  GL_APIENTRY _impl_glGetSynciv(GLsync sync, GLenum pname, GLsizei bufSize, GLsizei * length, GLint * values) {
+	_glptr_glGetSynciv = (PFN_glGetSynciv)GalogenGetProcAddress("glGetSynciv");
+	_glptr_glGetSynciv(sync, pname, bufSize, length, values);
+}
+PFN_glGetSynciv _glptr_glGetSynciv = _impl_glGetSynciv;
+
+static void  GL_APIENTRY _impl_glPrimitiveRestartIndex(GLuint index) {
+	_glptr_glPrimitiveRestartIndex = (PFN_glPrimitiveRestartIndex)GalogenGetProcAddress("glPrimitiveRestartIndex");
+	_glptr_glPrimitiveRestartIndex(index);
+}
+PFN_glPrimitiveRestartIndex _glptr_glPrimitiveRestartIndex = _impl_glPrimitiveRestartIndex;
+
+static void  GL_APIENTRY _impl_glUniform1i(GLint location, GLint v0) {
+	_glptr_glUniform1i = (PFN_glUniform1i)GalogenGetProcAddress("glUniform1i");
+	_glptr_glUniform1i(location, v0);
+}
+PFN_glUniform1i _glptr_glUniform1i = _impl_glUniform1i;
+
+static void  GL_APIENTRY _impl_glVertexAttrib1sv(GLuint index, const GLshort * v) {
+	_glptr_glVertexAttrib1sv = (PFN_glVertexAttrib1sv)GalogenGetProcAddress("glVertexAttrib1sv");
+	_glptr_glVertexAttrib1sv(index, v);
+}
+PFN_glVertexAttrib1sv _glptr_glVertexAttrib1sv = _impl_glVertexAttrib1sv;
 
 static void  GL_APIENTRY _impl_glDisable(GLenum cap) {
 	_glptr_glDisable = (PFN_glDisable)GalogenGetProcAddress("glDisable");
@@ -1467,17 +1611,275 @@ static void  GL_APIENTRY _impl_glDisable(GLenum cap) {
 }
 PFN_glDisable _glptr_glDisable = _impl_glDisable;
 
-static void  GL_APIENTRY _impl_glTexCoord3f(GLfloat s, GLfloat t, GLfloat r) {
-	_glptr_glTexCoord3f = (PFN_glTexCoord3f)GalogenGetProcAddress("glTexCoord3f");
-	_glptr_glTexCoord3f(s, t, r);
+static void  GL_APIENTRY _impl_glVertexAttribI4uiv(GLuint index, const GLuint * v) {
+	_glptr_glVertexAttribI4uiv = (PFN_glVertexAttribI4uiv)GalogenGetProcAddress("glVertexAttribI4uiv");
+	_glptr_glVertexAttribI4uiv(index, v);
 }
-PFN_glTexCoord3f _glptr_glTexCoord3f = _impl_glTexCoord3f;
+PFN_glVertexAttribI4uiv _glptr_glVertexAttribI4uiv = _impl_glVertexAttribI4uiv;
 
-static void  GL_APIENTRY _impl_glGetTexImage(GLenum target, GLint level, GLenum format, GLenum type, void * pixels) {
-	_glptr_glGetTexImage = (PFN_glGetTexImage)GalogenGetProcAddress("glGetTexImage");
-	_glptr_glGetTexImage(target, level, format, type, pixels);
+static void  GL_APIENTRY _impl_glEndQuery(GLenum target) {
+	_glptr_glEndQuery = (PFN_glEndQuery)GalogenGetProcAddress("glEndQuery");
+	_glptr_glEndQuery(target);
 }
-PFN_glGetTexImage _glptr_glGetTexImage = _impl_glGetTexImage;
+PFN_glEndQuery _glptr_glEndQuery = _impl_glEndQuery;
+
+static void  GL_APIENTRY _impl_glColorMask(GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha) {
+	_glptr_glColorMask = (PFN_glColorMask)GalogenGetProcAddress("glColorMask");
+	_glptr_glColorMask(red, green, blue, alpha);
+}
+PFN_glColorMask _glptr_glColorMask = _impl_glColorMask;
+
+static void  GL_APIENTRY _impl_glEnablei(GLenum target, GLuint index) {
+	_glptr_glEnablei = (PFN_glEnablei)GalogenGetProcAddress("glEnablei");
+	_glptr_glEnablei(target, index);
+}
+PFN_glEnablei _glptr_glEnablei = _impl_glEnablei;
+
+static void  GL_APIENTRY _impl_glBindBuffer(GLenum target, GLuint buffer) {
+	_glptr_glBindBuffer = (PFN_glBindBuffer)GalogenGetProcAddress("glBindBuffer");
+	_glptr_glBindBuffer(target, buffer);
+}
+PFN_glBindBuffer _glptr_glBindBuffer = _impl_glBindBuffer;
+
+static void  GL_APIENTRY _impl_glGetDoublev(GLenum pname, GLdouble * data) {
+	_glptr_glGetDoublev = (PFN_glGetDoublev)GalogenGetProcAddress("glGetDoublev");
+	_glptr_glGetDoublev(pname, data);
+}
+PFN_glGetDoublev _glptr_glGetDoublev = _impl_glGetDoublev;
+
+static void  GL_APIENTRY _impl_glGetTexParameteriv(GLenum target, GLenum pname, GLint * params) {
+	_glptr_glGetTexParameteriv = (PFN_glGetTexParameteriv)GalogenGetProcAddress("glGetTexParameteriv");
+	_glptr_glGetTexParameteriv(target, pname, params);
+}
+PFN_glGetTexParameteriv _glptr_glGetTexParameteriv = _impl_glGetTexParameteriv;
+
+static void  GL_APIENTRY _impl_glDeleteVertexArrays(GLsizei n, const GLuint * arrays) {
+	_glptr_glDeleteVertexArrays = (PFN_glDeleteVertexArrays)GalogenGetProcAddress("glDeleteVertexArrays");
+	_glptr_glDeleteVertexArrays(n, arrays);
+}
+PFN_glDeleteVertexArrays _glptr_glDeleteVertexArrays = _impl_glDeleteVertexArrays;
+
+static void  GL_APIENTRY _impl_glVertexAttribI2uiv(GLuint index, const GLuint * v) {
+	_glptr_glVertexAttribI2uiv = (PFN_glVertexAttribI2uiv)GalogenGetProcAddress("glVertexAttribI2uiv");
+	_glptr_glVertexAttribI2uiv(index, v);
+}
+PFN_glVertexAttribI2uiv _glptr_glVertexAttribI2uiv = _impl_glVertexAttribI2uiv;
+
+static void  GL_APIENTRY _impl_glDepthMask(GLboolean flag) {
+	_glptr_glDepthMask = (PFN_glDepthMask)GalogenGetProcAddress("glDepthMask");
+	_glptr_glDepthMask(flag);
+}
+PFN_glDepthMask _glptr_glDepthMask = _impl_glDepthMask;
+
+static void  GL_APIENTRY _impl_glGetVertexAttribdv(GLuint index, GLenum pname, GLdouble * params) {
+	_glptr_glGetVertexAttribdv = (PFN_glGetVertexAttribdv)GalogenGetProcAddress("glGetVertexAttribdv");
+	_glptr_glGetVertexAttribdv(index, pname, params);
+}
+PFN_glGetVertexAttribdv _glptr_glGetVertexAttribdv = _impl_glGetVertexAttribdv;
+
+static void  GL_APIENTRY _impl_glDrawRangeElements(GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void * indices) {
+	_glptr_glDrawRangeElements = (PFN_glDrawRangeElements)GalogenGetProcAddress("glDrawRangeElements");
+	_glptr_glDrawRangeElements(mode, start, end, count, type, indices);
+}
+PFN_glDrawRangeElements _glptr_glDrawRangeElements = _impl_glDrawRangeElements;
+
+static void  GL_APIENTRY _impl_glDrawArraysInstanced(GLenum mode, GLint first, GLsizei count, GLsizei instancecount) {
+	_glptr_glDrawArraysInstanced = (PFN_glDrawArraysInstanced)GalogenGetProcAddress("glDrawArraysInstanced");
+	_glptr_glDrawArraysInstanced(mode, first, count, instancecount);
+}
+PFN_glDrawArraysInstanced _glptr_glDrawArraysInstanced = _impl_glDrawArraysInstanced;
+
+static void  GL_APIENTRY _impl_glGetSamplerParameterIiv(GLuint sampler, GLenum pname, GLint * params) {
+	_glptr_glGetSamplerParameterIiv = (PFN_glGetSamplerParameterIiv)GalogenGetProcAddress("glGetSamplerParameterIiv");
+	_glptr_glGetSamplerParameterIiv(sampler, pname, params);
+}
+PFN_glGetSamplerParameterIiv _glptr_glGetSamplerParameterIiv = _impl_glGetSamplerParameterIiv;
+
+static void  GL_APIENTRY _impl_glClearStencil(GLint s) {
+	_glptr_glClearStencil = (PFN_glClearStencil)GalogenGetProcAddress("glClearStencil");
+	_glptr_glClearStencil(s);
+}
+PFN_glClearStencil _glptr_glClearStencil = _impl_glClearStencil;
+
+static void  GL_APIENTRY _impl_glVertexAttribI3iv(GLuint index, const GLint * v) {
+	_glptr_glVertexAttribI3iv = (PFN_glVertexAttribI3iv)GalogenGetProcAddress("glVertexAttribI3iv");
+	_glptr_glVertexAttribI3iv(index, v);
+}
+PFN_glVertexAttribI3iv _glptr_glVertexAttribI3iv = _impl_glVertexAttribI3iv;
+
+static void  GL_APIENTRY _impl_glDrawRangeElementsBaseVertex(GLenum mode, GLuint start, GLuint end, GLsizei count, GLenum type, const void * indices, GLint basevertex) {
+	_glptr_glDrawRangeElementsBaseVertex = (PFN_glDrawRangeElementsBaseVertex)GalogenGetProcAddress("glDrawRangeElementsBaseVertex");
+	_glptr_glDrawRangeElementsBaseVertex(mode, start, end, count, type, indices, basevertex);
+}
+PFN_glDrawRangeElementsBaseVertex _glptr_glDrawRangeElementsBaseVertex = _impl_glDrawRangeElementsBaseVertex;
+
+static void  GL_APIENTRY _impl_glScissor(GLint x, GLint y, GLsizei width, GLsizei height) {
+	_glptr_glScissor = (PFN_glScissor)GalogenGetProcAddress("glScissor");
+	_glptr_glScissor(x, y, width, height);
+}
+PFN_glScissor _glptr_glScissor = _impl_glScissor;
+
+static void  GL_APIENTRY _impl_glGenerateMipmap(GLenum target) {
+	_glptr_glGenerateMipmap = (PFN_glGenerateMipmap)GalogenGetProcAddress("glGenerateMipmap");
+	_glptr_glGenerateMipmap(target);
+}
+PFN_glGenerateMipmap _glptr_glGenerateMipmap = _impl_glGenerateMipmap;
+
+static void  GL_APIENTRY _impl_glUniform3fv(GLint location, GLsizei count, const GLfloat * value) {
+	_glptr_glUniform3fv = (PFN_glUniform3fv)GalogenGetProcAddress("glUniform3fv");
+	_glptr_glUniform3fv(location, count, value);
+}
+PFN_glUniform3fv _glptr_glUniform3fv = _impl_glUniform3fv;
+
+static void  GL_APIENTRY _impl_glUniform3uiv(GLint location, GLsizei count, const GLuint * value) {
+	_glptr_glUniform3uiv = (PFN_glUniform3uiv)GalogenGetProcAddress("glUniform3uiv");
+	_glptr_glUniform3uiv(location, count, value);
+}
+PFN_glUniform3uiv _glptr_glUniform3uiv = _impl_glUniform3uiv;
+
+static void  GL_APIENTRY _impl_glClearBufferiv(GLenum buffer, GLint drawbuffer, const GLint * value) {
+	_glptr_glClearBufferiv = (PFN_glClearBufferiv)GalogenGetProcAddress("glClearBufferiv");
+	_glptr_glClearBufferiv(buffer, drawbuffer, value);
+}
+PFN_glClearBufferiv _glptr_glClearBufferiv = _impl_glClearBufferiv;
+
+static void  GL_APIENTRY _impl_glVertexAttribI4ubv(GLuint index, const GLubyte * v) {
+	_glptr_glVertexAttribI4ubv = (PFN_glVertexAttribI4ubv)GalogenGetProcAddress("glVertexAttribI4ubv");
+	_glptr_glVertexAttribI4ubv(index, v);
+}
+PFN_glVertexAttribI4ubv _glptr_glVertexAttribI4ubv = _impl_glVertexAttribI4ubv;
+
+static void  GL_APIENTRY _impl_glGetBooleanv(GLenum pname, GLboolean * data) {
+	_glptr_glGetBooleanv = (PFN_glGetBooleanv)GalogenGetProcAddress("glGetBooleanv");
+	_glptr_glGetBooleanv(pname, data);
+}
+PFN_glGetBooleanv _glptr_glGetBooleanv = _impl_glGetBooleanv;
+
+static void  GL_APIENTRY _impl_glValidateProgram(GLuint program) {
+	_glptr_glValidateProgram = (PFN_glValidateProgram)GalogenGetProcAddress("glValidateProgram");
+	_glptr_glValidateProgram(program);
+}
+PFN_glValidateProgram _glptr_glValidateProgram = _impl_glValidateProgram;
+
+static void  GL_APIENTRY _impl_glGenRenderbuffers(GLsizei n, GLuint * renderbuffers) {
+	_glptr_glGenRenderbuffers = (PFN_glGenRenderbuffers)GalogenGetProcAddress("glGenRenderbuffers");
+	_glptr_glGenRenderbuffers(n, renderbuffers);
+}
+PFN_glGenRenderbuffers _glptr_glGenRenderbuffers = _impl_glGenRenderbuffers;
+
+static void  GL_APIENTRY _impl_glUniform2iv(GLint location, GLsizei count, const GLint * value) {
+	_glptr_glUniform2iv = (PFN_glUniform2iv)GalogenGetProcAddress("glUniform2iv");
+	_glptr_glUniform2iv(location, count, value);
+}
+PFN_glUniform2iv _glptr_glUniform2iv = _impl_glUniform2iv;
+
+static void  GL_APIENTRY _impl_glBufferData(GLenum target, GLsizeiptr size, const void * data, GLenum usage) {
+	_glptr_glBufferData = (PFN_glBufferData)GalogenGetProcAddress("glBufferData");
+	_glptr_glBufferData(target, size, data, usage);
+}
+PFN_glBufferData _glptr_glBufferData = _impl_glBufferData;
+
+static void  GL_APIENTRY _impl_glBlendFuncSeparate(GLenum sfactorRGB, GLenum dfactorRGB, GLenum sfactorAlpha, GLenum dfactorAlpha) {
+	_glptr_glBlendFuncSeparate = (PFN_glBlendFuncSeparate)GalogenGetProcAddress("glBlendFuncSeparate");
+	_glptr_glBlendFuncSeparate(sfactorRGB, dfactorRGB, sfactorAlpha, dfactorAlpha);
+}
+PFN_glBlendFuncSeparate _glptr_glBlendFuncSeparate = _impl_glBlendFuncSeparate;
+
+static void  GL_APIENTRY _impl_glTexParameteri(GLenum target, GLenum pname, GLint param) {
+	_glptr_glTexParameteri = (PFN_glTexParameteri)GalogenGetProcAddress("glTexParameteri");
+	_glptr_glTexParameteri(target, pname, param);
+}
+PFN_glTexParameteri _glptr_glTexParameteri = _impl_glTexParameteri;
+
+static void  GL_APIENTRY _impl_glHint(GLenum target, GLenum mode) {
+	_glptr_glHint = (PFN_glHint)GalogenGetProcAddress("glHint");
+	_glptr_glHint(target, mode);
+}
+PFN_glHint _glptr_glHint = _impl_glHint;
+
+static void  GL_APIENTRY _impl_glVertexAttrib3fv(GLuint index, const GLfloat * v) {
+	_glptr_glVertexAttrib3fv = (PFN_glVertexAttrib3fv)GalogenGetProcAddress("glVertexAttrib3fv");
+	_glptr_glVertexAttrib3fv(index, v);
+}
+PFN_glVertexAttrib3fv _glptr_glVertexAttrib3fv = _impl_glVertexAttrib3fv;
+
+static void  GL_APIENTRY _impl_glGetSamplerParameteriv(GLuint sampler, GLenum pname, GLint * params) {
+	_glptr_glGetSamplerParameteriv = (PFN_glGetSamplerParameteriv)GalogenGetProcAddress("glGetSamplerParameteriv");
+	_glptr_glGetSamplerParameteriv(sampler, pname, params);
+}
+PFN_glGetSamplerParameteriv _glptr_glGetSamplerParameteriv = _impl_glGetSamplerParameteriv;
+
+static void  GL_APIENTRY _impl_glDrawBuffer(GLenum buf) {
+	_glptr_glDrawBuffer = (PFN_glDrawBuffer)GalogenGetProcAddress("glDrawBuffer");
+	_glptr_glDrawBuffer(buf);
+}
+PFN_glDrawBuffer _glptr_glDrawBuffer = _impl_glDrawBuffer;
+
+static GLboolean GL_APIENTRY _impl_glIsProgram(GLuint program) {
+	_glptr_glIsProgram = (PFN_glIsProgram)GalogenGetProcAddress("glIsProgram");
+	return _glptr_glIsProgram(program);
+}
+PFN_glIsProgram _glptr_glIsProgram = _impl_glIsProgram;
+
+static void  GL_APIENTRY _impl_glGetIntegerv(GLenum pname, GLint * data) {
+	_glptr_glGetIntegerv = (PFN_glGetIntegerv)GalogenGetProcAddress("glGetIntegerv");
+	_glptr_glGetIntegerv(pname, data);
+}
+PFN_glGetIntegerv _glptr_glGetIntegerv = _impl_glGetIntegerv;
+
+static void  GL_APIENTRY _impl_glDrawElementsBaseVertex(GLenum mode, GLsizei count, GLenum type, const void * indices, GLint basevertex) {
+	_glptr_glDrawElementsBaseVertex = (PFN_glDrawElementsBaseVertex)GalogenGetProcAddress("glDrawElementsBaseVertex");
+	_glptr_glDrawElementsBaseVertex(mode, count, type, indices, basevertex);
+}
+PFN_glDrawElementsBaseVertex _glptr_glDrawElementsBaseVertex = _impl_glDrawElementsBaseVertex;
+
+static void  GL_APIENTRY _impl_glEnable(GLenum cap) {
+	_glptr_glEnable = (PFN_glEnable)GalogenGetProcAddress("glEnable");
+	_glptr_glEnable(cap);
+}
+PFN_glEnable _glptr_glEnable = _impl_glEnable;
+
+static void  GL_APIENTRY _impl_glBlitFramebuffer(GLint srcX0, GLint srcY0, GLint srcX1, GLint srcY1, GLint dstX0, GLint dstY0, GLint dstX1, GLint dstY1, GLbitfield mask, GLenum filter) {
+	_glptr_glBlitFramebuffer = (PFN_glBlitFramebuffer)GalogenGetProcAddress("glBlitFramebuffer");
+	_glptr_glBlitFramebuffer(srcX0, srcY0, srcX1, srcY1, dstX0, dstY0, dstX1, dstY1, mask, filter);
+}
+PFN_glBlitFramebuffer _glptr_glBlitFramebuffer = _impl_glBlitFramebuffer;
+
+static void  GL_APIENTRY _impl_glBeginQuery(GLenum target, GLuint id) {
+	_glptr_glBeginQuery = (PFN_glBeginQuery)GalogenGetProcAddress("glBeginQuery");
+	_glptr_glBeginQuery(target, id);
+}
+PFN_glBeginQuery _glptr_glBeginQuery = _impl_glBeginQuery;
+
+static void  GL_APIENTRY _impl_glStencilMask(GLuint mask) {
+	_glptr_glStencilMask = (PFN_glStencilMask)GalogenGetProcAddress("glStencilMask");
+	_glptr_glStencilMask(mask);
+}
+PFN_glStencilMask _glptr_glStencilMask = _impl_glStencilMask;
+
+static void  GL_APIENTRY _impl_glAttachShader(GLuint program, GLuint shader) {
+	_glptr_glAttachShader = (PFN_glAttachShader)GalogenGetProcAddress("glAttachShader");
+	_glptr_glAttachShader(program, shader);
+}
+PFN_glAttachShader _glptr_glAttachShader = _impl_glAttachShader;
+
+static void  GL_APIENTRY _impl_glPointSize(GLfloat size) {
+	_glptr_glPointSize = (PFN_glPointSize)GalogenGetProcAddress("glPointSize");
+	_glptr_glPointSize(size);
+}
+PFN_glPointSize _glptr_glPointSize = _impl_glPointSize;
+
+static void  GL_APIENTRY _impl_glMultiDrawElements(GLenum mode, const GLsizei * count, GLenum type, const void *const* indices, GLsizei drawcount) {
+	_glptr_glMultiDrawElements = (PFN_glMultiDrawElements)GalogenGetProcAddress("glMultiDrawElements");
+	_glptr_glMultiDrawElements(mode, count, type, indices, drawcount);
+}
+PFN_glMultiDrawElements _glptr_glMultiDrawElements = _impl_glMultiDrawElements;
+
+static void  GL_APIENTRY _impl_glGetTexParameterfv(GLenum target, GLenum pname, GLfloat * params) {
+	_glptr_glGetTexParameterfv = (PFN_glGetTexParameterfv)GalogenGetProcAddress("glGetTexParameterfv");
+	_glptr_glGetTexParameterfv(target, pname, params);
+}
+PFN_glGetTexParameterfv _glptr_glGetTexParameterfv = _impl_glGetTexParameterfv;
 
 static GLboolean GL_APIENTRY _impl_glIsEnabled(GLenum cap) {
 	_glptr_glIsEnabled = (PFN_glIsEnabled)GalogenGetProcAddress("glIsEnabled");
@@ -1497,53 +1899,35 @@ static GLenum GL_APIENTRY _impl_glGetError() {
 }
 PFN_glGetError _glptr_glGetError = _impl_glGetError;
 
+static void  GL_APIENTRY _impl_glEndTransformFeedback() {
+	_glptr_glEndTransformFeedback = (PFN_glEndTransformFeedback)GalogenGetProcAddress("glEndTransformFeedback");
+	_glptr_glEndTransformFeedback();
+}
+PFN_glEndTransformFeedback _glptr_glEndTransformFeedback = _impl_glEndTransformFeedback;
+
 static void  GL_APIENTRY _impl_glClearColor(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) {
 	_glptr_glClearColor = (PFN_glClearColor)GalogenGetProcAddress("glClearColor");
 	_glptr_glClearColor(red, green, blue, alpha);
 }
 PFN_glClearColor _glptr_glClearColor = _impl_glClearColor;
 
-static void  GL_APIENTRY _impl_glColor3ubv(const GLubyte * v) {
-	_glptr_glColor3ubv = (PFN_glColor3ubv)GalogenGetProcAddress("glColor3ubv");
-	_glptr_glColor3ubv(v);
+static void  GL_APIENTRY _impl_glBlendColor(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha) {
+	_glptr_glBlendColor = (PFN_glBlendColor)GalogenGetProcAddress("glBlendColor");
+	_glptr_glBlendColor(red, green, blue, alpha);
 }
-PFN_glColor3ubv _glptr_glColor3ubv = _impl_glColor3ubv;
+PFN_glBlendColor _glptr_glBlendColor = _impl_glBlendColor;
 
-static void  GL_APIENTRY _impl_glRects(GLshort x1, GLshort y1, GLshort x2, GLshort y2) {
-	_glptr_glRects = (PFN_glRects)GalogenGetProcAddress("glRects");
-	_glptr_glRects(x1, y1, x2, y2);
+static void  GL_APIENTRY _impl_glVertexAttribI3i(GLuint index, GLint x, GLint y, GLint z) {
+	_glptr_glVertexAttribI3i = (PFN_glVertexAttribI3i)GalogenGetProcAddress("glVertexAttribI3i");
+	_glptr_glVertexAttribI3i(index, x, y, z);
 }
-PFN_glRects _glptr_glRects = _impl_glRects;
+PFN_glVertexAttribI3i _glptr_glVertexAttribI3i = _impl_glVertexAttribI3i;
 
-static void  GL_APIENTRY _impl_glMatrixMode(GLenum mode) {
-	_glptr_glMatrixMode = (PFN_glMatrixMode)GalogenGetProcAddress("glMatrixMode");
-	_glptr_glMatrixMode(mode);
+static void  GL_APIENTRY _impl_glCompressedTexSubImage3D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint zoffset, GLsizei width, GLsizei height, GLsizei depth, GLenum format, GLsizei imageSize, const void * data) {
+	_glptr_glCompressedTexSubImage3D = (PFN_glCompressedTexSubImage3D)GalogenGetProcAddress("glCompressedTexSubImage3D");
+	_glptr_glCompressedTexSubImage3D(target, level, xoffset, yoffset, zoffset, width, height, depth, format, imageSize, data);
 }
-PFN_glMatrixMode _glptr_glMatrixMode = _impl_glMatrixMode;
-
-static void  GL_APIENTRY _impl_glRasterPos3dv(const GLdouble * v) {
-	_glptr_glRasterPos3dv = (PFN_glRasterPos3dv)GalogenGetProcAddress("glRasterPos3dv");
-	_glptr_glRasterPos3dv(v);
-}
-PFN_glRasterPos3dv _glptr_glRasterPos3dv = _impl_glRasterPos3dv;
-
-static void  GL_APIENTRY _impl_glGetIntegerv(GLenum pname, GLint * data) {
-	_glptr_glGetIntegerv = (PFN_glGetIntegerv)GalogenGetProcAddress("glGetIntegerv");
-	_glptr_glGetIntegerv(pname, data);
-}
-PFN_glGetIntegerv _glptr_glGetIntegerv = _impl_glGetIntegerv;
-
-static void  GL_APIENTRY _impl_glGetTexLevelParameterfv(GLenum target, GLint level, GLenum pname, GLfloat * params) {
-	_glptr_glGetTexLevelParameterfv = (PFN_glGetTexLevelParameterfv)GalogenGetProcAddress("glGetTexLevelParameterfv");
-	_glptr_glGetTexLevelParameterfv(target, level, pname, params);
-}
-PFN_glGetTexLevelParameterfv _glptr_glGetTexLevelParameterfv = _impl_glGetTexLevelParameterfv;
-
-static void  GL_APIENTRY _impl_glVertex4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w) {
-	_glptr_glVertex4f = (PFN_glVertex4f)GalogenGetProcAddress("glVertex4f");
-	_glptr_glVertex4f(x, y, z, w);
-}
-PFN_glVertex4f _glptr_glVertex4f = _impl_glVertex4f;
+PFN_glCompressedTexSubImage3D _glptr_glCompressedTexSubImage3D = _impl_glCompressedTexSubImage3D;
 
 static void  GL_APIENTRY _impl_glReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, void * pixels) {
 	_glptr_glReadPixels = (PFN_glReadPixels)GalogenGetProcAddress("glReadPixels");
@@ -1557,23 +1941,23 @@ static void  GL_APIENTRY _impl_glTexParameterf(GLenum target, GLenum pname, GLfl
 }
 PFN_glTexParameterf _glptr_glTexParameterf = _impl_glTexParameterf;
 
-static void  GL_APIENTRY _impl_glColor4d(GLdouble red, GLdouble green, GLdouble blue, GLdouble alpha) {
-	_glptr_glColor4d = (PFN_glColor4d)GalogenGetProcAddress("glColor4d");
-	_glptr_glColor4d(red, green, blue, alpha);
+static void  GL_APIENTRY _impl_glSamplerParameterIiv(GLuint sampler, GLenum pname, const GLint * param) {
+	_glptr_glSamplerParameterIiv = (PFN_glSamplerParameterIiv)GalogenGetProcAddress("glSamplerParameterIiv");
+	_glptr_glSamplerParameterIiv(sampler, pname, param);
 }
-PFN_glColor4d _glptr_glColor4d = _impl_glColor4d;
+PFN_glSamplerParameterIiv _glptr_glSamplerParameterIiv = _impl_glSamplerParameterIiv;
 
-static void  GL_APIENTRY _impl_glGetPixelMapfv(GLenum map, GLfloat * values) {
-	_glptr_glGetPixelMapfv = (PFN_glGetPixelMapfv)GalogenGetProcAddress("glGetPixelMapfv");
-	_glptr_glGetPixelMapfv(map, values);
+static void  GL_APIENTRY _impl_glPointParameterfv(GLenum pname, const GLfloat * params) {
+	_glptr_glPointParameterfv = (PFN_glPointParameterfv)GalogenGetProcAddress("glPointParameterfv");
+	_glptr_glPointParameterfv(pname, params);
 }
-PFN_glGetPixelMapfv _glptr_glGetPixelMapfv = _impl_glGetPixelMapfv;
+PFN_glPointParameterfv _glptr_glPointParameterfv = _impl_glPointParameterfv;
 
-static void  GL_APIENTRY _impl_glRectf(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2) {
-	_glptr_glRectf = (PFN_glRectf)GalogenGetProcAddress("glRectf");
-	_glptr_glRectf(x1, y1, x2, y2);
+static void  GL_APIENTRY _impl_glGetShaderInfoLog(GLuint shader, GLsizei bufSize, GLsizei * length, GLchar * infoLog) {
+	_glptr_glGetShaderInfoLog = (PFN_glGetShaderInfoLog)GalogenGetProcAddress("glGetShaderInfoLog");
+	_glptr_glGetShaderInfoLog(shader, bufSize, length, infoLog);
 }
-PFN_glRectf _glptr_glRectf = _impl_glRectf;
+PFN_glGetShaderInfoLog _glptr_glGetShaderInfoLog = _impl_glGetShaderInfoLog;
 
 static void  GL_APIENTRY _impl_glDepthFunc(GLenum func) {
 	_glptr_glDepthFunc = (PFN_glDepthFunc)GalogenGetProcAddress("glDepthFunc");
@@ -1581,17 +1965,11 @@ static void  GL_APIENTRY _impl_glDepthFunc(GLenum func) {
 }
 PFN_glDepthFunc _glptr_glDepthFunc = _impl_glDepthFunc;
 
-static void  GL_APIENTRY _impl_glFogiv(GLenum pname, const GLint * params) {
-	_glptr_glFogiv = (PFN_glFogiv)GalogenGetProcAddress("glFogiv");
-	_glptr_glFogiv(pname, params);
+static void  GL_APIENTRY _impl_glVertexAttribI3uiv(GLuint index, const GLuint * v) {
+	_glptr_glVertexAttribI3uiv = (PFN_glVertexAttribI3uiv)GalogenGetProcAddress("glVertexAttribI3uiv");
+	_glptr_glVertexAttribI3uiv(index, v);
 }
-PFN_glFogiv _glptr_glFogiv = _impl_glFogiv;
-
-static void  GL_APIENTRY _impl_glNewList(GLuint list, GLenum mode) {
-	_glptr_glNewList = (PFN_glNewList)GalogenGetProcAddress("glNewList");
-	_glptr_glNewList(list, mode);
-}
-PFN_glNewList _glptr_glNewList = _impl_glNewList;
+PFN_glVertexAttribI3uiv _glptr_glVertexAttribI3uiv = _impl_glVertexAttribI3uiv;
 
 static void  GL_APIENTRY _impl_glStencilOp(GLenum fail, GLenum zfail, GLenum zpass) {
 	_glptr_glStencilOp = (PFN_glStencilOp)GalogenGetProcAddress("glStencilOp");
@@ -1605,11 +1983,11 @@ static void  GL_APIENTRY _impl_glStencilFunc(GLenum func, GLint ref, GLuint mask
 }
 PFN_glStencilFunc _glptr_glStencilFunc = _impl_glStencilFunc;
 
-static void  GL_APIENTRY _impl_glColor4b(GLbyte red, GLbyte green, GLbyte blue, GLbyte alpha) {
-	_glptr_glColor4b = (PFN_glColor4b)GalogenGetProcAddress("glColor4b");
-	_glptr_glColor4b(red, green, blue, alpha);
+static void  GL_APIENTRY _impl_glEnableVertexAttribArray(GLuint index) {
+	_glptr_glEnableVertexAttribArray = (PFN_glEnableVertexAttribArray)GalogenGetProcAddress("glEnableVertexAttribArray");
+	_glptr_glEnableVertexAttribArray(index);
 }
-PFN_glColor4b _glptr_glColor4b = _impl_glColor4b;
+PFN_glEnableVertexAttribArray _glptr_glEnableVertexAttribArray = _impl_glEnableVertexAttribArray;
 
 static void  GL_APIENTRY _impl_glBlendFunc(GLenum sfactor, GLenum dfactor) {
 	_glptr_glBlendFunc = (PFN_glBlendFunc)GalogenGetProcAddress("glBlendFunc");
@@ -1617,47 +1995,17 @@ static void  GL_APIENTRY _impl_glBlendFunc(GLenum sfactor, GLenum dfactor) {
 }
 PFN_glBlendFunc _glptr_glBlendFunc = _impl_glBlendFunc;
 
-static void  GL_APIENTRY _impl_glTexCoord3sv(const GLshort * v) {
-	_glptr_glTexCoord3sv = (PFN_glTexCoord3sv)GalogenGetProcAddress("glTexCoord3sv");
-	_glptr_glTexCoord3sv(v);
+static void  GL_APIENTRY _impl_glVertexAttrib4Nub(GLuint index, GLubyte x, GLubyte y, GLubyte z, GLubyte w) {
+	_glptr_glVertexAttrib4Nub = (PFN_glVertexAttrib4Nub)GalogenGetProcAddress("glVertexAttrib4Nub");
+	_glptr_glVertexAttrib4Nub(index, x, y, z, w);
 }
-PFN_glTexCoord3sv _glptr_glTexCoord3sv = _impl_glTexCoord3sv;
+PFN_glVertexAttrib4Nub _glptr_glVertexAttrib4Nub = _impl_glVertexAttrib4Nub;
 
-static void  GL_APIENTRY _impl_glEvalCoord2d(GLdouble u, GLdouble v) {
-	_glptr_glEvalCoord2d = (PFN_glEvalCoord2d)GalogenGetProcAddress("glEvalCoord2d");
-	_glptr_glEvalCoord2d(u, v);
+static void  GL_APIENTRY _impl_glUniform1fv(GLint location, GLsizei count, const GLfloat * value) {
+	_glptr_glUniform1fv = (PFN_glUniform1fv)GalogenGetProcAddress("glUniform1fv");
+	_glptr_glUniform1fv(location, count, value);
 }
-PFN_glEvalCoord2d _glptr_glEvalCoord2d = _impl_glEvalCoord2d;
-
-static void  GL_APIENTRY _impl_glShadeModel(GLenum mode) {
-	_glptr_glShadeModel = (PFN_glShadeModel)GalogenGetProcAddress("glShadeModel");
-	_glptr_glShadeModel(mode);
-}
-PFN_glShadeModel _glptr_glShadeModel = _impl_glShadeModel;
-
-static void  GL_APIENTRY _impl_glTexCoord2iv(const GLint * v) {
-	_glptr_glTexCoord2iv = (PFN_glTexCoord2iv)GalogenGetProcAddress("glTexCoord2iv");
-	_glptr_glTexCoord2iv(v);
-}
-PFN_glTexCoord2iv _glptr_glTexCoord2iv = _impl_glTexCoord2iv;
-
-static void  GL_APIENTRY _impl_glColor4usv(const GLushort * v) {
-	_glptr_glColor4usv = (PFN_glColor4usv)GalogenGetProcAddress("glColor4usv");
-	_glptr_glColor4usv(v);
-}
-PFN_glColor4usv _glptr_glColor4usv = _impl_glColor4usv;
-
-static void  GL_APIENTRY _impl_glLineStipple(GLint factor, GLushort pattern) {
-	_glptr_glLineStipple = (PFN_glLineStipple)GalogenGetProcAddress("glLineStipple");
-	_glptr_glLineStipple(factor, pattern);
-}
-PFN_glLineStipple _glptr_glLineStipple = _impl_glLineStipple;
-
-static void  GL_APIENTRY _impl_glVertex4iv(const GLint * v) {
-	_glptr_glVertex4iv = (PFN_glVertex4iv)GalogenGetProcAddress("glVertex4iv");
-	_glptr_glVertex4iv(v);
-}
-PFN_glVertex4iv _glptr_glVertex4iv = _impl_glVertex4iv;
+PFN_glUniform1fv _glptr_glUniform1fv = _impl_glUniform1fv;
 
 static void  GL_APIENTRY _impl_glPixelStorei(GLenum pname, GLint param) {
 	_glptr_glPixelStorei = (PFN_glPixelStorei)GalogenGetProcAddress("glPixelStorei");
@@ -1665,41 +2013,23 @@ static void  GL_APIENTRY _impl_glPixelStorei(GLenum pname, GLint param) {
 }
 PFN_glPixelStorei _glptr_glPixelStorei = _impl_glPixelStorei;
 
-static void  GL_APIENTRY _impl_glGetTexEnvfv(GLenum target, GLenum pname, GLfloat * params) {
-	_glptr_glGetTexEnvfv = (PFN_glGetTexEnvfv)GalogenGetProcAddress("glGetTexEnvfv");
-	_glptr_glGetTexEnvfv(target, pname, params);
-}
-PFN_glGetTexEnvfv _glptr_glGetTexEnvfv = _impl_glGetTexEnvfv;
-
 static void  GL_APIENTRY _impl_glLineWidth(GLfloat width) {
 	_glptr_glLineWidth = (PFN_glLineWidth)GalogenGetProcAddress("glLineWidth");
 	_glptr_glLineWidth(width);
 }
 PFN_glLineWidth _glptr_glLineWidth = _impl_glLineWidth;
 
-static void  GL_APIENTRY _impl_glCallList(GLuint list) {
-	_glptr_glCallList = (PFN_glCallList)GalogenGetProcAddress("glCallList");
-	_glptr_glCallList(list);
+static void  GL_APIENTRY _impl_glVertexAttribP1ui(GLuint index, GLenum type, GLboolean normalized, GLuint value) {
+	_glptr_glVertexAttribP1ui = (PFN_glVertexAttribP1ui)GalogenGetProcAddress("glVertexAttribP1ui");
+	_glptr_glVertexAttribP1ui(index, type, normalized, value);
 }
-PFN_glCallList _glptr_glCallList = _impl_glCallList;
+PFN_glVertexAttribP1ui _glptr_glVertexAttribP1ui = _impl_glVertexAttribP1ui;
 
-static void  GL_APIENTRY _impl_glVertex3iv(const GLint * v) {
-	_glptr_glVertex3iv = (PFN_glVertex3iv)GalogenGetProcAddress("glVertex3iv");
-	_glptr_glVertex3iv(v);
+static void  GL_APIENTRY _impl_glGetUniformiv(GLuint program, GLint location, GLint * params) {
+	_glptr_glGetUniformiv = (PFN_glGetUniformiv)GalogenGetProcAddress("glGetUniformiv");
+	_glptr_glGetUniformiv(program, location, params);
 }
-PFN_glVertex3iv _glptr_glVertex3iv = _impl_glVertex3iv;
-
-static void  GL_APIENTRY _impl_glPointSize(GLfloat size) {
-	_glptr_glPointSize = (PFN_glPointSize)GalogenGetProcAddress("glPointSize");
-	_glptr_glPointSize(size);
-}
-PFN_glPointSize _glptr_glPointSize = _impl_glPointSize;
-
-static void  GL_APIENTRY _impl_glVertex2i(GLint x, GLint y) {
-	_glptr_glVertex2i = (PFN_glVertex2i)GalogenGetProcAddress("glVertex2i");
-	_glptr_glVertex2i(x, y);
-}
-PFN_glVertex2i _glptr_glVertex2i = _impl_glVertex2i;
+PFN_glGetUniformiv _glptr_glGetUniformiv = _impl_glGetUniformiv;
 
 static void  GL_APIENTRY _impl_glReadBuffer(GLenum src) {
 	_glptr_glReadBuffer = (PFN_glReadBuffer)GalogenGetProcAddress("glReadBuffer");
@@ -1713,107 +2043,23 @@ static void  GL_APIENTRY _impl_glTexImage1D(GLenum target, GLint level, GLint in
 }
 PFN_glTexImage1D _glptr_glTexImage1D = _impl_glTexImage1D;
 
-static void  GL_APIENTRY _impl_glRasterPos2sv(const GLshort * v) {
-	_glptr_glRasterPos2sv = (PFN_glRasterPos2sv)GalogenGetProcAddress("glRasterPos2sv");
-	_glptr_glRasterPos2sv(v);
-}
-PFN_glRasterPos2sv _glptr_glRasterPos2sv = _impl_glRasterPos2sv;
-
-static void  GL_APIENTRY _impl_glTexCoord3dv(const GLdouble * v) {
-	_glptr_glTexCoord3dv = (PFN_glTexCoord3dv)GalogenGetProcAddress("glTexCoord3dv");
-	_glptr_glTexCoord3dv(v);
-}
-PFN_glTexCoord3dv _glptr_glTexCoord3dv = _impl_glTexCoord3dv;
-
-static GLuint GL_APIENTRY _impl_glGenLists(GLsizei range) {
-	_glptr_glGenLists = (PFN_glGenLists)GalogenGetProcAddress("glGenLists");
-	return _glptr_glGenLists(range);
-}
-PFN_glGenLists _glptr_glGenLists = _impl_glGenLists;
-
 static void  GL_APIENTRY _impl_glTexParameterfv(GLenum target, GLenum pname, const GLfloat * params) {
 	_glptr_glTexParameterfv = (PFN_glTexParameterfv)GalogenGetProcAddress("glTexParameterfv");
 	_glptr_glTexParameterfv(target, pname, params);
 }
 PFN_glTexParameterfv _glptr_glTexParameterfv = _impl_glTexParameterfv;
 
-static void  GL_APIENTRY _impl_glTexEnvi(GLenum target, GLenum pname, GLint param) {
-	_glptr_glTexEnvi = (PFN_glTexEnvi)GalogenGetProcAddress("glTexEnvi");
-	_glptr_glTexEnvi(target, pname, param);
+static void  GL_APIENTRY _impl_glVertexAttrib3s(GLuint index, GLshort x, GLshort y, GLshort z) {
+	_glptr_glVertexAttrib3s = (PFN_glVertexAttrib3s)GalogenGetProcAddress("glVertexAttrib3s");
+	_glptr_glVertexAttrib3s(index, x, y, z);
 }
-PFN_glTexEnvi _glptr_glTexEnvi = _impl_glTexEnvi;
+PFN_glVertexAttrib3s _glptr_glVertexAttrib3s = _impl_glVertexAttrib3s;
 
-static void  GL_APIENTRY _impl_glTexParameteriv(GLenum target, GLenum pname, const GLint * params) {
-	_glptr_glTexParameteriv = (PFN_glTexParameteriv)GalogenGetProcAddress("glTexParameteriv");
-	_glptr_glTexParameteriv(target, pname, params);
+static void  GL_APIENTRY _impl_glCompressedTexSubImage1D(GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLsizei imageSize, const void * data) {
+	_glptr_glCompressedTexSubImage1D = (PFN_glCompressedTexSubImage1D)GalogenGetProcAddress("glCompressedTexSubImage1D");
+	_glptr_glCompressedTexSubImage1D(target, level, xoffset, width, format, imageSize, data);
 }
-PFN_glTexParameteriv _glptr_glTexParameteriv = _impl_glTexParameteriv;
-
-static void  GL_APIENTRY _impl_glTexCoord3iv(const GLint * v) {
-	_glptr_glTexCoord3iv = (PFN_glTexCoord3iv)GalogenGetProcAddress("glTexCoord3iv");
-	_glptr_glTexCoord3iv(v);
-}
-PFN_glTexCoord3iv _glptr_glTexCoord3iv = _impl_glTexCoord3iv;
-
-static void  GL_APIENTRY _impl_glTexEnvf(GLenum target, GLenum pname, GLfloat param) {
-	_glptr_glTexEnvf = (PFN_glTexEnvf)GalogenGetProcAddress("glTexEnvf");
-	_glptr_glTexEnvf(target, pname, param);
-}
-PFN_glTexEnvf _glptr_glTexEnvf = _impl_glTexEnvf;
-
-static void  GL_APIENTRY _impl_glDepthMask(GLboolean flag) {
-	_glptr_glDepthMask = (PFN_glDepthMask)GalogenGetProcAddress("glDepthMask");
-	_glptr_glDepthMask(flag);
-}
-PFN_glDepthMask _glptr_glDepthMask = _impl_glDepthMask;
-
-static void  GL_APIENTRY _impl_glIndexfv(const GLfloat * c) {
-	_glptr_glIndexfv = (PFN_glIndexfv)GalogenGetProcAddress("glIndexfv");
-	_glptr_glIndexfv(c);
-}
-PFN_glIndexfv _glptr_glIndexfv = _impl_glIndexfv;
-
-static void  GL_APIENTRY _impl_glClearDepth(GLdouble depth) {
-	_glptr_glClearDepth = (PFN_glClearDepth)GalogenGetProcAddress("glClearDepth");
-	_glptr_glClearDepth(depth);
-}
-PFN_glClearDepth _glptr_glClearDepth = _impl_glClearDepth;
-
-static const GLubyte * GL_APIENTRY _impl_glGetString(GLenum name) {
-	_glptr_glGetString = (PFN_glGetString)GalogenGetProcAddress("glGetString");
-	return _glptr_glGetString(name);
-}
-PFN_glGetString _glptr_glGetString = _impl_glGetString;
-
-static void  GL_APIENTRY _impl_glColor3fv(const GLfloat * v) {
-	_glptr_glColor3fv = (PFN_glColor3fv)GalogenGetProcAddress("glColor3fv");
-	_glptr_glColor3fv(v);
-}
-PFN_glColor3fv _glptr_glColor3fv = _impl_glColor3fv;
-
-static void  GL_APIENTRY _impl_glLogicOp(GLenum opcode) {
-	_glptr_glLogicOp = (PFN_glLogicOp)GalogenGetProcAddress("glLogicOp");
-	_glptr_glLogicOp(opcode);
-}
-PFN_glLogicOp _glptr_glLogicOp = _impl_glLogicOp;
-
-static void  GL_APIENTRY _impl_glMapGrid2d(GLint un, GLdouble u1, GLdouble u2, GLint vn, GLdouble v1, GLdouble v2) {
-	_glptr_glMapGrid2d = (PFN_glMapGrid2d)GalogenGetProcAddress("glMapGrid2d");
-	_glptr_glMapGrid2d(un, u1, u2, vn, v1, v2);
-}
-PFN_glMapGrid2d _glptr_glMapGrid2d = _impl_glMapGrid2d;
-
-static void  GL_APIENTRY _impl_glTexCoord2dv(const GLdouble * v) {
-	_glptr_glTexCoord2dv = (PFN_glTexCoord2dv)GalogenGetProcAddress("glTexCoord2dv");
-	_glptr_glTexCoord2dv(v);
-}
-PFN_glTexCoord2dv _glptr_glTexCoord2dv = _impl_glTexCoord2dv;
-
-static void  GL_APIENTRY _impl_glRecti(GLint x1, GLint y1, GLint x2, GLint y2) {
-	_glptr_glRecti = (PFN_glRecti)GalogenGetProcAddress("glRecti");
-	_glptr_glRecti(x1, y1, x2, y2);
-}
-PFN_glRecti _glptr_glRecti = _impl_glRecti;
+PFN_glCompressedTexSubImage1D _glptr_glCompressedTexSubImage1D = _impl_glCompressedTexSubImage1D;
 
 static void  GL_APIENTRY _impl_glClear(GLbitfield mask) {
 	_glptr_glClear = (PFN_glClear)GalogenGetProcAddress("glClear");
@@ -1821,65 +2067,35 @@ static void  GL_APIENTRY _impl_glClear(GLbitfield mask) {
 }
 PFN_glClear _glptr_glClear = _impl_glClear;
 
-static void  GL_APIENTRY _impl_glMap1d(GLenum target, GLdouble u1, GLdouble u2, GLint stride, GLint order, const GLdouble * points) {
-	_glptr_glMap1d = (PFN_glMap1d)GalogenGetProcAddress("glMap1d");
-	_glptr_glMap1d(target, u1, u2, stride, order, points);
-}
-PFN_glMap1d _glptr_glMap1d = _impl_glMap1d;
-
 static void  GL_APIENTRY _impl_glTexImage2D(GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const void * pixels) {
 	_glptr_glTexImage2D = (PFN_glTexImage2D)GalogenGetProcAddress("glTexImage2D");
 	_glptr_glTexImage2D(target, level, internalformat, width, height, border, format, type, pixels);
 }
 PFN_glTexImage2D _glptr_glTexImage2D = _impl_glTexImage2D;
 
-static void  GL_APIENTRY _impl_glLightf(GLenum light, GLenum pname, GLfloat param) {
-	_glptr_glLightf = (PFN_glLightf)GalogenGetProcAddress("glLightf");
-	_glptr_glLightf(light, pname, param);
+static void  GL_APIENTRY _impl_glVertexAttrib4Niv(GLuint index, const GLint * v) {
+	_glptr_glVertexAttrib4Niv = (PFN_glVertexAttrib4Niv)GalogenGetProcAddress("glVertexAttrib4Niv");
+	_glptr_glVertexAttrib4Niv(index, v);
 }
-PFN_glLightf _glptr_glLightf = _impl_glLightf;
+PFN_glVertexAttrib4Niv _glptr_glVertexAttrib4Niv = _impl_glVertexAttrib4Niv;
 
-static void  GL_APIENTRY _impl_glColor4i(GLint red, GLint green, GLint blue, GLint alpha) {
-	_glptr_glColor4i = (PFN_glColor4i)GalogenGetProcAddress("glColor4i");
-	_glptr_glColor4i(red, green, blue, alpha);
+static void  GL_APIENTRY _impl_glGetVertexAttribIuiv(GLuint index, GLenum pname, GLuint * params) {
+	_glptr_glGetVertexAttribIuiv = (PFN_glGetVertexAttribIuiv)GalogenGetProcAddress("glGetVertexAttribIuiv");
+	_glptr_glGetVertexAttribIuiv(index, pname, params);
 }
-PFN_glColor4i _glptr_glColor4i = _impl_glColor4i;
+PFN_glGetVertexAttribIuiv _glptr_glGetVertexAttribIuiv = _impl_glGetVertexAttribIuiv;
 
-static void  GL_APIENTRY _impl_glTexCoord4f(GLfloat s, GLfloat t, GLfloat r, GLfloat q) {
-	_glptr_glTexCoord4f = (PFN_glTexCoord4f)GalogenGetProcAddress("glTexCoord4f");
-	_glptr_glTexCoord4f(s, t, r, q);
+static void  GL_APIENTRY _impl_glStencilMaskSeparate(GLenum face, GLuint mask) {
+	_glptr_glStencilMaskSeparate = (PFN_glStencilMaskSeparate)GalogenGetProcAddress("glStencilMaskSeparate");
+	_glptr_glStencilMaskSeparate(face, mask);
 }
-PFN_glTexCoord4f _glptr_glTexCoord4f = _impl_glTexCoord4f;
+PFN_glStencilMaskSeparate _glptr_glStencilMaskSeparate = _impl_glStencilMaskSeparate;
 
-static void  GL_APIENTRY _impl_glClearStencil(GLint s) {
-	_glptr_glClearStencil = (PFN_glClearStencil)GalogenGetProcAddress("glClearStencil");
-	_glptr_glClearStencil(s);
+static void  GL_APIENTRY _impl_glGenVertexArrays(GLsizei n, GLuint * arrays) {
+	_glptr_glGenVertexArrays = (PFN_glGenVertexArrays)GalogenGetProcAddress("glGenVertexArrays");
+	_glptr_glGenVertexArrays(n, arrays);
 }
-PFN_glClearStencil _glptr_glClearStencil = _impl_glClearStencil;
-
-static void  GL_APIENTRY _impl_glRectiv(const GLint * v1, const GLint * v2) {
-	_glptr_glRectiv = (PFN_glRectiv)GalogenGetProcAddress("glRectiv");
-	_glptr_glRectiv(v1, v2);
-}
-PFN_glRectiv _glptr_glRectiv = _impl_glRectiv;
-
-static void  GL_APIENTRY _impl_glColor4ui(GLuint red, GLuint green, GLuint blue, GLuint alpha) {
-	_glptr_glColor4ui = (PFN_glColor4ui)GalogenGetProcAddress("glColor4ui");
-	_glptr_glColor4ui(red, green, blue, alpha);
-}
-PFN_glColor4ui _glptr_glColor4ui = _impl_glColor4ui;
-
-static void  GL_APIENTRY _impl_glColor4s(GLshort red, GLshort green, GLshort blue, GLshort alpha) {
-	_glptr_glColor4s = (PFN_glColor4s)GalogenGetProcAddress("glColor4s");
-	_glptr_glColor4s(red, green, blue, alpha);
-}
-PFN_glColor4s _glptr_glColor4s = _impl_glColor4s;
-
-static void  GL_APIENTRY _impl_glGetTexParameteriv(GLenum target, GLenum pname, GLint * params) {
-	_glptr_glGetTexParameteriv = (PFN_glGetTexParameteriv)GalogenGetProcAddress("glGetTexParameteriv");
-	_glptr_glGetTexParameteriv(target, pname, params);
-}
-PFN_glGetTexParameteriv _glptr_glGetTexParameteriv = _impl_glGetTexParameteriv;
+PFN_glGenVertexArrays _glptr_glGenVertexArrays = _impl_glGenVertexArrays;
 
 static void  GL_APIENTRY _impl_glFrontFace(GLenum mode) {
 	_glptr_glFrontFace = (PFN_glFrontFace)GalogenGetProcAddress("glFrontFace");
@@ -1892,6 +2108,18 @@ static void  GL_APIENTRY _impl_glDepthRange(GLdouble n, GLdouble f) {
 	_glptr_glDepthRange(n, f);
 }
 PFN_glDepthRange _glptr_glDepthRange = _impl_glDepthRange;
+
+static void  GL_APIENTRY _impl_glVertexAttrib4s(GLuint index, GLshort x, GLshort y, GLshort z, GLshort w) {
+	_glptr_glVertexAttrib4s = (PFN_glVertexAttrib4s)GalogenGetProcAddress("glVertexAttrib4s");
+	_glptr_glVertexAttrib4s(index, x, y, z, w);
+}
+PFN_glVertexAttrib4s _glptr_glVertexAttrib4s = _impl_glVertexAttrib4s;
+
+static void  GL_APIENTRY _impl_glDetachShader(GLuint program, GLuint shader) {
+	_glptr_glDetachShader = (PFN_glDetachShader)GalogenGetProcAddress("glDetachShader");
+	_glptr_glDetachShader(program, shader);
+}
+PFN_glDetachShader _glptr_glDetachShader = _impl_glDetachShader;
 
 static void  GL_APIENTRY _impl_glCullFace(GLenum mode) {
 	_glptr_glCullFace = (PFN_glCullFace)GalogenGetProcAddress("glCullFace");

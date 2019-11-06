@@ -5,6 +5,19 @@
 #include <Windows.h>
 #include <gl\gl.h>  
 
+const float vertices[] = {
+	 0.5f,  0.5f, 0.0f,  // top right
+	 0.5f, -0.5f, 0.0f,  // bottom right
+	-0.5f, -0.5f, 0.0f,  // bottom left
+	-0.5f,  0.5f, 0.0f   // top left 
+};
+
+const unsigned int indices[] = {  // note that we start from 0!
+	0, 1, 3,   // first triangle
+	1, 2, 3    // second triangle
+};
+
+
 struct Derivative {
 
 	Vector2f dx; //dx/dt = position
@@ -59,7 +72,12 @@ private:
 	State m_newState;
 	int m_objectID;
 	GLuint m_texture;
-
+	unsigned int VBO;
+	unsigned int VAO;
+	unsigned int EBO;
+	
+	
+	
 	static int countID;
 };
 

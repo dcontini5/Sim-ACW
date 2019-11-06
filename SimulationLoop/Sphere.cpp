@@ -1,3 +1,5 @@
+#include "gl.h"
+#include <GLFW/glfw3.h>
 #include "Sphere.h"
 #include <Windows.h>
 #include <gl\gl.h>  
@@ -7,11 +9,37 @@
 
 int Sphere::countID = 0;
 
+//Sphere::Sphere(void) : m_mass(1), m_radius(5)
+//{
+//	m_objectID = countID;
+//	++countID;
+//	m_texture = TextureLoader::LoadBMP("checker.bmp");
+//}
+
 Sphere::Sphere(void) : m_mass(1), m_radius(5)
 {
 	m_objectID = countID;
 	++countID;
 	m_texture = TextureLoader::LoadBMP("checker.bmp");
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
+	//bind the vertex array object first, then bind the set vertex buffers, and then configure vertex attributes.
+	glBindVertexArray(VAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	
 }
 
 Sphere::~Sphere(void)
@@ -169,19 +197,25 @@ float Sphere::GetRadius() const
 	return m_radius;
 }
 
+//void Sphere::Render() const									
+//{
+//	glPushMatrix();
+//		glTranslatef(m_state.position.GetX(), m_state.position.GetY(), 0);
+//		glColor3d(1, 0, 0);
+//		glBindTexture(GL_TEXTURE_2D, m_texture);               // Select Our Texture
+//		GLUquadric *quadric = gluNewQuadric();
+//		gluQuadricDrawStyle(quadric, GLU_FILL);
+//		gluQuadricTexture(quadric, GL_TRUE);
+//		gluQuadricNormals(quadric, GLU_SMOOTH);
+//		gluSphere(quadric, m_radius, 20, 20);
+//		
+//	glPopMatrix();
+//}
+
 void Sphere::Render() const									
 {
-	glPushMatrix();
-		glTranslatef(m_state.position.GetX(), m_state.position.GetY(), 0);
-		glColor3d(1, 0, 0);
-		glBindTexture(GL_TEXTURE_2D, m_texture);               // Select Our Texture
-		GLUquadric *quadric = gluNewQuadric();
-		gluQuadricDrawStyle(quadric, GLU_FILL);
-		gluQuadricTexture(quadric, GL_TRUE);
-		gluQuadricNormals(quadric, GLU_SMOOTH);
-		gluSphere(quadric, m_radius, 20, 20);
-		
-	glPopMatrix();
+	glBindVertexArray(VAO);
+	glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
 Vector2f Sphere::force(const State& state, float t) {

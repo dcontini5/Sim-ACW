@@ -101,6 +101,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="gl.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="Vector2f.cpp" />
@@ -109,12 +110,14 @@
     <ClInclude Include="ContactManifold.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="gl.h" />
+    <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="Vector2f.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="VS.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

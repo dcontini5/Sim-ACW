@@ -1,6 +1,33 @@
+#include "gl.h"
+#include <GLFW/glfw3.h>
 #include "Game.h"
 #include <gl\gl.h>                                // Header File For The OpenGL32 Library
 #include <gl\GLU.h>
+
+Game::Game() : m_previousTime(0) {
+
+	m_sphere1 = new Sphere();
+	m_sphere1->SetPos(0, 15);
+	m_sphere1->SetVel(0, -5);
+	m_sphere1->SetMass(750.0f);
+
+	m_sphere2 = new Sphere();
+	m_sphere2->SetPos(0, 0);
+	m_sphere2->SetVel(0.5, 0);
+	m_sphere2->SetMass(1000.0f);
+
+	m_sphere3 = new Sphere();
+	m_sphere3->SetPos(0, -15);
+	m_sphere3->SetVel(-1.0, 20);
+	m_sphere3->SetMass(2000.0f);
+
+	m_manifold = new ContactManifold();
+	m_shader_program = ShaderProgram();
+	
+	QueryPerformanceFrequency(&frequency);
+	QueryPerformanceCounter(&start);
+	
+}
 
 Game::Game(HDC hdc) : m_hdc(hdc), m_previousTime(0)
 {
@@ -120,6 +147,10 @@ void Game::UpdateObjectPhysics()
 }
 
 //**************************Render and display the scene in OpenGL***********************
+#define GL1 0
+
+#if GL1 
+
 void Game::Render()									// Here's Where We Do All The Drawing
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear Screen And Depth Buffer
@@ -143,4 +174,23 @@ void Game::Render()									// Here's Where We Do All The Drawing
 
 	SwapBuffers(m_hdc);				// Swap Buffers (Double Buffering)
 }
+#else
+
+void Game::Render()									// Here's Where We Do All The Drawing
+{
+	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	//draw triangle
+	glUseProgram(m_shader_program.getProgram());
+
+	//draw ball
+	
+	m_sphere1->Render();
+
+	
+	glBindVertexArray(0);		// Swap Buffers (Double Buffering)
+}
+
+#endif
 
