@@ -5,6 +5,8 @@
 #include <Windows.h>
 #include <gl\gl.h>  
 
+
+// TODO: switch from carray to vextor<glm::vec3>
 const float vertices[] = {
 	 0.5f,  0.5f, 0.0f,  // top right
 	 0.5f, -0.5f, 0.0f,  // bottom right
