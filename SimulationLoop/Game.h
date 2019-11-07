@@ -24,7 +24,7 @@ private:
 
 private:
 	HDC   m_hdc;
-	ShaderProgram m_shader_program;
+	unsigned int m_shader_program;
 	float m_dt;
 	int	  m_fps;
 	float m_previousTime;

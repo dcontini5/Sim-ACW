@@ -22,7 +22,7 @@ Game::Game() : m_previousTime(0) {
 	m_sphere3->SetMass(2000.0f);
 
 	m_manifold = new ContactManifold();
-	m_shader_program = ShaderProgram();
+	m_shader_program = ShaderProgram("VS.glsl", "FS.glsl").getProgram();
 	
 	QueryPerformanceFrequency(&frequency);
 	QueryPerformanceCounter(&start);
@@ -182,7 +182,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	//draw triangle
-	glUseProgram(m_shader_program.getProgram());
+	glUseProgram(m_shader_program);
 
 	//draw ball
 	

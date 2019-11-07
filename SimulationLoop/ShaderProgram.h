@@ -1,34 +1,28 @@
 #pragma once
+#include <string>
+
 
 class ShaderProgram
 {
 	
 public:
+
 	ShaderProgram();
+	ShaderProgram(const GLchar* vertexPath, const GLchar* fragmentPath);
 	~ShaderProgram();
 
+	
+	////utility Uniform functions
+	//void setBool(const std::string &name, bool value) const;
+	//void setInt(const std::string &name, int value) const;
+	//void setFloat(const std::string &name, float value) const;
 
 	unsigned int getProgram() { return _shaderProgram; }
 
 private:
 
-	//static unsigned int vertexShader;
-	//static unsigned int fragmentShader;
 	unsigned int _shaderProgram;
-	const char *vertexShaderSource = "#version 330 core\n"
-		"layout(location = 0) in vec3 aPos; \n"
-		"void main()\n"
-		"{\n"
-		"	gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0); \n"
-		"}\n";
-
-	const char *fragmentShaderSource = "#version 330 core\n"
-		"out vec4 FragColor; \n"
-		"void main()\n"
-		"{\n"
-		"	FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f); \n"
-		"}\n";
-
+	
 	
 };
 

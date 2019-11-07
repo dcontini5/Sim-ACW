@@ -10,9 +10,9 @@ void processInput(GLFWwindow *window);
 
 Game *game;
 
-#define OPENGL3 0
+#define OPENGL1 0
 
-#if OPENGL3
+#if OPENGL1
 //********************OpenGL Initialization********************************
 #include <gl\gl.h>                                // Header File For The OpenGL32 Library
 #include <gl\glu.h>                               // Header File For The GLu32 Library

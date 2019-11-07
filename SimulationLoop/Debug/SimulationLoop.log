@@ -1,3 +1,9 @@
 ﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  ShaderProgram.cpp
+  Game.cpp
+  Generating Code...
+  Compiling...
   main.cpp
-  SimulationLoop.vcxproj -> D:\Projects\Sim-ACW\Debug\SimulationLoop.exe
+  Generating Code...
+ContactManifold.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  SimulationLoop.vcxproj -> C:\Users\618757\Documents\Sim-ACW\Debug\SimulationLoop.exe
