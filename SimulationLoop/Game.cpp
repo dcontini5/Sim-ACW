@@ -67,6 +67,7 @@ void Game::Update()
 	// **************************************************
 	SimulationLoop();
 	Render();
+
 }
 
 void Game::SimulationLoop()
@@ -186,7 +187,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 
 	//draw ball
 	
-	m_sphere1->Render();
+	m_sphere1->Render(m_shader_program);
 
 	
 	glBindVertexArray(0);		// Swap Buffers (Double Buffering)
