@@ -101,6 +101,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="gl.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="TextureLoader.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="ContactManifold.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="gl.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="TextureLoader.h" />

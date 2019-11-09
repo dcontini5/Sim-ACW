@@ -1,5 +1,7 @@
 #pragma once
 
+#include "gl.h"
+#include <GLFW/glfw3.h>
 #include "ContactManifold.h"
 #include "Vector2f.h"
 #include <Windows.h>
@@ -8,46 +10,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
-
-// TODO: switch from carray to vextor<glm::vec3>
-//const float vertices[] = {
-//	 0.5f,  0.5f, 0.0f,  // top right
-//	 0.5f, -0.5f, 0.0f,  // bottom right
-//	-0.5f, -0.5f, 0.0f,  // bottom left
-//	-0.5f,  0.5f, 0.0f   // top left 
-//};
-
-
-#if 0
-
-const std::vector<glm::vec3> vertices = {
-	{ 0.5f,  0.5f, 0.0f },		 // top right
-	{ 0.5f, -0.5f, 0.0f },		 // bottom right
-	{ -0.5f, -0.5f, 0.0f },		 // bottom left
-	{ -0.5f,  0.5f, 0.0f },		 // top left 
-};
-
-#else
-
-const std::vector<glm::vec3> vertices = {
-	 glm::vec3( 0.5f,  0.5f, 0.0f ) ,		 // top right
-	 glm::vec3( 0.5f, -0.5f, 0.0f ) ,		 // bottom right
-	 glm::vec3( -0.5f, -0.5f, 0.0f) ,		 // bottom left
-	 glm::vec3( -0.5f,  0.5f, 0.0f) ,		 // top left 
-};
-
-#endif
-//
-//const unsigned int indices[] = {  // note that we start from 0!
-//	0, 1, 3,   // first triangle
-//	1, 2, 3    // second triangle
-//};
-
-const std::vector<unsigned int> indices = {  // note that we start from 0!
-	0, 1, 3,   // first triangle
-	1, 2, 3    // second triangle
-};
+#include "Mesh.h"
 
 
 struct Derivative {
@@ -65,10 +28,10 @@ struct State {
 	
 };
 
-class Sphere
+class Sphere : public Mesh
 {
 public:
-	Sphere(void);
+	Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
 	~Sphere(void);
 
 	void CalculatePhysics(float dt);
@@ -90,8 +53,6 @@ public:
 	void ResetPos();
 	float GetRadius() const;
 
-	void Render() const;
-	void Render(unsigned int shaderProgram) const;
 	static Vector2f force(const State& state, float t);
 //	static Vector2f acceleration(const State& state, float t);
 	void integrate(State &state, float t, float dt);

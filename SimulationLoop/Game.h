@@ -5,6 +5,28 @@
 #include "ContactManifold.h"
 #include "ShaderProgram.h"
 
+
+
+const std::vector<Vertex> vertices = {
+	{ glm::vec3(0.5f,  0.5f, 0.0f) } ,	 // top right
+	{ glm::vec3(0.5f, -0.5f, 0.0f) } ,	 // bottom right
+	{ glm::vec3(-0.5f, -0.5f, 0.0f) } ,	 // bottom left
+	{ glm::vec3(-0.5f,  0.5f, 0.0f) } ,	 // top left 
+};
+
+const std::vector<unsigned int> indices = {  // note that we start from 0!
+	0, 1, 3,   // first triangle
+	1, 2, 3    // second triangle
+};
+
+struct Geometry {
+
+	std::vector<Vertex> vertices;
+	std::vector<unsigned int> indices;
+	
+
+};
+
 class Game
 {
 public:
@@ -21,10 +43,12 @@ private:
 	void DynamicCollisionResponse();
 	void UpdateObjectPhysics();
 	void Render();
+	void CreateSphereGeometry(std::vector<Vertex> & vertices, std::vector<unsigned int> & indices);
+	
 
 private:
 	HDC   m_hdc;
-	unsigned int m_shader_program;
+	ShaderProgram *m_shader_program;
 	float m_dt;
 	int	  m_fps;
 	float m_previousTime;
@@ -33,5 +57,6 @@ private:
 	Sphere *m_sphere3;
 	ContactManifold *m_manifold;
 	LARGE_INTEGER start, end, frequency;
+	Geometry _sphereGeometry;
 };
 

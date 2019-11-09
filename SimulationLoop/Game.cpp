@@ -6,51 +6,59 @@
 
 Game::Game() : m_previousTime(0) {
 
-	m_sphere1 = new Sphere();
-	m_sphere1->SetPos(0, 15);
-	m_sphere1->SetVel(0, -5);
-	m_sphere1->SetMass(750.0f);
+	//m_sphere1 = new Sphere(vertices , indices);
+	//m_sphere1->SetPos(0, 15);
+	//m_sphere1->SetVel(0, -5);
+	//m_sphere1->SetMass(750.0f);
 
-	m_sphere2 = new Sphere();
+	m_sphere2 = new Sphere(vertices, indices);
 	m_sphere2->SetPos(0, 0);
 	m_sphere2->SetVel(0.5, 0);
 	m_sphere2->SetMass(1000.0f);
 
-	m_sphere3 = new Sphere();
+	m_sphere3 = new Sphere(vertices, indices);
 	m_sphere3->SetPos(0, -15);
 	m_sphere3->SetVel(-1.0, 20);
 	m_sphere3->SetMass(2000.0f);
 
 	m_manifold = new ContactManifold();
-	m_shader_program = ShaderProgram("VS.glsl", "FS.glsl").getProgram();
+	m_shader_program = new ShaderProgram("VS.glsl", "FS.glsl");
+	m_shader_program = new ShaderProgram("VS.glsl", "FS.glsl");
 	
 	QueryPerformanceFrequency(&frequency);
 	QueryPerformanceCounter(&start);
-	
-}
 
-Game::Game(HDC hdc) : m_hdc(hdc), m_previousTime(0)
-{
-	m_sphere1 = new Sphere();
+	CreateSphereGeometry(_sphereGeometry.vertices, _sphereGeometry.indices);
+
+	m_sphere1 = new Sphere(_sphereGeometry.vertices , _sphereGeometry.indices);
 	m_sphere1->SetPos(0, 15);
-	m_sphere1->SetVel(0,-5);
+	m_sphere1->SetVel(0, -5);
 	m_sphere1->SetMass(750.0f);
-
-	m_sphere2 = new Sphere();
-	m_sphere2->SetPos(0,0);
-	m_sphere2->SetVel(0.5,0);
-	m_sphere2->SetMass(1000.0f);
-
-	m_sphere3 = new Sphere();
-	m_sphere3->SetPos(0,-15);
-	m_sphere3->SetVel(-1.0, 20);
-	m_sphere3->SetMass(2000.0f);
-
-	m_manifold = new ContactManifold();
-
-	QueryPerformanceFrequency(&frequency);
-	QueryPerformanceCounter(&start);
+	
 }
+//
+//Game::Game(HDC hdc) : m_hdc(hdc), m_previousTime(0)
+//{
+//	m_sphere1 = new Sphere();
+//	m_sphere1->SetPos(0, 15);
+//	m_sphere1->SetVel(0,-5);
+//	m_sphere1->SetMass(750.0f);
+//
+//	m_sphere2 = new Sphere();
+//	m_sphere2->SetPos(0,0);
+//	m_sphere2->SetVel(0.5,0);
+//	m_sphere2->SetMass(1000.0f);
+//
+//	m_sphere3 = new Sphere();
+//	m_sphere3->SetPos(0,-15);
+//	m_sphere3->SetVel(-1.0, 20);
+//	m_sphere3->SetMass(2000.0f);
+//
+//	m_manifold = new ContactManifold();
+//
+//	QueryPerformanceFrequency(&frequency);
+//	QueryPerformanceCounter(&start);
+//}
 
 Game::~Game(void)
 {
@@ -175,6 +183,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 
 	SwapBuffers(m_hdc);				// Swap Buffers (Double Buffering)
 }
+
 #else
 
 void Game::Render()									// Here's Where We Do All The Drawing
@@ -183,15 +192,96 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	//draw triangle
-	glUseProgram(m_shader_program);
-
+	glUseProgram(m_shader_program->getProgram());
+	
 	//draw ball
 	
-	m_sphere1->Render(m_shader_program);
+	m_sphere1->Render(m_shader_program, glm::vec3(0.5f));
 
 	
-	glBindVertexArray(0);		// Swap Buffers (Double Buffering)
+	
 }
 
 #endif
 
+// Code taken from http://www.songho.ca/opengl/gl_sphere.html
+void Game::CreateSphereGeometry(std::vector<Vertex>& vertices, std::vector<unsigned int>& indices) {
+
+	auto radius = 1;
+	auto sectorCount = 18;
+	auto stackCount = 18;
+
+	auto const pi = glm::pi<float>();
+
+	float x, y, z, xy;                              // vertex position
+	float nx, ny, nz, lengthInv = 1.0f / radius;    // vertex normal
+	float s, t;                                     // vertex texCoord
+
+	float sectorStep = 2 * pi / sectorCount;
+	float stackStep = pi / stackCount;
+	float sectorAngle, stackAngle;
+
+	for (int i = 0; i <= stackCount; ++i)
+	{
+		stackAngle = pi / 2 - i * stackStep;        // starting from pi/2 to -pi/2
+		xy = radius * cosf(stackAngle);             // r * cos(u)
+		z = radius * sinf(stackAngle);              // r * sin(u)
+
+		// add (sectorCount+1) vertices per stack
+		// the first and last vertices have same position and normal, but different tex coords
+		for (int j = 0; j <= sectorCount; ++j)
+		{
+			sectorAngle = j * sectorStep;           // starting from 0 to 2pi
+
+			// vertex position (x, y, z)
+			x = xy * cosf(sectorAngle);             // r * cos(u) * cos(v)
+			y = xy * sinf(sectorAngle);             // r * cos(u) * sin(v)
+			vertices.push_back({ glm::vec3(x, y, z) });
+		
+
+			//// normalized vertex normal (nx, ny, nz)
+			//nx = x * lengthInv;
+			//ny = y * lengthInv;
+			//nz = z * lengthInv;
+			//normals.push_back(nx);
+			//normals.push_back(ny);
+			//normals.push_back(nz);
+
+			//// vertex tex coord (s, t) range between [0, 1]
+			//s = (float)j / sectorCount;
+			//t = (float)i / stackCount;
+			//texCoords.push_back(s);
+			//texCoords.push_back(t);
+
+
+		}
+	}
+	
+	int k1, k2;
+	for (int i = 0; i < stackCount; ++i)
+	{
+		k1 = i * (sectorCount + 1);     // beginning of current stack
+		k2 = k1 + sectorCount + 1;      // beginning of next stack
+
+		for (int j = 0; j < sectorCount; ++j, ++k1, ++k2)
+		{
+			// 2 triangles per sector excluding first and last stacks
+			// k1 => k2 => k1+1
+			if (i != 0)
+			{
+				indices.push_back(k1);
+				indices.push_back(k2);
+				indices.push_back(k1 + 1);
+			}
+
+			// k1+1 => k2 => k2+1
+			if (i != (stackCount - 1))
+			{
+				indices.push_back(k1 + 1);
+				indices.push_back(k2);
+				indices.push_back(k2 + 1);
+			}
+		}
+	}
+
+}
