@@ -1,64 +1,56 @@
 #include "gl.h"
 #include <GLFW/glfw3.h>
 #include "Game.h"
-#include <gl\gl.h>                                // Header File For The OpenGL32 Library
-#include <gl\GLU.h>
 
 Game::Game() : m_previousTime(0) {
 
-	//m_sphere1 = new Sphere(vertices , indices);
-	//m_sphere1->SetPos(0, 15);
-	//m_sphere1->SetVel(0, -5);
-	//m_sphere1->SetMass(750.0f);
-
-	m_sphere2 = new Sphere(vertices, indices);
-	m_sphere2->SetPos(0, 0);
-	m_sphere2->SetVel(0.5, 0);
-	m_sphere2->SetMass(1000.0f);
-
-	m_sphere3 = new Sphere(vertices, indices);
-	m_sphere3->SetPos(0, -15);
-	m_sphere3->SetVel(-1.0, 20);
-	m_sphere3->SetMass(2000.0f);
-
-	m_manifold = new ContactManifold();
-	m_shader_program = new ShaderProgram("VS.glsl", "FS.glsl");
-	m_shader_program = new ShaderProgram("VS.glsl", "FS.glsl");
-	
-	QueryPerformanceFrequency(&frequency);
-	QueryPerformanceCounter(&start);
-
 	CreateSphereGeometry(_sphereGeometry.vertices, _sphereGeometry.indices);
+	CreateCilinderGeometry(_cilinderGeometry.vertices, _cilinderGeometry.indices);
+
+	_cilinder = new Mesh(_cilinderGeometry.vertices, _cilinderGeometry.indices);
 
 	m_sphere1 = new Sphere(_sphereGeometry.vertices , _sphereGeometry.indices);
 	m_sphere1->SetPos(0, 15);
 	m_sphere1->SetVel(0, -5);
 	m_sphere1->SetMass(750.0f);
+
+	m_sphere2 = new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices);
+	m_sphere2->SetPos(0, 0);
+	m_sphere2->SetVel(0.5, 0);
+	m_sphere2->SetMass(1000.0f);
+
+	m_sphere3 = new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices);
+	m_sphere3->SetPos(0, -15);
+	m_sphere3->SetVel(-1.0, 20);
+	m_sphere3->SetMass(2000.0f);
+
+	auto tmp = CreateBoxGeometry();
+	_box = new Mesh(tmp.vertices, tmp.indices);
+
+	tmp = CreateTrayGeometry(false);
+	_bottomTray = new Mesh(tmp.vertices, tmp.indices);
+	tmp = CreateTrayGeometry(true);
+	_topTray = new Mesh(tmp.vertices, tmp.indices);
+
+	m_manifold = new ContactManifold();
+	m_shader_program = new ShaderProgram("VS.glsl", "FS.glsl");
+	
+	QueryPerformanceFrequency(&frequency);
+	QueryPerformanceCounter(&start);
+
+
+	_model = glm::mat4(1.0f);
+	_model = glm::rotate(_model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+
+	_proj = glm::perspective(glm::radians(45.0f), (float)800 / (float)600, 0.1f, 200.0f);
+
+	_view = glm::lookAt(glm::vec3(0.0f, 10.0f, 15.0f),
+						glm::vec3(0.0f, 0.0f, 0.0f),
+						glm::vec3(0.0f, 1.0f, 0.0f));
+
+	
 	
 }
-//
-//Game::Game(HDC hdc) : m_hdc(hdc), m_previousTime(0)
-//{
-//	m_sphere1 = new Sphere();
-//	m_sphere1->SetPos(0, 15);
-//	m_sphere1->SetVel(0,-5);
-//	m_sphere1->SetMass(750.0f);
-//
-//	m_sphere2 = new Sphere();
-//	m_sphere2->SetPos(0,0);
-//	m_sphere2->SetVel(0.5,0);
-//	m_sphere2->SetMass(1000.0f);
-//
-//	m_sphere3 = new Sphere();
-//	m_sphere3->SetPos(0,-15);
-//	m_sphere3->SetVel(-1.0, 20);
-//	m_sphere3->SetMass(2000.0f);
-//
-//	m_manifold = new ContactManifold();
-//
-//	QueryPerformanceFrequency(&frequency);
-//	QueryPerformanceCounter(&start);
-//}
 
 Game::~Game(void)
 {
@@ -189,16 +181,37 @@ void Game::Render()									// Here's Where We Do All The Drawing
 void Game::Render()									// Here's Where We Do All The Drawing
 {
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//draw triangle
 	glUseProgram(m_shader_program->getProgram());
 	
+	m_shader_program->setMat4("model", _model);
+	m_shader_program->setMat4("view", _view);
+	m_shader_program->setMat4("projection", _proj);
+
+
 	//draw ball
 	
-	m_sphere1->Render(m_shader_program, glm::vec3(0.5f));
+	//m_sphere1->Render(m_shader_program, glm::vec3(m_sphere1->GetNewPos().GetX(), m_sphere1->GetNewPos().GetY(), 0.0f ));
+	//m_sphere2->Render(m_shader_program, glm::vec3(m_sphere2->GetNewPos().GetX(), m_sphere2->GetNewPos().GetY(), 0.0f ));
+	//m_sphere3->Render(m_shader_program, glm::vec3(m_sphere3->GetNewPos().GetX(), m_sphere3->GetNewPos().GetY(), 0.0f ));
 
+	//_box->Render(m_shader_program, glm::vec3(1.0f));
+	//_bottomTray->Render(m_shader_program, glm::vec3(1.0f));
+	//_topTray->Render(m_shader_program, glm::vec3(1.0f));
+	glm::mat4 trans = glm::mat4(1);
 	
+	//trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	
+	//trans = glm::rotate(trans, static_cast<float>(end.QuadPart/150), glm::vec3(0.0f, 0.0f, 1.0f));
+	
+	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
+	trans = glm::translate(trans, glm::vec3(6.0f, 0.0f, 0.0f));
+	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	trans = glm::scale(trans, glm::vec3(2.0f));
+
+	_cilinder->Render(m_shader_program, trans);
 	
 }
 
@@ -207,7 +220,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 // Code taken from http://www.songho.ca/opengl/gl_sphere.html
 void Game::CreateSphereGeometry(std::vector<Vertex>& vertices, std::vector<unsigned int>& indices) {
 
-	auto radius = 1;
+	auto radius = 5;
 	auto sectorCount = 18;
 	auto stackCount = 18;
 
@@ -284,4 +297,90 @@ void Game::CreateSphereGeometry(std::vector<Vertex>& vertices, std::vector<unsig
 		}
 	}
 
+}
+
+void Game::CreateCilinderGeometry(std::vector<Vertex>& vertices, std::vector<unsigned int>& indices){
+
+
+	const auto radius = 0.25f;
+	const auto slicesize = 2 * glm::pi<float>()/18;
+
+	for (auto y = 1; y > -2; y-=2) {
+
+
+		for (auto z = 0; z < 18; z++) {
+
+
+
+			vertices.push_back({ glm::vec3(radius * cos(slicesize * z), 1.5 * y, radius * sin(slicesize * z)) });
+
+
+		}
+
+	}
+
+
+	for (auto i = 0; i < 18; i++) {
+
+		
+		indices.push_back(18 + i);
+		indices.push_back( i );
+		indices.push_back(18 + (17 + i) % 18);
+		indices.push_back( i );
+		indices.push_back((17 + i) % 18);
+		indices.push_back(18 + (17 + i) % 18);
+
+
+	}
+
+}
+
+Geometry Game::CreateBoxGeometry(){
+
+	Geometry geometry;
+
+	geometry.vertices.push_back({ glm::vec3(-5.0f, 10.0f, -5.0f) });
+	geometry.vertices.push_back({ glm::vec3(-5.0f, 10.0f,  5.0f) });
+	geometry.vertices.push_back({ glm::vec3( 5.0f, 10.0f,  5.0f) });
+	geometry.vertices.push_back({ glm::vec3( 5.0f, 10.0f, -5.0f) });
+
+	geometry.vertices.push_back({ glm::vec3(-5.0f, -10.0f, -5.0f) });
+	geometry.vertices.push_back({ glm::vec3(-5.0f, -10.0f,  5.0f) });
+	geometry.vertices.push_back({ glm::vec3( 5.0f, -10.0f,  5.0f) });
+	geometry.vertices.push_back({ glm::vec3( 5.0f, -10.0f, -5.0f) });
+
+	for (auto i = 0; i < 4; i++) {
+
+		geometry.indices.push_back(4 + i);
+		geometry.indices.push_back(0 + i);
+		geometry.indices.push_back(4 + (3 + i) % 4);
+		geometry.indices.push_back(0 + i);
+		geometry.indices.push_back((3 + i) % 4);
+		geometry.indices.push_back(4 + ( 3 + i) % 4);
+
+	}
+
+	return geometry;
+
+}
+
+Geometry Game::CreateTrayGeometry(bool top)
+{
+	Geometry geometry;
+
+	auto y = top ? -2.0f : -8.0f;
+
+	geometry.vertices.push_back({ glm::vec3(-5.0f, y, -5.0f) });
+	geometry.vertices.push_back({ glm::vec3(-5.0f, y,  5.0f) });
+	geometry.vertices.push_back({ glm::vec3(5.0f,  y,  5.0f) });
+	geometry.vertices.push_back({ glm::vec3(5.0f,  y, -5.0f) });
+
+	geometry.indices.push_back(0);
+	geometry.indices.push_back(1);
+	geometry.indices.push_back(3);
+	geometry.indices.push_back(1);
+	geometry.indices.push_back(2);
+	geometry.indices.push_back(3);
+	
+	return geometry;
 }

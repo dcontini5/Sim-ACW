@@ -29,10 +29,13 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices){
 	
 	glBindVertexArray(0);
 
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 
 }
+
+
 
 
 Mesh::~Mesh(){
@@ -40,6 +43,7 @@ Mesh::~Mesh(){
 
 void Mesh::Render() {
 		
+	
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);	
@@ -50,16 +54,20 @@ void Mesh::Render(ShaderProgram* shaderProgram, const glm::vec3 position) const 
 
 	glm::mat4 trans = glm::mat4(1);
 
-	/*trans = glm::translate(trans, glm::vec3(0.5f, 0.5f, 0.0f));*/
+	trans = glm::translate(trans, position);
+	shaderProgram->setMat4("transform", trans);
 
+	glBindVertexArray(VAO);
+	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
 
-	//trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
-	trans = glm::scale(trans, position);
+}
 
-	unsigned int transformLoc = glGetUniformLocation(shaderProgram->getProgram(), "transform");
-	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+void Mesh::Render(ShaderProgram* shaderProgram, const glm::mat4 position) const {
 
+	glm::mat4 trans = glm::mat4(1);
 
+	trans *= position;
+	shaderProgram->setMat4("transform", trans);
 
 	glBindVertexArray(VAO);
 	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);

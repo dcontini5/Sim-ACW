@@ -1,9 +1,4 @@
-#include "gl.h"
-#include <GLFW/glfw3.h>
 #include "ShaderProgram.h"
-#include <iostream>
-#include <fstream>
-#include <sstream>
 
 
 ShaderProgram::ShaderProgram(const GLchar* vertexPath, const GLchar* fragmentPath) {

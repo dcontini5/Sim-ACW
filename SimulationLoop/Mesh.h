@@ -5,9 +5,6 @@
 #include <vector>
 #include <glm/glm.hpp>
 #include "ShaderProgram.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 struct Vertex {
 
@@ -28,8 +25,9 @@ public:
 	Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
 	~Mesh();
 
-	void Render();
+	void Render(); //probably gonna be deleted
 	void Render( ShaderProgram* shaderProgram, const glm::vec3 position) const;
+	void Render( ShaderProgram* shaderProgram, const glm::mat4 position) const;
 
 
 private:

@@ -44,10 +44,15 @@ private:
 	void UpdateObjectPhysics();
 	void Render();
 	void CreateSphereGeometry(std::vector<Vertex> & vertices, std::vector<unsigned int> & indices);
+	void CreateCilinderGeometry(std::vector<Vertex> & vertices, std::vector<unsigned int> & indices);
+	Geometry CreateBoxGeometry();
+	Geometry CreateTrayGeometry(bool top);
+
+	
 	
 
 private:
-	HDC   m_hdc;
+
 	ShaderProgram *m_shader_program;
 	float m_dt;
 	int	  m_fps;
@@ -58,5 +63,11 @@ private:
 	ContactManifold *m_manifold;
 	LARGE_INTEGER start, end, frequency;
 	Geometry _sphereGeometry;
+	Geometry _cilinderGeometry;
+	Mesh* _box;
+	Mesh* _bottomTray ;
+	Mesh* _topTray ;
+	Mesh* _cilinder ;
+	glm::mat4 _proj, _model, _view;
 };
 
