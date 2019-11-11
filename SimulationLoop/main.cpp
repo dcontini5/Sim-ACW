@@ -64,8 +64,19 @@ int main(int argc, char *argv[], char *envp[]){
 
 void processInput(GLFWwindow *window)
 {
+	auto cameraSpeed = 0.05f;
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
+	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		game->SetCameraPos( game->GetCameraPos() + cameraSpeed * game->GetCameraFront() );
+	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		game->SetCameraPos( game->GetCameraPos() - cameraSpeed * game->GetCameraFront());
+	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		game->SetCameraPos( game->GetCameraPos() - glm::normalize(glm::cross(game->GetCameraFront(), game->GetCameraUp())) * cameraSpeed );
+	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		game->SetCameraPos( game->GetCameraPos() + glm::normalize(glm::cross(game->GetCameraFront(), game->GetCameraUp())) * cameraSpeed );
+
+	game->UpdateView();
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

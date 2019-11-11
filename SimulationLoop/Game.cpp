@@ -32,6 +32,13 @@ Game::Game() : m_previousTime(0) {
 	tmp = CreateTrayGeometry(true);
 	_topTray = new Mesh(tmp.vertices, tmp.indices);
 
+	std::vector<unsigned int>::const_iterator first = _sphereGeometry.indices.begin() + 918;
+	std::vector<unsigned int>::const_iterator last = _sphereGeometry.indices.end();
+	std::vector<unsigned int> newVec(first, last);
+
+
+	_bowl = new Mesh(_sphereGeometry.vertices, newVec);
+
 	m_manifold = new ContactManifold();
 	m_shader_program = new ShaderProgram("VS.glsl", "FS.glsl");
 	
@@ -40,14 +47,15 @@ Game::Game() : m_previousTime(0) {
 
 
 	_model = glm::mat4(1.0f);
-	_model = glm::rotate(_model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	_model = glm::rotate(_model, glm::radians(10.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 
 	_proj = glm::perspective(glm::radians(45.0f), (float)800 / (float)600, 0.1f, 200.0f);
 
-	_view = glm::lookAt(glm::vec3(0.0f, 10.0f, 15.0f),
-						glm::vec3(0.0f, 0.0f, 0.0f),
-						glm::vec3(0.0f, 1.0f, 0.0f));
+	_cameraPos = glm::vec3(0.0f, 0.0f, 50.0f);
+	_cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+	_cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
+	UpdateView();
 	
 	
 }
@@ -189,7 +197,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	m_shader_program->setMat4("model", _model);
 	m_shader_program->setMat4("view", _view);
 	m_shader_program->setMat4("projection", _proj);
-
+	glm::mat4 trans = glm::mat4(1);
 
 	//draw ball
 	
@@ -197,22 +205,47 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	//m_sphere2->Render(m_shader_program, glm::vec3(m_sphere2->GetNewPos().GetX(), m_sphere2->GetNewPos().GetY(), 0.0f ));
 	//m_sphere3->Render(m_shader_program, glm::vec3(m_sphere3->GetNewPos().GetX(), m_sphere3->GetNewPos().GetY(), 0.0f ));
 
-	//_box->Render(m_shader_program, glm::vec3(1.0f));
-	//_bottomTray->Render(m_shader_program, glm::vec3(1.0f));
-	//_topTray->Render(m_shader_program, glm::vec3(1.0f));
-	glm::mat4 trans = glm::mat4(1);
+	_box->Render(m_shader_program, glm::vec3(1.0f));
+	_bottomTray->Render(m_shader_program, glm::vec3(1.0f));
+	_topTray->Render(m_shader_program, glm::vec3(1.0f));
 	
-	//trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	
-	//trans = glm::rotate(trans, static_cast<float>(end.QuadPart/150), glm::vec3(0.0f, 0.0f, 1.0f));
-	
-	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
-	trans = glm::translate(trans, glm::vec3(6.0f, 0.0f, 0.0f));
-	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-	trans = glm::scale(trans, glm::vec3(2.0f));
 
-	_cilinder->Render(m_shader_program, trans);
 	
+	trans = glm::translate(trans, glm::vec3(1.0f, 2.0f, 1.0f));
+	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
+	trans = glm::scale(trans, glm::vec3(2.0f));
+	_cilinder->Render(m_shader_program, trans);
+
+	trans = glm::mat4(1);
+	trans = glm::translate(trans, glm::vec3(1.0f, 0.0f, 1.0f));
+	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
+	trans = glm::rotate(trans, glm::radians(120.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	trans = glm::translate(trans, glm::vec3(-2.0f, 4.0f, 0.0f));
+	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	_cilinder->Render(m_shader_program, trans);
+
+	trans = glm::mat4(1);
+	trans = glm::translate(trans, glm::vec3(1.0f, 0.0f, 1.0f));
+	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
+	trans = glm::rotate(trans, glm::radians(240.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	trans = glm::translate(trans, glm::vec3(-2.0f, 4.0f, 0.0f));
+	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	_cilinder->Render(m_shader_program, trans);
+
+	trans = glm::mat4(1);
+	trans = glm::translate(trans, glm::vec3(1.0f, 0.0f, 1.0f));
+	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
+	trans = glm::translate(trans, glm::vec3(-2.0f, 4.0f, 0.0f));
+	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	_cilinder->Render(m_shader_program, trans);
+
+	trans = glm::mat4(1);
+	trans = glm::translate(trans, glm::vec3( 1.0f, -10.0f, 1.0f));
+	trans = glm::rotate(trans, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	trans = glm::scale(trans, glm::vec3( 2.0f, 2.0f, 1.0f ));
+	_bowl->Render(m_shader_program, trans);
+
 }
 
 #endif
@@ -312,7 +345,7 @@ void Game::CreateCilinderGeometry(std::vector<Vertex>& vertices, std::vector<uns
 
 
 
-			vertices.push_back({ glm::vec3(radius * cos(slicesize * z), 1.5 * y, radius * sin(slicesize * z)) });
+			vertices.push_back({ glm::vec3( radius * cos(slicesize * z), 1.5 * y, radius * sin(slicesize * z)) });
 
 
 		}

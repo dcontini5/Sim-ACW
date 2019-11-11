@@ -36,6 +36,15 @@ public:
 
 	void Update();
 
+	glm::vec3 GetCameraPos() { return _cameraPos; };
+	glm::vec3 GetCameraFront() { return _cameraFront; };
+	glm::vec3 GetCameraUp() { return _cameraUp; };
+	void SetCameraPos(glm::vec3 newPos) { _cameraPos = newPos; };
+	void UpdateView() { _view = glm::lookAt(_cameraPos, _cameraPos + _cameraFront, _cameraUp); };
+	//void SetCameraFront(glm::vec3 newFront);
+	//void SetCameraUp(glm::vec3 newUp);
+
+
 private:
 	void SimulationLoop();
 	void CalculateObjectPhysics();
@@ -68,6 +77,9 @@ private:
 	Mesh* _bottomTray ;
 	Mesh* _topTray ;
 	Mesh* _cilinder ;
+	Mesh* _bowl ;
 	glm::mat4 _proj, _model, _view;
+	glm::vec3 _cameraPos, _cameraFront, _cameraUp;
+
 };
 
