@@ -27,9 +27,9 @@ Game::Game() : m_previousTime(0) {
 	auto tmp = CreateBoxGeometry();
 	_box = new Mesh(tmp.vertices, tmp.indices);
 
-	tmp = CreateTrayGeometry(false);
+	tmp = CreateTrayGeometry();
 	_bottomTray = new Mesh(tmp.vertices, tmp.indices);
-	tmp = CreateTrayGeometry(true);
+	tmp = CreateTopTrayGeometry();
 	_topTray = new Mesh(tmp.vertices, tmp.indices);
 
 	std::vector<unsigned int>::const_iterator first = _sphereGeometry.indices.begin() + 918;
@@ -243,7 +243,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	trans = glm::mat4(1);
 	trans = glm::translate(trans, glm::vec3( 1.0f, -10.0f, 1.0f));
 	trans = glm::rotate(trans, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-	trans = glm::scale(trans, glm::vec3( 2.0f, 2.0f, 1.0f ));
+	trans = glm::scale(trans, glm::vec3( 2.5, 2.5f, 1.0f ));
 	_bowl->Render(m_shader_program, trans);
 
 }
@@ -397,11 +397,11 @@ Geometry Game::CreateBoxGeometry(){
 
 }
 
-Geometry Game::CreateTrayGeometry(bool top)
+Geometry Game::CreateTrayGeometry()
 {
 	Geometry geometry;
 
-	auto y = top ? -2.0f : -8.0f;
+	auto y = -8.0f;
 
 	geometry.vertices.push_back({ glm::vec3(-5.0f, y, -5.0f) });
 	geometry.vertices.push_back({ glm::vec3(-5.0f, y,  5.0f) });
@@ -416,4 +416,87 @@ Geometry Game::CreateTrayGeometry(bool top)
 	geometry.indices.push_back(3);
 	
 	return geometry;
+}
+
+Geometry Game::CreateTopTrayGeometry() {
+
+	Geometry geometry;
+
+	for (auto z = -5; z <= 5; z++) {
+
+		for (auto x = -5; x < 5; x += 3) {
+
+			geometry.vertices.push_back({ glm::vec3(x, -2.0f, z) });
+			geometry.vertices.push_back({ glm::vec3(x + 1, -2.0f, z) });
+			
+		}
+
+		
+	}
+
+	
+	for(auto i = 1; i <= 10; i++) {
+
+		for(auto j = 0; j<7; j++) {
+
+
+			if ((i == 2 || i == 3) && (j == 1 || j == 3 || j == 5 )) continue;
+			if ((i == 5 || i == 6) && (j == 1 || j == 5 )) continue;
+			if ((i == 8 || i == 9) && (j == 1 || j == 3 || j == 5)) continue;
+			geometry.indices.push_back(j + 8 * i);
+			geometry.indices.push_back(j + 8 * (i - 1));
+			geometry.indices.push_back(j + 8 * i + 1);
+			geometry.indices.push_back(j + 8 * (i - 1));
+			geometry.indices.push_back(j + 8 * (i - 1) + 1);
+			geometry.indices.push_back(j + 8 * i + 1);
+
+		}
+
+		
+	}
+
+
+	for (auto i = 0; i < 8; i++) {
+
+		const auto cx = 3 * i % 9 - 3;
+		const auto cz = 3 * i % 9 - 3;
+		const auto pi = glm::pi<float>() * 2 / 16;
+
+		if(!cx && !cz) continue;
+
+		for (auto j = 0; j < 16; j++) {
+
+			geometry.vertices.push_back({ glm::vec3(cx + cos(pi*j), -2.0f, cz + sin(pi*j)) });
+
+		}
+
+		for(auto j = 0; j < 4; j++ ) {
+
+			geometry.indices.push_back(9 );
+			geometry.indices.push_back(j + 8 * (i - 1));
+			geometry.indices.push_back(j + 8 * i + 1);
+			
+			geometry.indices.push_back(j + 8 * i);
+			geometry.indices.push_back(j + 8 * (i - 1));
+			geometry.indices.push_back(j + 8 * i + 1);
+			
+			geometry.indices.push_back(j + 8 * i);
+			geometry.indices.push_back(j + 8 * (i - 1));
+			geometry.indices.push_back(j + 8 * i + 1);
+			
+			geometry.indices.push_back(j + 8 * i);
+			geometry.indices.push_back(j + 8 * (i - 1));
+			geometry.indices.push_back(j + 8 * i + 1);
+			
+		}
+
+
+	}
+
+	
+	
+
+	return geometry;
+
+	
 }

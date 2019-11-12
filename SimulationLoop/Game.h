@@ -55,7 +55,8 @@ private:
 	void CreateSphereGeometry(std::vector<Vertex> & vertices, std::vector<unsigned int> & indices);
 	void CreateCilinderGeometry(std::vector<Vertex> & vertices, std::vector<unsigned int> & indices);
 	Geometry CreateBoxGeometry();
-	Geometry CreateTrayGeometry(bool top);
+	Geometry CreateTrayGeometry();
+	Geometry CreateTopTrayGeometry();
 
 	
 	
