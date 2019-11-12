@@ -477,11 +477,7 @@ Geometry Game::CreateTopTrayGeometry() {
 
 	}
 
-	
-	
-
 	return geometry;
-
 	
 }
 
