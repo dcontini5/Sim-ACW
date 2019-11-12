@@ -9,6 +9,8 @@ Game::Game() : m_previousTime(0) {
 
 	_cilinder = new Mesh(_cilinderGeometry.vertices, _cilinderGeometry.indices);
 
+	
+	
 	m_sphere1 = new Sphere(_sphereGeometry.vertices , _sphereGeometry.indices);
 	m_sphere1->SetPos(0, 15);
 	m_sphere1->SetVel(0, -5);
@@ -108,30 +110,23 @@ void Game::SimulationLoop()
 
 
 //**************************Update the physics calculations on each object***********************
-#define RK 1
-#if RK
+
 void Game::CalculateObjectPhysics()
 {
+
+	for (auto i : _sphereList) i->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
+	
 	m_sphere1->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
 	m_sphere2->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
 	m_sphere3->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
 }
-#else
-void Game::CalculateObjectPhysics()
-{
-	m_sphere1->CalculatePhysics(m_dt);
-	m_sphere2->CalculatePhysics(m_dt);
-	m_sphere3->CalculatePhysics(m_dt);
-}
-
-#endif
-
-
 
 
 //**************************Handle dynamic collisions***********************
 void Game::DynamicCollisionDetection()
 {
+	//for (auto i : _sphereList) i->CollisionWithSphere(m_sphere2, m_manifold);
+	
 	m_sphere1->CollisionWithSphere(m_sphere2, m_manifold);
 	m_sphere1->CollisionWithSphere(m_sphere3, m_manifold);
 	m_sphere2->CollisionWithSphere(m_sphere3, m_manifold);
@@ -150,42 +145,13 @@ void Game::DynamicCollisionResponse()
 //**************************Update the physics calculations on each object***********************
 void Game::UpdateObjectPhysics()
 {
+	for (auto i : _sphereList) i->Update();
 	m_sphere1->Update();
 	m_sphere2->Update();
 	m_sphere3->Update();
 }
 
 //**************************Render and display the scene in OpenGL***********************
-#define GL1 0
-
-#if GL1 
-
-void Game::Render()									// Here's Where We Do All The Drawing
-{
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);	// Clear Screen And Depth Buffer
-	glLoadIdentity();									// Reset The Current Modelview Matrix
-	gluLookAt(0, 50, 100, 0, 0, 0, 0, 1, 0);
-
-	glDisable(GL_TEXTURE_2D);
-	// Draw plane (at y=-20)
-	glBegin(GL_QUADS);
-		glColor3d(1, 1, 1);
-		glVertex3d(-50, -20, -50);
-		glVertex3d( 50, -20, -50);
-		glVertex3d( 50, -20,  50);
-		glVertex3d(-50, -20,  50);
-	glEnd();
-
-	glEnable(GL_TEXTURE_2D);
-	m_sphere1->Render();
-	m_sphere2->Render();
-	m_sphere3->Render();
-
-	SwapBuffers(m_hdc);				// Swap Buffers (Double Buffering)
-}
-
-#else
-
 void Game::Render()									// Here's Where We Do All The Drawing
 {
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -200,10 +166,13 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	glm::mat4 trans = glm::mat4(1);
 
 	//draw ball
+
+	for (auto i : _sphereList) i->Render(m_shader_program, glm::vec3(i->GetNewPos().GetX(), i->GetNewPos().GetY(), 0.0f ));
+
 	
-	//m_sphere1->Render(m_shader_program, glm::vec3(m_sphere1->GetNewPos().GetX(), m_sphere1->GetNewPos().GetY(), 0.0f ));
-	//m_sphere2->Render(m_shader_program, glm::vec3(m_sphere2->GetNewPos().GetX(), m_sphere2->GetNewPos().GetY(), 0.0f ));
-	//m_sphere3->Render(m_shader_program, glm::vec3(m_sphere3->GetNewPos().GetX(), m_sphere3->GetNewPos().GetY(), 0.0f ));
+	m_sphere1->Render(m_shader_program, glm::vec3(m_sphere1->GetNewPos().GetX(), m_sphere1->GetNewPos().GetY(), 0.0f));
+	m_sphere2->Render(m_shader_program, glm::vec3(m_sphere2->GetNewPos().GetX(), m_sphere2->GetNewPos().GetY(), 0.0f ));
+	m_sphere3->Render(m_shader_program, glm::vec3(m_sphere3->GetNewPos().GetX(), m_sphere3->GetNewPos().GetY(), 0.0f ));
 
 	_box->Render(m_shader_program, glm::vec3(1.0f));
 	_bottomTray->Render(m_shader_program, glm::vec3(1.0f));
@@ -243,17 +212,15 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	trans = glm::mat4(1);
 	trans = glm::translate(trans, glm::vec3( 1.0f, -10.0f, 1.0f));
 	trans = glm::rotate(trans, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-	trans = glm::scale(trans, glm::vec3( 2.5, 2.5f, 1.0f ));
+	trans = glm::scale(trans, glm::vec3( 25.0f, 25.0f, 10.0f ));
 	_bowl->Render(m_shader_program, trans);
 
 }
 
-#endif
-
 // Code taken from http://www.songho.ca/opengl/gl_sphere.html
 void Game::CreateSphereGeometry(std::vector<Vertex>& vertices, std::vector<unsigned int>& indices) {
 
-	auto radius = 5;
+	auto radius = 0.5;
 	auto sectorCount = 18;
 	auto stackCount = 18;
 
@@ -455,41 +422,58 @@ Geometry Game::CreateTopTrayGeometry() {
 		
 	}
 
-
-	for (auto i = 0; i < 8; i++) {
+	auto circleStart = geometry.vertices.size();
+	auto indexgap = 0;
+	auto cz = -3;
+	
+	for (auto i = 0; i < 9; i++) {
 
 		const auto cx = 3 * i % 9 - 3;
-		const auto cz = 3 * i % 9 - 3;
+		
 		const auto pi = glm::pi<float>() * 2 / 16;
 
-		if(!cx && !cz) continue;
+		if (!cx && !cz) {
+
+			indexgap += 2;
+			continue;
+			
+		}
 
 		for (auto j = 0; j < 16; j++) {
 
 			geometry.vertices.push_back({ glm::vec3(cx + cos(pi*j), -2.0f, cz + sin(pi*j)) });
 
 		}
+		
+		for (auto j = 0; j < 4; j++) {
 
-		for(auto j = 0; j < 4; j++ ) {
+			geometry.indices.push_back(26 + indexgap);
+			geometry.indices.push_back(circleStart + j);
+			geometry.indices.push_back(circleStart + j + 1);
 
-			geometry.indices.push_back(9 );
-			geometry.indices.push_back(j + 8 * (i - 1));
-			geometry.indices.push_back(j + 8 * i + 1);
-			
-			geometry.indices.push_back(j + 8 * i);
-			geometry.indices.push_back(j + 8 * (i - 1));
-			geometry.indices.push_back(j + 8 * i + 1);
-			
-			geometry.indices.push_back(j + 8 * i);
-			geometry.indices.push_back(j + 8 * (i - 1));
-			geometry.indices.push_back(j + 8 * i + 1);
-			
-			geometry.indices.push_back(j + 8 * i);
-			geometry.indices.push_back(j + 8 * (i - 1));
-			geometry.indices.push_back(j + 8 * i + 1);
-			
+			geometry.indices.push_back(25 + indexgap);
+			geometry.indices.push_back(circleStart + j + 4);
+			geometry.indices.push_back(circleStart + j + 5);
+
+			geometry.indices.push_back(9 + indexgap);
+			geometry.indices.push_back(circleStart + j + 8);
+			geometry.indices.push_back(circleStart + j + 9);
+
+			geometry.indices.push_back(10 + indexgap);
+			geometry.indices.push_back(circleStart + j + 12);
+			geometry.indices.push_back(circleStart + (j + 13) % 16);
+
 		}
 
+		if (cx == 3) {
+			cz = (cz + 6) % 9 - 3;
+			circleStart += 16;
+			indexgap += 20;
+			continue;
+		}
+		
+		circleStart += 16;
+		indexgap += 2;
 
 	}
 
@@ -498,5 +482,11 @@ Geometry Game::CreateTopTrayGeometry() {
 
 	return geometry;
 
+	
+}
+
+void Game::AddBall(){
+
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices));
 	
 }

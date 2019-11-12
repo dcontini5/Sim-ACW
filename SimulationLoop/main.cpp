@@ -67,6 +67,8 @@ void processInput(GLFWwindow *window)
 	auto cameraSpeed = 0.1f;
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+		game->AddBall();
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
 		game->SetCameraPos(game->GetCameraPos() + cameraSpeed * game->GetCameraFront());
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)

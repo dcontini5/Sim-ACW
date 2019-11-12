@@ -34,7 +34,6 @@ public:
 	Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
 	~Sphere(void);
 
-	void CalculatePhysics(float dt);
 	void CalculatePhysics(float dt, float t);
 	void CollisionWithSphere(Sphere* sphere, ContactManifold *contactManifold);
 	void Update();
@@ -54,10 +53,9 @@ public:
 	float GetRadius() const;
 
 	static Vector2f force(const State& state, float t);
-//	static Vector2f acceleration(const State& state, float t);
 	void integrate(State &state, float t, float dt);
 	static Derivative Evaluate(const State& initial, float t, float dt, const Derivative& d);
-	void Recalculate();
+	static void stepSimulation(float dt);
 
 private:
 	float m_mass;

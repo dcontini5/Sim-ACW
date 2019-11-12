@@ -9,7 +9,7 @@
 
 int Sphere::countID = 0;
 
-Sphere::Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices) : Mesh(vertices, indices), m_mass(1), m_radius(5)
+Sphere::Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices) : Mesh(vertices, indices), m_mass(1), m_radius(0.5), m_state{ {0,30}, {0,-5} }
 {
 	m_objectID = countID;
 	++countID;
@@ -46,8 +46,8 @@ void Sphere::SetMass(float mass)
 	m_mass = mass;
 }
 
-#define RK 1
-#if RK
+
+
 
 void Sphere::CalculatePhysics(float t, float dt)
 {
@@ -56,44 +56,6 @@ void Sphere::CalculatePhysics(float t, float dt)
 	integrate(m_state, t, dt);
 
 }
-#else
-void Sphere::CalculatePhysics(float dt)
-{
-	// Calcuate total force for this sphere, e.g. F = F1+F2+F3+...
-	//Vector2f force(0.0f, -9.81f * m_mass);
-
-	// Calculate acceleration
-	//Vector2f accel = force / m_mass;
-	//Vector2f accel = acceleration(m_state, dt);
-
-	// Integrate accel to get the new velocity (using Euler)
-	//m_newVelocity = m_state.velocity + (accel * dt);
-
-	// Integrate old velocity to get the new position (using Euler)
-	//m_newPos = m_pos + (m_velocity * dt);
-
-	// Integration /w improved Euler
-	//m_newPos = m_state.position + ((m_state.velocity + m_newVelocity) / 2 * dt);
-
-	// Integration /w Runge-Kutta
-	integrate(m_state, 0, dt);
-
-	// ****************************************************************
-	// ******** This implementation is very basic and does not ********
-	// ******** accurately model collisions with a plane       ********
-	// ****************************************************************
-	// ******** Replace with better collision detection code   ********
-	// ****************************************************************
-	//if(m_newPos.GetY() < -20.0f+m_radius)
-	//{
-	//	m_newPos.Set(m_newPos.GetX(), -20.0f + m_radius);
-	//	m_newVelocity.Set(m_newVelocity.GetX(), 0.0f);
-	//}
-}
-#endif;
-
-
-
 
 
 void Sphere::CollisionWithSphere(Sphere* sphere2, ContactManifold *contactManifold)
@@ -176,33 +138,32 @@ float Sphere::GetRadius() const
 Vector2f Sphere::force(const State& state, float t) {
 
 	Vector2f force(0.0f, -9.81f * 3);
-	const float k = 10;
-	const float b = 1;
+	const float k = 10; //k*pos thrust
+	const float b = 1;  //drag coefficient
 	return  ((-k * state.position - b * state.velocity )  / t) + force;
 	
 }
 
 void Sphere::integrate(State& state, float t, float dt) {
 
-	Derivative a, b, c, d;
+	Derivative k1, k2, k3, k4;
 
-	a = Evaluate(state, t, 0.0f, Derivative());
-	b = Evaluate(state, t, dt*0.5f, a);
-	c = Evaluate(state, t, dt*0.5f, b);
-	d = Evaluate(state, t, dt, c);
+	k1 = Evaluate(state, t, 0.0f, Derivative());
+	k2 = Evaluate(state, t, dt*0.5f, k1);
+	k3 = Evaluate(state, t, dt*0.5f, k2);
+	k4 = Evaluate(state, t, dt, k3);
 
-	Vector2f dxdt = 1.0f / 6.0f * (a.dx + 2.0f * (b.dx + c.dx) + d.dx);
+	Vector2f dxdt = 1.0f / 6.0f * (k1.dx + 2.0f * (k2.dx + k3.dx) + k4.dx);
 
-	Vector2f dvdt = 1.0f / 6.0f * (a.dv + 2.0f * (b.dv + c.dv) + d.dv);
+	Vector2f dvdt = 1.0f / 6.0f * (k1.dv + 2.0f * (k2.dv + k3.dv) + k4.dv);
 
 	m_newState.position = state.position + dxdt * dt;
 	m_newState.velocity = state.velocity + dvdt * dt;
-	/*state.position = state.position + dxdt * dt;
-	state.velocity = state.velocity + dvdt * dt;*/
+
 	
-	if (m_newState.position.GetY() < -20.0f + m_radius)
+	if (m_newState.position.GetY() < -10.0f + m_radius)
 	{
-		m_newState.position.Set(state.position.GetX(), -20.0f + m_radius);
+		m_newState.position.Set(state.position.GetX(), -10.0f + m_radius);
 		m_newState.velocity.Set(state.velocity.GetX(), -state.velocity.GetY()-0.5);
 		
 	}
@@ -222,6 +183,13 @@ Derivative Sphere::Evaluate(const State &initial, float t, float dt, const Deriv
 	output.dv = force(state, t + dt);
 
 
+
 	return output;
+}
+
+void Sphere::stepSimulation(float dt){
+
+
+
 }
 

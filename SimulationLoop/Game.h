@@ -43,7 +43,7 @@ public:
 	void UpdateView() { _view = glm::lookAt(_cameraPos, _cameraPos + _cameraFront, _cameraUp); };
 	//void SetCameraFront(glm::vec3 newFront);
 	//void SetCameraUp(glm::vec3 newUp);
-
+	void AddBall();
 
 private:
 	void SimulationLoop();
@@ -67,6 +67,7 @@ private:
 	float m_dt;
 	int	  m_fps;
 	float m_previousTime;
+	std::vector<Sphere*> _sphereList;
 	Sphere *m_sphere1;
 	Sphere *m_sphere2;
 	Sphere *m_sphere3;
