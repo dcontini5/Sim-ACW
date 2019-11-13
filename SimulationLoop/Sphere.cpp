@@ -1,15 +1,15 @@
 
 #include "Sphere.h"
-#include <Windows.h>
 #include <gl\gl.h>  
-#include <gl\GLU.h>
+#include <utility>
 
 #define _USE_MATH_DEFINES
-#include "TextureLoader.h"
 
 int Sphere::countID = 0;
 
-Sphere::Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices) : Mesh(vertices, indices), m_mass(1), m_radius(0.5), m_state{ {0,30}, {0,-5} }
+Sphere::Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices, State state) : Mesh(std::move(vertices),
+                                                                                       std::move(indices)), m_mass(1), m_radius(0.5), m_state(
+	                                                                                               std::move(state))
 {
 	m_objectID = countID;
 	++countID;
@@ -18,30 +18,29 @@ Sphere::Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices) 
 }
 
 Sphere::~Sphere(void)
-{
-}
+= default;
 
-void Sphere::SetPos(float x, float y)
+void Sphere::SetPos(const float x, const float y)
 {
 	m_state.position.Set(x, y);
 }
 
-void Sphere::SetNewPos(Vector2f pos)
+void Sphere::SetNewPos(const Vector2f& pos)
 {
 	m_newState.position = pos;
 }
 
-void Sphere::SetVel(float x, float y)
+void Sphere::SetVel(const float x, const float y)
 {
 	m_state.velocity.Set(x, y);
 }
 
-void Sphere::SetNewVel(Vector2f vel)
+void Sphere::SetNewVel(const Vector2f& vel)
 {
 	m_newState.velocity = vel;
 }
 
-void Sphere::SetMass(float mass)
+void Sphere::SetMass(const float mass)
 {
 	m_mass = mass;
 }
@@ -49,7 +48,7 @@ void Sphere::SetMass(float mass)
 
 
 
-void Sphere::CalculatePhysics(float t, float dt)
+void Sphere::CalculatePhysics(const float t, const float dt)
 {
 
 	// Integration /w Runge-Kutta
@@ -58,17 +57,17 @@ void Sphere::CalculatePhysics(float t, float dt)
 }
 
 
-void Sphere::CollisionWithSphere(Sphere* sphere2, ContactManifold *contactManifold)
+void Sphere::CollisionWithSphere(Sphere* others_sphere, ContactManifold *contactManifold)
 {
 
-	Vector2f pos1 = this->GetNewPos();
-	Vector2f pos2 = sphere2->GetNewPos();
-	float dist = pos1.distance(pos2) - (this->GetRadius() + sphere2->GetRadius());
+	const Vector2f pos1 = this->GetNewPos();
+	const Vector2f pos2 = others_sphere->GetNewPos();
+	const float dist = pos1.distance(pos2) - (this->GetRadius() + others_sphere->GetRadius());
 	if (dist < 0.0f)
 	{
 		ManifoldPoint mp;
 		mp.contactID1 = this;
-		mp.contactID2 = sphere2;
+		mp.contactID2 = others_sphere;
 		mp.contactNormal = (pos2 - pos1).normalise();
 		contactManifold->Add(mp);
 	}
@@ -95,13 +94,14 @@ void Sphere::CollisionResponseWithSphere(ManifoldPoint &point)
 	// ******** Replace with better response code for Spheres  ********
 	// ****************************************************************
 
-	Vector2f colNormal = point.contactNormal;
+	const Vector2f colNormal = point.contactNormal;
 
 	point.contactID1->ResetPos();
-	point.contactID1->SetNewVel(-1.0f*colNormal*colNormal.dot(point.contactID1->GetVel()));
+	point.contactID1->SetNewVel(-0.8f*colNormal*colNormal.dot(point.contactID1->GetVel()));
 
 	point.contactID2->ResetPos();
-	point.contactID2->SetNewVel(-1.0f*colNormal*colNormal.dot(point.contactID2->GetVel()));
+	point.contactID2->SetNewVel(-0.8f*colNormal*colNormal.dot(point.contactID2->GetVel()));
+	
 }
 
 float Sphere::GetMass() const
@@ -137,25 +137,23 @@ float Sphere::GetRadius() const
 
 Vector2f Sphere::force(const State& state, float t) {
 
-	Vector2f force(0.0f, -9.81f * 3);
-	const float k = 10; //k*pos thrust
-	const float b = 1;  //drag coefficient
+	const Vector2f force(0.0f, -9.81f * 3);
+	const float k = 5; //k*pos thrust
+	const float b = 2.0f;  //drag coefficient
 	return  ((-k * state.position - b * state.velocity )  / t) + force;
 	
 }
 
 void Sphere::integrate(State& state, float t, float dt) {
 
-	Derivative k1, k2, k3, k4;
+	const auto k1 = Evaluate(state, t, 0.0f, Derivative());
+	const auto k2 = Evaluate(state, t, dt * 0.5f, k1);
+	const auto k3 = Evaluate(state, t, dt * 0.5f, k2);
+	const auto k4 = Evaluate(state, t, dt, k3);
 
-	k1 = Evaluate(state, t, 0.0f, Derivative());
-	k2 = Evaluate(state, t, dt*0.5f, k1);
-	k3 = Evaluate(state, t, dt*0.5f, k2);
-	k4 = Evaluate(state, t, dt, k3);
+	const Vector2f dxdt = 1.0f / 6.0f * (k1.dx + 2.0f * (k2.dx + k3.dx) + k4.dx);
 
-	Vector2f dxdt = 1.0f / 6.0f * (k1.dx + 2.0f * (k2.dx + k3.dx) + k4.dx);
-
-	Vector2f dvdt = 1.0f / 6.0f * (k1.dv + 2.0f * (k2.dv + k3.dv) + k4.dv);
+	const Vector2f dvdt = 1.0f / 6.0f * (k1.dv + 2.0f * (k2.dv + k3.dv) + k4.dv);
 
 	m_newState.position = state.position + dxdt * dt;
 	m_newState.velocity = state.velocity + dvdt * dt;
@@ -164,7 +162,7 @@ void Sphere::integrate(State& state, float t, float dt) {
 	if (m_newState.position.GetY() < -10.0f + m_radius)
 	{
 		m_newState.position.Set(state.position.GetX(), -10.0f + m_radius);
-		m_newState.velocity.Set(state.velocity.GetX(), -state.velocity.GetY()-0.5);
+		m_newState.velocity.Set(state.velocity.GetX(), -state.velocity.GetY()*0.8f);
 		
 	}
 	

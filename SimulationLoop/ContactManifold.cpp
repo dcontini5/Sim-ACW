@@ -1,6 +1,4 @@
 #include "ContactManifold.h"
-#include "Sphere.h"
-#include <assert.h>
 
 ContactManifold::ContactManifold(void) : m_numOfPoints(0)
 {
@@ -11,7 +9,7 @@ ContactManifold::~ContactManifold(void)
 {
 }
 
-void ContactManifold::Add(ManifoldPoint point)
+void ContactManifold::Add(const ManifoldPoint& point)
 {
 	m_points[m_numOfPoints] = point;
 	++m_numOfPoints;

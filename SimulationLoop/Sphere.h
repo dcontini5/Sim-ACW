@@ -31,17 +31,17 @@ struct State {
 class Sphere : public Mesh
 {
 public:
-	Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
+	Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices, State state);
 	~Sphere(void);
 
 	void CalculatePhysics(float dt, float t);
 	void CollisionWithSphere(Sphere* sphere, ContactManifold *contactManifold);
 	void Update();
-	void CollisionResponseWithSphere(ManifoldPoint &point);
+	static void CollisionResponseWithSphere(ManifoldPoint &point);
 	void SetPos(float x, float y);
 	void SetVel(float x, float y);
-	void SetNewPos(Vector2f pos);
-	void SetNewVel(Vector2f vel);
+	void SetNewPos(const Vector2f& pos);
+	void SetNewVel(const Vector2f& vel);
 	void SetMass(float mass);
 	
 	Vector2f GetPos() const;

@@ -1,11 +1,9 @@
 #include "Mesh.h"
+#include <utility>
 
 
-
-Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices){
-
-	this->_vertices = vertices;
-	this->_indices = indices;
+Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices) : _vertices(std::move(vertices)), _indices(
+	                                                                              std::move(indices)) {
 
 	unsigned int VBO, EBO;
 
@@ -25,7 +23,7 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices){
 
 
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex) , (void*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex) , nullptr);
 	
 	glBindVertexArray(0);
 
@@ -38,17 +36,7 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices){
 
 
 
-Mesh::~Mesh(){
-}
-
-void Mesh::Render() {
-		
-	
-	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
-	glBindVertexArray(0);	
-
-}
+Mesh::~Mesh() = default;
 
 void Mesh::Render(ShaderProgram* shaderProgram, const glm::vec3 position) const {
 
@@ -58,7 +46,7 @@ void Mesh::Render(ShaderProgram* shaderProgram, const glm::vec3 position) const 
 	shaderProgram->setMat4("transform", trans);
 
 	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, nullptr);
 
 }
 
@@ -70,6 +58,6 @@ void Mesh::Render(ShaderProgram* shaderProgram, const glm::mat4 position) const 
 	shaderProgram->setMat4("transform", trans);
 
 	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, nullptr);
 
 }

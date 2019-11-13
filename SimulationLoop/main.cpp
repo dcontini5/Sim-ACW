@@ -69,6 +69,11 @@ void processInput(GLFWwindow *window)
 		glfwSetWindowShouldClose(window, true);
 	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
 			game->AddBall();
+	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+		game->~Game();
+		game = new Game(); //todo implement a proper destructor
+	}
+		
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
 		game->SetCameraPos(game->GetCameraPos() + cameraSpeed * game->GetCameraFront());
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)

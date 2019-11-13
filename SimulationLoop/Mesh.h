@@ -25,7 +25,6 @@ public:
 	Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
 	~Mesh();
 
-	void Render(); //probably gonna be deleted
 	void Render( ShaderProgram* shaderProgram, const glm::vec3 position) const;
 	void Render( ShaderProgram* shaderProgram, const glm::mat4 position) const;
 
@@ -34,7 +33,7 @@ private:
 
 	std::vector<Vertex> _vertices;
 	std::vector<unsigned int> _indices;
-	unsigned int VAO;
+	unsigned int VAO{};
 
 
 };

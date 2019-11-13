@@ -5,26 +5,28 @@
 Game::Game() : m_previousTime(0) {
 
 	CreateSphereGeometry(_sphereGeometry.vertices, _sphereGeometry.indices);
-	CreateCilinderGeometry(_cilinderGeometry.vertices, _cilinderGeometry.indices);
+	CreateCylinderGeometry(_cylinderGeometry.vertices, _cylinderGeometry.indices);
 
-	_cilinder = new Mesh(_cilinderGeometry.vertices, _cilinderGeometry.indices);
+	_cylinder = new Mesh(_cylinderGeometry.vertices, _cylinderGeometry.indices);
 
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 15, }, { 0, -5 } }));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, }, { 0.5f, -0 } }));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, -15, }, { -1.0f, -20 } }));
 	
-	
-	m_sphere1 = new Sphere(_sphereGeometry.vertices , _sphereGeometry.indices);
-	m_sphere1->SetPos(0, 15);
-	m_sphere1->SetVel(0, -5);
-	m_sphere1->SetMass(750.0f);
+	//m_sphere1 = new Sphere(_sphereGeometry.vertices , _sphereGeometry.indices);
+	//m_sphere1->SetPos(0, 15);
+	//m_sphere1->SetVel(0, -5);
+	//m_sphere1->SetMass(750.0f);
 
-	m_sphere2 = new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices);
-	m_sphere2->SetPos(0, 0);
-	m_sphere2->SetVel(0.5, 0);
-	m_sphere2->SetMass(1000.0f);
+	//m_sphere2 = new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices);
+	//m_sphere2->SetPos(0, 0);
+	//m_sphere2->SetVel(0.5, 0);
+	//m_sphere2->SetMass(1000.0f);
 
-	m_sphere3 = new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices);
-	m_sphere3->SetPos(0, -15);
-	m_sphere3->SetVel(-1.0, 20);
-	m_sphere3->SetMass(2000.0f);
+	//m_sphere3 = new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices);
+	//m_sphere3->SetPos(0, -15);
+	//m_sphere3->SetVel(-1.0, 20);
+	//m_sphere3->SetMass(2000.0f);
 
 	auto tmp = CreateBoxGeometry();
 	_box = new Mesh(tmp.vertices, tmp.indices);
@@ -64,9 +66,9 @@ Game::Game() : m_previousTime(0) {
 
 Game::~Game(void)
 {
-	delete m_sphere1;
-	delete m_sphere2;
-	delete m_sphere3;
+	//delete m_sphere1;
+	//delete m_sphere2;
+	//delete m_sphere3;
 	delete m_manifold;
 }
 
@@ -116,20 +118,27 @@ void Game::CalculateObjectPhysics()
 
 	for (auto i : _sphereList) i->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
 	
-	m_sphere1->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
-	m_sphere2->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
-	m_sphere3->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
+	//m_sphere1->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
+	//m_sphere2->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
+	//m_sphere3->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
 }
 
 
 //**************************Handle dynamic collisions***********************
 void Game::DynamicCollisionDetection()
 {
-	//for (auto i : _sphereList) i->CollisionWithSphere(m_sphere2, m_manifold);
+	auto pos = 1;
+	for (auto i : _sphereList) {
+		std::vector<Sphere*>::const_iterator first = _sphereList.begin() + pos;
+		std::vector<Sphere*>::const_iterator last = _sphereList.end();
+		std::vector<Sphere*> newVec(first, last);
+		for (auto j : newVec) i->CollisionWithSphere( j, m_manifold);
+		pos++;
+	}
 	
-	m_sphere1->CollisionWithSphere(m_sphere2, m_manifold);
-	m_sphere1->CollisionWithSphere(m_sphere3, m_manifold);
-	m_sphere2->CollisionWithSphere(m_sphere3, m_manifold);
+	//m_sphere1->CollisionWithSphere(m_sphere2, m_manifold);
+	//m_sphere1->CollisionWithSphere(m_sphere3, m_manifold);
+	//m_sphere2->CollisionWithSphere(m_sphere3, m_manifold);
 }
 
 //**************************Handle dynamic collision responses***********************
@@ -146,9 +155,9 @@ void Game::DynamicCollisionResponse()
 void Game::UpdateObjectPhysics()
 {
 	for (auto i : _sphereList) i->Update();
-	m_sphere1->Update();
-	m_sphere2->Update();
-	m_sphere3->Update();
+	//m_sphere1->Update();
+	//m_sphere2->Update();
+	//m_sphere3->Update();
 }
 
 //**************************Render and display the scene in OpenGL***********************
@@ -170,9 +179,9 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	for (auto i : _sphereList) i->Render(m_shader_program, glm::vec3(i->GetNewPos().GetX(), i->GetNewPos().GetY(), 0.0f ));
 
 	
-	m_sphere1->Render(m_shader_program, glm::vec3(m_sphere1->GetNewPos().GetX(), m_sphere1->GetNewPos().GetY(), 0.0f));
-	m_sphere2->Render(m_shader_program, glm::vec3(m_sphere2->GetNewPos().GetX(), m_sphere2->GetNewPos().GetY(), 0.0f ));
-	m_sphere3->Render(m_shader_program, glm::vec3(m_sphere3->GetNewPos().GetX(), m_sphere3->GetNewPos().GetY(), 0.0f ));
+	//m_sphere1->Render(m_shader_program, glm::vec3(m_sphere1->GetNewPos().GetX(), m_sphere1->GetNewPos().GetY(), 0.0f));
+	//m_sphere2->Render(m_shader_program, glm::vec3(m_sphere2->GetNewPos().GetX(), m_sphere2->GetNewPos().GetY(), 0.0f ));
+	//m_sphere3->Render(m_shader_program, glm::vec3(m_sphere3->GetNewPos().GetX(), m_sphere3->GetNewPos().GetY(), 0.0f ));
 
 	_box->Render(m_shader_program, glm::vec3(1.0f));
 	_bottomTray->Render(m_shader_program, glm::vec3(1.0f));
@@ -184,7 +193,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	trans = glm::translate(trans, glm::vec3(1.0f, 2.0f, 1.0f));
 	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::scale(trans, glm::vec3(2.0f));
-	_cilinder->Render(m_shader_program, trans);
+	_cylinder->Render(m_shader_program, trans);
 
 	trans = glm::mat4(1);
 	trans = glm::translate(trans, glm::vec3(1.0f, 0.0f, 1.0f));
@@ -192,7 +201,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	trans = glm::rotate(trans, glm::radians(120.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::translate(trans, glm::vec3(-2.0f, 4.0f, 0.0f));
 	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-	_cilinder->Render(m_shader_program, trans);
+	_cylinder->Render(m_shader_program, trans);
 
 	trans = glm::mat4(1);
 	trans = glm::translate(trans, glm::vec3(1.0f, 0.0f, 1.0f));
@@ -200,14 +209,14 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	trans = glm::rotate(trans, glm::radians(240.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::translate(trans, glm::vec3(-2.0f, 4.0f, 0.0f));
 	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-	_cilinder->Render(m_shader_program, trans);
+	_cylinder->Render(m_shader_program, trans);
 
 	trans = glm::mat4(1);
 	trans = glm::translate(trans, glm::vec3(1.0f, 0.0f, 1.0f));
 	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::translate(trans, glm::vec3(-2.0f, 4.0f, 0.0f));
 	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-	_cilinder->Render(m_shader_program, trans);
+	_cylinder->Render(m_shader_program, trans);
 
 	trans = glm::mat4(1);
 	trans = glm::translate(trans, glm::vec3( 1.0f, -10.0f, 1.0f));
@@ -299,7 +308,7 @@ void Game::CreateSphereGeometry(std::vector<Vertex>& vertices, std::vector<unsig
 
 }
 
-void Game::CreateCilinderGeometry(std::vector<Vertex>& vertices, std::vector<unsigned int>& indices){
+void Game::CreateCylinderGeometry(std::vector<Vertex>& vertices, std::vector<unsigned int>& indices){
 
 
 	const auto radius = 0.25f;
@@ -478,11 +487,10 @@ Geometry Game::CreateTopTrayGeometry() {
 	}
 
 	return geometry;
-	
 }
 
 void Game::AddBall(){
 
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, {{0, 10},{0, -5}}));
 	
 }

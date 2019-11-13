@@ -16,7 +16,7 @@ public:
 	ContactManifold(void);
 	~ContactManifold(void);
 
-	void Add(ManifoldPoint point);
+	void Add(const ManifoldPoint& point);
 	void Clear();
 	int GetNumPoints() const;
 	ManifoldPoint& GetPoint(int index);
