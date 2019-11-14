@@ -52,9 +52,9 @@ public:
 	void ResetPos();
 	float GetRadius() const;
 
-	static Vector2f force(const State& state, float t);
+	Vector2f force(const State& state, float t) const;
 	void integrate(State &state, float t, float dt);
-	static Derivative Evaluate(const State& initial, float t, float dt, const Derivative& d);
+	Derivative Evaluate(const State& initial, float t, float dt, const Derivative& d) const;
 	static void stepSimulation(float dt);
 
 private:
@@ -64,9 +64,9 @@ private:
 	State m_newState;
 	int m_objectID;
 	GLuint m_texture;
-	unsigned int VBO;
-	unsigned int VAO;
-	unsigned int EBO;
+	//unsigned int VBO;
+	//unsigned int VAO;
+	//unsigned int EBO;
 	
 	
 	

@@ -10,24 +10,9 @@ Game::Game() : m_previousTime(0) {
 	_cylinder = new Mesh(_cylinderGeometry.vertices, _cylinderGeometry.indices);
 
 	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 15, }, { 0, -5 } }));
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, }, { 0.5f, -0 } }));
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, -15, }, { -1.0f, -20 } }));
+	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, }, { 0.5f, -0 } }));
+	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, -15, }, { -1.0f, -20 } }));
 	
-	//m_sphere1 = new Sphere(_sphereGeometry.vertices , _sphereGeometry.indices);
-	//m_sphere1->SetPos(0, 15);
-	//m_sphere1->SetVel(0, -5);
-	//m_sphere1->SetMass(750.0f);
-
-	//m_sphere2 = new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices);
-	//m_sphere2->SetPos(0, 0);
-	//m_sphere2->SetVel(0.5, 0);
-	//m_sphere2->SetMass(1000.0f);
-
-	//m_sphere3 = new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices);
-	//m_sphere3->SetPos(0, -15);
-	//m_sphere3->SetVel(-1.0, 20);
-	//m_sphere3->SetMass(2000.0f);
-
 	auto tmp = CreateBoxGeometry();
 	_box = new Mesh(tmp.vertices, tmp.indices);
 
@@ -66,9 +51,7 @@ Game::Game() : m_previousTime(0) {
 
 Game::~Game(void)
 {
-	//delete m_sphere1;
-	//delete m_sphere2;
-	//delete m_sphere3;
+	
 	delete m_manifold;
 }
 
@@ -118,9 +101,7 @@ void Game::CalculateObjectPhysics()
 
 	for (auto i : _sphereList) i->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
 	
-	//m_sphere1->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
-	//m_sphere2->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
-	//m_sphere3->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
+	
 }
 
 
@@ -136,9 +117,6 @@ void Game::DynamicCollisionDetection()
 		pos++;
 	}
 	
-	//m_sphere1->CollisionWithSphere(m_sphere2, m_manifold);
-	//m_sphere1->CollisionWithSphere(m_sphere3, m_manifold);
-	//m_sphere2->CollisionWithSphere(m_sphere3, m_manifold);
 }
 
 //**************************Handle dynamic collision responses***********************
@@ -155,9 +133,7 @@ void Game::DynamicCollisionResponse()
 void Game::UpdateObjectPhysics()
 {
 	for (auto i : _sphereList) i->Update();
-	//m_sphere1->Update();
-	//m_sphere2->Update();
-	//m_sphere3->Update();
+
 }
 
 //**************************Render and display the scene in OpenGL***********************
@@ -177,11 +153,6 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	//draw ball
 
 	for (auto i : _sphereList) i->Render(m_shader_program, glm::vec3(i->GetNewPos().GetX(), i->GetNewPos().GetY(), 0.0f ));
-
-	
-	//m_sphere1->Render(m_shader_program, glm::vec3(m_sphere1->GetNewPos().GetX(), m_sphere1->GetNewPos().GetY(), 0.0f));
-	//m_sphere2->Render(m_shader_program, glm::vec3(m_sphere2->GetNewPos().GetX(), m_sphere2->GetNewPos().GetY(), 0.0f ));
-	//m_sphere3->Render(m_shader_program, glm::vec3(m_sphere3->GetNewPos().GetX(), m_sphere3->GetNewPos().GetY(), 0.0f ));
 
 	_box->Render(m_shader_program, glm::vec3(1.0f));
 	_bottomTray->Render(m_shader_program, glm::vec3(1.0f));

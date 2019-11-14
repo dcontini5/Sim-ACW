@@ -8,7 +8,7 @@
 int Sphere::countID = 0;
 
 Sphere::Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices, State state) : Mesh(std::move(vertices),
-                                                                                       std::move(indices)), m_mass(1), m_radius(0.5), m_state(
+                                                                                       std::move(indices)), m_mass(0.2f), m_radius(0.5), m_state(
 	                                                                                               std::move(state))
 {
 	m_objectID = countID;
@@ -135,12 +135,12 @@ float Sphere::GetRadius() const
 }
 
 
-Vector2f Sphere::force(const State& state, float t) {
+Vector2f Sphere::force(const State& state, float t) const {
 
-	const Vector2f force(0.0f, -9.81f * 3);
-	const float k = 5; //k*pos thrust
-	const float b = 2.0f;  //drag coefficient
-	return  ((-k * state.position - b * state.velocity )  / t) + force;
+	const Vector2f gravity(0.0f, -9.81f * 3);
+	const float k = 10; //k*pos thrust
+	const float b = 1.0f;  //drag coefficient
+	return  (-k * state.position - m_mass * state.velocity) / t + gravity;
 	
 }
 
@@ -169,7 +169,7 @@ void Sphere::integrate(State& state, float t, float dt) {
 }
 
 
-Derivative Sphere::Evaluate(const State &initial, float t, float dt, const Derivative &d) {
+Derivative Sphere::Evaluate(const State &initial, const float t, const float dt, const Derivative &d) const {
 
 	State state;
 	state.position = initial.position + d.dx * dt;
