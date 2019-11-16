@@ -70,8 +70,9 @@ void processInput(GLFWwindow *window)
 	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
 			game->AddBall();
 	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
-		game->~Game();
-		game = new Game(); //todo implement a proper destructor
+		//delete game;
+		delete game;
+		game = new Game(); //todo solve memory leak
 	}
 		
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)

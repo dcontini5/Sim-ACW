@@ -2,33 +2,36 @@
 #include <GLFW/glfw3.h>
 #include "Game.h"
 
+#ifdef DEBUG 
 Game::Game() : m_previousTime(0) {
 
 	CreateSphereGeometry(_sphereGeometry.vertices, _sphereGeometry.indices);
 	CreateCylinderGeometry(_cylinderGeometry.vertices, _cylinderGeometry.indices);
 
-	_cylinder = new Mesh(_cylinderGeometry.vertices, _cylinderGeometry.indices);
-
+	_cylinder = std::make_unique<Mesh>(_cylinderGeometry.vertices, _cylinderGeometry.indices);
+	
+	
+	
 	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 15, }, { 0, -5 } }));
 	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, }, { 0.5f, -0 } }));
 	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, -15, }, { -1.0f, -20 } }));
 	
 	auto tmp = CreateBoxGeometry();
-	_box = new Mesh(tmp.vertices, tmp.indices);
+	_box = std::make_unique<Mesh> ( Mesh(tmp.vertices, tmp.indices));
 
 	tmp = CreateTrayGeometry();
-	_bottomTray = new Mesh(tmp.vertices, tmp.indices);
+	_bottomTray = std::make_unique<Mesh>( Mesh(tmp.vertices, tmp.indices));
 	tmp = CreateTopTrayGeometry();
-	_topTray = new Mesh(tmp.vertices, tmp.indices);
+	_topTray = std::make_unique<Mesh>( Mesh(tmp.vertices, tmp.indices));
 
 	std::vector<unsigned int>::const_iterator first = _sphereGeometry.indices.begin() + 918;
 	std::vector<unsigned int>::const_iterator last = _sphereGeometry.indices.end();
-	std::vector<unsigned int> newVec(first, last);
+	const std::vector<unsigned int> newVec(first, last);
 
 
-	_bowl = new Mesh(_sphereGeometry.vertices, newVec);
+	_bowl = std::make_unique<Mesh>(Mesh(_sphereGeometry.vertices, newVec));
 
-	m_manifold = new ContactManifold();
+	m_manifold = std::make_unique<ContactManifold>(ContactManifold());
 	m_shader_program = new ShaderProgram("VS.glsl", "FS.glsl");
 	
 	QueryPerformanceFrequency(&frequency);
@@ -44,16 +47,82 @@ Game::Game() : m_previousTime(0) {
 	_cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 	_cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
+
+	const auto a = glm::vec3(5, 0, -5);
+	const auto b = glm::vec3(-5, 0, -5);
+	const auto c = glm::vec3(-5, 0, 5);
+	
+
 	UpdateView();
 	
 	
 }
+#else
 
-Game::~Game(void)
-{
-	
-	delete m_manifold;
+Game::Game() : m_previous_time_(0) {
+
+	CreateSphereGeometry(_sphereGeometry.vertices, _sphereGeometry.indices);
+	CreateCylinderGeometry(_cylinderGeometry.vertices, _cylinderGeometry.indices);
+
+	_cylinder = new Mesh(_cylinderGeometry.vertices, _cylinderGeometry.indices);
+
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 15, 0 }, { 0, -5, 0 } }));
+	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, }, { 0.5f, -0 } }));
+	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, -15, }, { -1.0f, -20 } }));
+
+	auto tmp = CreateBoxGeometry();
+	_box = new Mesh(tmp.vertices, tmp.indices);
+
+	tmp = CreateTrayGeometry();
+	_bottomTray = new Mesh(tmp.vertices, tmp.indices);
+	tmp = CreateTopTrayGeometry();
+	_topTray = new Mesh(tmp.vertices, tmp.indices);
+
+	const std::vector<unsigned int>::const_iterator first = _sphereGeometry.indices.begin() + 918;
+	const std::vector<unsigned int>::const_iterator last = _sphereGeometry.indices.end();
+	const std::vector<unsigned int> newVec(first, last);
+
+
+	_bowl = new Mesh(_sphereGeometry.vertices, newVec);
+
+	m_manifold = new ContactManifold();
+	m_shader_program = new ShaderProgram("VS.glsl", "FS.glsl");
+
+	QueryPerformanceFrequency(&frequency);
+	QueryPerformanceCounter(&start);
+
+
+	_model = glm::mat4(1.0f);
+	_model = glm::rotate(_model, glm::radians(10.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+
+	_proj = glm::perspective(glm::radians(45.0f), (float)800 / (float)600, 0.1f, 200.0f);
+
+	_cameraPos = glm::vec3(0.0f, 0.0f, 50.0f);
+	_cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+	_cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+
+
+	UpdateView();
+
+
 }
+
+#endif
+
+
+//Game::~Game(void)
+//{
+//	
+//	_sphereList.empty();
+//	delete m_shader_program;
+//	delete _box;
+//	delete _bottomTray;
+//	delete _topTray;
+//	delete _cylinder;
+//	delete _bowl;
+//	delete m_manifold;
+//	
+//}
 
 void Game::Update()
 {
@@ -110,8 +179,9 @@ void Game::DynamicCollisionDetection()
 {
 	auto pos = 1;
 	for (auto i : _sphereList) {
-		std::vector<Sphere*>::const_iterator first = _sphereList.begin() + pos;
-		std::vector<Sphere*>::const_iterator last = _sphereList.end();
+		i->CollisionWithPlane(i, m_dt, m_manifold);
+		const std::vector<Sphere*>::const_iterator first = _sphereList.begin() + pos;
+		const std::vector<Sphere*>::const_iterator last = _sphereList.end();
 		std::vector<Sphere*> newVec(first, last);
 		for (auto j : newVec) i->CollisionWithSphere( j, m_manifold);
 		pos++;
@@ -152,7 +222,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 
 	//draw ball
 
-	for (auto i : _sphereList) i->Render(m_shader_program, glm::vec3(i->GetNewPos().GetX(), i->GetNewPos().GetY(), 0.0f ));
+	for (auto i : _sphereList) i->Render(m_shader_program, glm::vec3(i->GetNewPos().x, i->GetNewPos().y, 0.0f ));
 
 	_box->Render(m_shader_program, glm::vec3(1.0f));
 	_bottomTray->Render(m_shader_program, glm::vec3(1.0f));
@@ -462,6 +532,6 @@ Geometry Game::CreateTopTrayGeometry() {
 
 void Game::AddBall(){
 
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, {{0, 10},{0, -5}}));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, {{0, 10, 0},{0, -5, 0}}));
 	
 }

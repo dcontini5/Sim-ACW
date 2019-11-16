@@ -3,7 +3,6 @@
 #include "gl.h"
 #include <GLFW/glfw3.h>
 #include "ContactManifold.h"
-#include "Vector2f.h"
 #include <Windows.h>
 #include <gl\gl.h>  
 #include <vector>
@@ -15,16 +14,16 @@
 
 struct Derivative {
 
-	Vector2f dx; //dx/dt = position
-	Vector2f dv; //dv/dt = velocity
+	glm::vec3 dx; //dx/dt = position
+	glm::vec3 dv; //dv/dt = velocity
 	
 	
 };
 
 struct State {
 
-	Vector2f position; 
-	Vector2f velocity; 
+	glm::vec3 position; 
+	glm::vec3 velocity; 
 	
 };
 
@@ -36,38 +35,37 @@ public:
 
 	void CalculatePhysics(float dt, float t);
 	void CollisionWithSphere(Sphere* sphere, ContactManifold *contactManifold);
+	//void CollisionWithSphere(Sphere* others_sphere, std::unique_ptr<ContactManifold> contactManifold);
+	void CollisionWithPlane(Sphere* sphere, float time, ContactManifold* contactManifold);
 	void Update();
 	static void CollisionResponseWithSphere(ManifoldPoint &point);
-	void SetPos(float x, float y);
-	void SetVel(float x, float y);
-	void SetNewPos(const Vector2f& pos);
-	void SetNewVel(const Vector2f& vel);
+	void SetPos(const glm::vec3& pos);
+	void SetVel(const glm::vec3& vel);
+	void SetNewPos(const glm::vec3& pos);
+	void SetNewVel(const glm::vec3& vel);
 	void SetMass(float mass);
 	
-	Vector2f GetPos() const;
-	Vector2f GetNewPos() const;
-	Vector2f GetVel() const;
-	Vector2f GetNewVel() const;
+	glm::vec3 GetPos() const;
+	glm::vec3 GetNewPos() const;
+	glm::vec3 GetVel() const;
+	glm::vec3 GetNewVel() const;
 	float GetMass() const;
 	void ResetPos();
 	float GetRadius() const;
 
-	Vector2f force(const State& state, float t) const;
+	glm::vec3 force(const State& state, float t) const;
 	void integrate(State &state, float t, float dt);
 	Derivative Evaluate(const State& initial, float t, float dt, const Derivative& d) const;
 	static void stepSimulation(float dt);
 
 private:
+	
 	float m_mass;
 	float m_radius;
 	State m_state;
 	State m_newState;
 	int m_objectID;
 	GLuint m_texture;
-	//unsigned int VBO;
-	//unsigned int VAO;
-	//unsigned int EBO;
-	
 	
 	
 	static int countID;

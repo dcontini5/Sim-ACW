@@ -1,13 +1,21 @@
 #pragma once
 
-#include "Vector2f.h"
+#include <glm/vec3.hpp>
 
 class Sphere;
+
+struct Plane {
+
+	glm::vec3 pointOfImpact;
+	float time;
+	
+};
 
 struct ManifoldPoint {
 	Sphere *contactID1;
 	Sphere *contactID2;
-	Vector2f contactNormal;
+	Plane plane;
+	glm::vec3 contactNormal;
 };
 
 class ContactManifold

@@ -6,6 +6,8 @@
 #include <glm/glm.hpp>
 #include "ShaderProgram.h"
 
+//#define DEBUG
+
 struct Vertex {
 
 	glm::vec3 position;

@@ -31,8 +31,7 @@ class Game
 {
 public:
 	Game();
-	Game(HDC hdc);
-	~Game(void);
+	~Game(void) = default;
 
 	void Update();
 
@@ -66,20 +65,29 @@ private:
 	ShaderProgram *m_shader_program;
 	float m_dt;
 	int	  m_fps;
-	float m_previousTime;
+	float m_previous_time_;
 	std::vector<Sphere*> _sphereList;
 	//Sphere *m_sphere1;
 	//Sphere *m_sphere2;
 	//Sphere *m_sphere3;
-	ContactManifold *m_manifold;
 	LARGE_INTEGER start, end, frequency;
 	Geometry _sphereGeometry;
 	Geometry _cylinderGeometry;
+#ifdef DEBUG
+	std::unique_ptr<Mesh> _box;
+	std::unique_ptr<Mesh> _bottomTray;
+	std::unique_ptr<Mesh> _topTray;
+	std::unique_ptr<Mesh> _cylinder;
+	std::unique_ptr<Mesh> _bowl;
+	std::unique_ptr<ContactManifold>  m_manifold;
+#else
 	Mesh* _box;
 	Mesh* _bottomTray ;
 	Mesh* _topTray ;
 	Mesh* _cylinder ;
 	Mesh* _bowl ;
+	ContactManifold* m_manifold;
+#endif
 	glm::mat4 _proj, _model, _view;
 	glm::vec3 _cameraPos, _cameraFront, _cameraUp;
 
