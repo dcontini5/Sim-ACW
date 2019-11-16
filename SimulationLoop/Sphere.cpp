@@ -155,7 +155,7 @@ void Sphere::CollisionResponseWithSphere(ManifoldPoint &point)
 
 	const glm::vec3 colNormal = point.contactNormal;
 	
-	point.contactID1->SetNewPos(point.plane.pointOfImpact - point.contactID1->GetRadius() * point.contactNormal);
+	point.contactID1->SetNewPos(point.plane.pointOfImpact - (point.contactID1->GetRadius()+0.01f) * point.contactNormal);
 	point.contactID1->SetNewVel(-0.8f*colNormal* glm::dot(colNormal, point.contactID1->GetVel()) );
 	
 	if(point.contactID2) {

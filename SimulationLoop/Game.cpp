@@ -169,6 +169,7 @@ void Game::CalculateObjectPhysics()
 {
 
 	for (auto i : _sphereList) i->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
+
 	
 	
 }
@@ -224,20 +225,21 @@ void Game::Render()									// Here's Where We Do All The Drawing
 
 	for (auto i : _sphereList) i->Render(m_shader_program, glm::vec3(i->GetNewPos().x, i->GetNewPos().y, 0.0f ));
 
-	_box->Render(m_shader_program, glm::vec3(1.0f));
-	_bottomTray->Render(m_shader_program, glm::vec3(1.0f));
-	_topTray->Render(m_shader_program, glm::vec3(1.0f));
+	_box->Render(m_shader_program, glm::vec3(0.0f));
+	_bottomTray->Render(m_shader_program, glm::vec3(0.0f));
+	_topTray->Render(m_shader_program, glm::vec3(0.0f));
 	
 	
 
 	
-	trans = glm::translate(trans, glm::vec3(1.0f, 2.0f, 1.0f));
+	trans = glm::translate(trans, glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::scale(trans, glm::vec3(2.0f));
 	_cylinder->Render(m_shader_program, trans);
 
 	trans = glm::mat4(1);
-	trans = glm::translate(trans, glm::vec3(1.0f, 0.0f, 1.0f));
+	//trans = glm::translate(trans, glm::vec3(0.0f, 0.0f, 1.0f));
+	trans = glm::translate(trans, glm::vec3(0.0f, -1.0f, 0.0f));
 	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::rotate(trans, glm::radians(120.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::translate(trans, glm::vec3(-2.0f, 4.0f, 0.0f));
@@ -245,7 +247,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	_cylinder->Render(m_shader_program, trans);
 
 	trans = glm::mat4(1);
-	trans = glm::translate(trans, glm::vec3(1.0f, 0.0f, 1.0f));
+	trans = glm::translate(trans, glm::vec3(0.0f, -1.0f, 0.0f));
 	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::rotate(trans, glm::radians(240.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::translate(trans, glm::vec3(-2.0f, 4.0f, 0.0f));
@@ -253,14 +255,14 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	_cylinder->Render(m_shader_program, trans);
 
 	trans = glm::mat4(1);
-	trans = glm::translate(trans, glm::vec3(1.0f, 0.0f, 1.0f));
+	trans = glm::translate(trans, glm::vec3(0.0f, -1.0f, 0.0f));
 	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::translate(trans, glm::vec3(-2.0f, 4.0f, 0.0f));
 	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	_cylinder->Render(m_shader_program, trans);
 
 	trans = glm::mat4(1);
-	trans = glm::translate(trans, glm::vec3( 1.0f, -10.0f, 1.0f));
+	trans = glm::translate(trans, glm::vec3( 0.0f, -9.0f, 0.0f));
 	trans = glm::rotate(trans, glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	trans = glm::scale(trans, glm::vec3( 25.0f, 25.0f, 10.0f ));
 	_bowl->Render(m_shader_program, trans);

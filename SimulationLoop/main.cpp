@@ -21,7 +21,6 @@ int main(int argc, char *argv[], char *envp[]){
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-
 	//Window Creation
 	GLFWwindow * window = glfwCreateWindow(800, 600, "Simulation Loop", nullptr, nullptr);
 	if(!window) {
@@ -34,6 +33,8 @@ int main(int argc, char *argv[], char *envp[]){
 	glfwMakeContextCurrent(window);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
+
+	
 	game = new Game();
 
 
