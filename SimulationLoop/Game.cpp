@@ -66,9 +66,9 @@ Game::Game() : m_previous_time_(0) {
 
 	_cylinder = new Mesh(_cylinderGeometry.vertices, _cylinderGeometry.indices);
 
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 15, 0 }, { 0, -5, 0 } }));
-	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, }, { 0.5f, -0 } }));
-	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, -15, }, { -1.0f, -20 } }));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 10, 0 }, { 0, -5, 0 } }));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 5, 0 }, { 0.5f, -0 ,0} }));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, 0 }, { -1.0f, -20,0 } }));
 
 	auto tmp = CreateBoxGeometry();
 	_box = new Mesh(tmp.vertices, tmp.indices);
@@ -238,7 +238,6 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	_cylinder->Render(m_shader_program, trans);
 
 	trans = glm::mat4(1);
-	//trans = glm::translate(trans, glm::vec3(0.0f, 0.0f, 1.0f));
 	trans = glm::translate(trans, glm::vec3(0.0f, -1.0f, 0.0f));
 	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::rotate(trans, glm::radians(120.0f), glm::vec3(0.0f, 1.0f, 0.0f));
