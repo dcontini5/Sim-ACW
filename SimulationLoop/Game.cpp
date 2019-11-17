@@ -405,14 +405,14 @@ Geometry Game::CreateBoxGeometry(){
 	for (auto i = 0; i < 4; i++) {
 
 
-		PlaneInfo pl;
-		pl.botL = geometry.vertices[4 + i].position;
-		pl.topL = geometry.vertices[0 + i].position;
-		pl.topR = geometry.vertices[(3 + i) % 4].position;
-		pl.botR = geometry.vertices[4 + (3 + i) % 4].position;
-		pl.normal = glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)); //CCW order
-		pl.d = glm::dot(pl.normal, pl.botL);
-		_planeList.push_back(pl);
+		//PlaneInfo pl;
+		//pl.botL = geometry.vertices[4 + i].position;
+		//pl.topL = geometry.vertices[0 + i].position;
+		//pl.topR = geometry.vertices[(3 + i) % 4].position;
+		//pl.botR = geometry.vertices[4 + (3 + i) % 4].position;
+		//pl.normal = glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)); //CCW order
+		//pl.d = glm::dot(pl.normal, pl.botL);
+		//_planeList.push_back(pl);
 		
 		geometry.indices.push_back(4 + i);
 		geometry.indices.push_back(0 + i);
