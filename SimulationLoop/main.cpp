@@ -65,7 +65,7 @@ int main(int argc, char *argv[], char *envp[]){
 
 void processInput(GLFWwindow *window)
 {
-	auto cameraSpeed = 0.1f;
+	auto cameraSpeed = 0.3f;
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)

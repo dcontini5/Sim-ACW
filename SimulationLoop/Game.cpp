@@ -66,15 +66,17 @@ Game::Game() : m_previous_time_(0) {
 
 	_cylinder = new Mesh(_cylinderGeometry.vertices, _cylinderGeometry.indices);
 
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 10, 0 }, { 0, -5, 0 } }));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { -5.25, 10, 0 }, { 0, -5, 0 } }));
 	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 5, 0 }, { 0.5f, -0 ,0} }));
 	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, 0 }, { -1.0f, -20,0 } }));
 
 	auto tmp = CreateBoxGeometry();
 	_box = new Mesh(tmp.vertices, tmp.indices);
+	
 
 	tmp = CreateTrayGeometry();
 	_bottomTray = new Mesh(tmp.vertices, tmp.indices);
+	
 	tmp = CreateTopTrayGeometry();
 	_topTray = new Mesh(tmp.vertices, tmp.indices);
 
@@ -180,7 +182,7 @@ void Game::DynamicCollisionDetection()
 {
 	auto pos = 1;
 	for (auto i : _sphereList) {
-		i->CollisionWithPlane(i, m_dt, m_manifold);
+		for(auto p : _planeList) i->CollisionWithPlane(i, p, m_dt, m_manifold);
 		const std::vector<Sphere*>::const_iterator first = _sphereList.begin() + pos;
 		const std::vector<Sphere*>::const_iterator last = _sphereList.end();
 		std::vector<Sphere*> newVec(first, last);
@@ -402,6 +404,16 @@ Geometry Game::CreateBoxGeometry(){
 
 	for (auto i = 0; i < 4; i++) {
 
+
+		PlaneInfo pl;
+		pl.botL = geometry.vertices[4 + i].position;
+		pl.topL = geometry.vertices[0 + i].position;
+		pl.topR = geometry.vertices[(3 + i) % 4].position;
+		pl.botR = geometry.vertices[4 + (3 + i) % 4].position;
+		pl.normal = glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)); //CCW order
+		pl.d = glm::dot(pl.normal, pl.botL);
+		_planeList.push_back(pl);
+		
 		geometry.indices.push_back(4 + i);
 		geometry.indices.push_back(0 + i);
 		geometry.indices.push_back(4 + (3 + i) % 4);
@@ -426,6 +438,16 @@ Geometry Game::CreateTrayGeometry()
 	geometry.vertices.push_back({ glm::vec3(5.0f,  y,  5.0f) });
 	geometry.vertices.push_back({ glm::vec3(5.0f,  y, -5.0f) });
 
+	PlaneInfo pl;
+	pl.botL = geometry.vertices[0].position;
+	pl.topL = geometry.vertices[1].position;
+	pl.topR = geometry.vertices[2].position;
+	pl.botR = geometry.vertices[3].position;
+	pl.normal = glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)); //CCW order
+	pl.d = glm::dot(pl.normal, pl.botL);
+	_planeList.push_back(pl);
+	
+	
 	geometry.indices.push_back(0);
 	geometry.indices.push_back(1);
 	geometry.indices.push_back(3);
@@ -533,6 +555,6 @@ Geometry Game::CreateTopTrayGeometry() {
 
 void Game::AddBall(){
 
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, {{0, 10, 0},{0, -5, 0}}));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, {{-5.25, 10, 0},{0, -5, 0}}));
 	
 }

@@ -5,20 +5,6 @@
 #include "ContactManifold.h"
 #include "ShaderProgram.h"
 
-
-
-const std::vector<Vertex> vertices = {
-	{ glm::vec3(0.5f,  0.5f, 0.0f) } ,	 // top right
-	{ glm::vec3(0.5f, -0.5f, 0.0f) } ,	 // bottom right
-	{ glm::vec3(-0.5f, -0.5f, 0.0f) } ,	 // bottom left
-	{ glm::vec3(-0.5f,  0.5f, 0.0f) } ,	 // top left 
-};
-
-const std::vector<unsigned int> indices = {  // note that we start from 0!
-	0, 1, 3,   // first triangle
-	1, 2, 3    // second triangle
-};
-
 struct Geometry {
 
 	std::vector<Vertex> vertices;
@@ -67,6 +53,7 @@ private:
 	int	  m_fps;
 	float m_previous_time_;
 	std::vector<Sphere*> _sphereList;
+	std::vector<PlaneInfo> _planeList;
 	//Sphere *m_sphere1;
 	//Sphere *m_sphere2;
 	//Sphere *m_sphere3;
@@ -87,6 +74,7 @@ private:
 	Mesh* _cylinder ;
 	Mesh* _bowl ;
 	ContactManifold* m_manifold;
+	
 #endif
 	glm::mat4 _proj, _model, _view;
 	glm::vec3 _cameraPos, _cameraFront, _cameraUp;

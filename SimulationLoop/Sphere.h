@@ -11,6 +11,16 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "Mesh.h"
 
+struct PlaneInfo {
+
+	glm::vec3 botL; //bottom left corner
+	glm::vec3 botR;	//bottom right corner
+	glm::vec3 topL;	//top left corner
+	glm::vec3 topR;	//top right corner
+	glm::vec3 normal;
+	float d;
+
+};
 
 struct Derivative {
 
@@ -37,6 +47,7 @@ public:
 	void CollisionWithSphere(Sphere* sphere, ContactManifold *contactManifold);
 	//void CollisionWithSphere(Sphere* others_sphere, std::unique_ptr<ContactManifold> contactManifold);
 	void CollisionWithPlane(Sphere* sphere, float time, ContactManifold* contactManifold);
+	void CollisionWithPlane(Sphere* sphere, PlaneInfo plane, float time, ContactManifold* contactManifold);
 	void Update();
 	static void CollisionResponseWithSphere(ManifoldPoint &point);
 	void SetPos(const glm::vec3& pos);
