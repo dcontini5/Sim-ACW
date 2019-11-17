@@ -7,7 +7,7 @@ class Sphere;
 struct Plane {
 
 	glm::vec3 pointOfImpact;
-	float time;
+	float timeAfterCollision;
 	
 };
 
