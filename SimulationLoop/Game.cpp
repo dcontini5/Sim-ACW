@@ -66,9 +66,9 @@ Game::Game() : m_previous_time_(0) {
 
 	_cylinder = new Mesh(_cylinderGeometry.vertices, _cylinderGeometry.indices);
 
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { -5.25, 10, 0 }, { 0, -5, 0 } }));
-	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 5, 0 }, { 0.5f, -0 ,0} }));
-	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, 0 }, { -1.0f, -20,0 } }));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 10, 0 }, { 0, -5, 0 } }));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 5, 0 }, { 0.5f, -0 ,0} }));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, 0 }, { -1.0f, -20,0 } }));
 
 	auto tmp = CreateBoxGeometry();
 	_box = new Mesh(tmp.vertices, tmp.indices);
@@ -182,7 +182,8 @@ void Game::DynamicCollisionDetection()
 {
 	auto pos = 1;
 	for (auto i : _sphereList) {
-		for(auto p : _planeList) i->CollisionWithPlane(i, p, m_dt, m_manifold);
+		for(auto p : _planeList) 
+			i->CollisionWithPlane(i, p, m_dt, m_manifold);
 		const std::vector<Sphere*>::const_iterator first = _sphereList.begin() + pos;
 		const std::vector<Sphere*>::const_iterator last = _sphereList.end();
 		std::vector<Sphere*> newVec(first, last);
@@ -193,8 +194,7 @@ void Game::DynamicCollisionDetection()
 }
 
 //**************************Handle dynamic collision responses***********************
-void Game::DynamicCollisionResponse()
-{
+void Game::DynamicCollisionResponse() const {
 	for(int collision = 0; collision < m_manifold->GetNumPoints(); ++collision)
 	{
 		ManifoldPoint &point = m_manifold->GetPoint(collision);
@@ -555,6 +555,6 @@ Geometry Game::CreateTopTrayGeometry() {
 
 void Game::AddBall(){
 
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, {{-5.25, 10, 0},{0, -5, 0}}));
+	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, {{-5.05, 10, 0},{0, -5, 0}}));
 	
 }

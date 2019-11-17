@@ -34,7 +34,7 @@ private:
 	void SimulationLoop();
 	void CalculateObjectPhysics();
 	void DynamicCollisionDetection();
-	void DynamicCollisionResponse();
+	void DynamicCollisionResponse() const;
 	void UpdateObjectPhysics();
 	void Render();
 	void CreateSphereGeometry(std::vector<Vertex> & vertices, std::vector<unsigned int> & indices);
