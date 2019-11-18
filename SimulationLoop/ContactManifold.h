@@ -15,6 +15,7 @@ struct ManifoldPoint {
 	Sphere *contactID1;
 	Sphere *contactID2;
 	Plane plane;
+	float dist;
 	glm::vec3 contactNormal;
 };
 

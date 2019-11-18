@@ -60,6 +60,7 @@ private:
 	LARGE_INTEGER start, end, frequency;
 	Geometry _sphereGeometry;
 	Geometry _cylinderGeometry;
+	Sphere* lastsphere;
 #ifdef DEBUG
 	std::unique_ptr<Mesh> _box;
 	std::unique_ptr<Mesh> _bottomTray;
