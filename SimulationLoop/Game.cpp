@@ -183,10 +183,10 @@ void Game::DynamicCollisionDetection()
 {
 	auto pos = 1;
 	for (auto i : _sphereList) {
-		for(auto p : _planeList) 
-			i->CollisionWithPlane(p, m_dt, m_manifold);
+		for(auto p : _planeList) i->CollisionWithPlane(p, m_dt, m_manifold);
 
 		i->CollisionWithBowl(i, m_dt, m_manifold);
+		
 		const std::vector<Sphere*>::const_iterator first = _sphereList.begin() + pos;
 		const std::vector<Sphere*>::const_iterator last = _sphereList.end();
 		std::vector<Sphere*> newVec(first, last);

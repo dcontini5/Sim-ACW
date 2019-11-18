@@ -56,55 +56,40 @@ void Sphere::CalculatePhysics(const float t, const float dt)
 
 }
 
-//void Sphere::CollisionWithSphere(Sphere* others_sphere, std::unique_ptr<ContactManifold> contactManifold)
-//{
-//
-//	const glm::vec3 pos1 = this->GetNewPos();
-//	const glm::vec3 pos2 = others_sphere->GetNewPos();
-//	const float dist = pos1.distance(pos2) - (this->GetRadius() + others_sphere->GetRadius());
-//	if (dist < 0.0f)
-//	{
-//		ManifoldPoint mp;
-//		mp.contactID1 = this;
-//		mp.contactID2 = others_sphere;
-//		mp.contactNormal = (pos2 - pos1).normalise();
-//		contactManifold->Add(mp);
-//	}
-//
-//}
 
-void Sphere::CollisionWithSphere(Sphere* others_sphere,float time, ContactManifold *contactManifold)
+
+void Sphere::CollisionWithSphere(Sphere* otherSphere,float time, ContactManifold *contactManifold)
 {
 
 	const glm::vec3 pos1 = this->GetNewPos();
-	const glm::vec3 pos2 = others_sphere->GetNewPos();
-	float dist = glm::distance(pos1, pos2) - (this->GetRadius() + others_sphere->GetRadius());
+	const glm::vec3 pos2 = otherSphere->GetNewPos();
+	float dist = glm::distance(pos1, pos2) - (this->GetRadius() + otherSphere->GetRadius());
 	if (dist < 0.0f)
 	{
 		ManifoldPoint mp;
 		mp.contactID1 = this;
-		mp.contactID2 = others_sphere;
-		mp.contactNormal =  glm::normalize (pos2 - pos1);
+		mp.contactID2 = otherSphere;
+		mp.contactNormal =  glm::normalize ( abs(pos2 - pos1));
 		mp.dist = dist/2;
 		contactManifold->Add(mp);
-	}else {
+	}/*else {
 
-		const auto denom = glm::dot(others_sphere->GetVel(), this->GetVel());
+		const auto denom = glm::dot(otherSphere->GetVel(), this->GetVel());
 		if (denom * dist < 0) {
 
 			const auto r = dist > 0.0f ? this->GetRadius() : -this->GetRadius();
 			const auto timeOfImpact = (r - dist) / denom;
 			if (timeOfImpact <= time) {
 
-				const auto pointOfImpact = this->GetPos() + timeOfImpact * this->GetVel() - others_sphere->GetPos() + timeOfImpact * others_sphere->GetVel()  - (this->GetRadius() + others_sphere->GetRadius());
-				const auto normalizedPOI = glm::normalize(this->GetPos() + timeOfImpact * this->GetVel() - others_sphere->GetPos() + timeOfImpact * others_sphere->GetVel());
-				dist = glm::distance( this->GetPos() + timeOfImpact * this->GetVel(), others_sphere->GetPos() + timeOfImpact * others_sphere->GetVel() ) - (this->GetRadius() + others_sphere->GetRadius());
+				const auto pointOfImpact = this->GetPos() + timeOfImpact * this->GetVel() - otherSphere->GetPos() + timeOfImpact * otherSphere->GetVel()  - (this->GetRadius() + others_sphere->GetRadius());
+				const auto normalizedPOI = glm::normalize(this->GetPos() + timeOfImpact * this->GetVel() - otherSphere->GetPos() + timeOfImpact * otherSphere->GetVel());
+				dist = glm::distance( this->GetPos() + timeOfImpact * this->GetVel(), otherSphere->GetPos() + timeOfImpact * otherSphere->GetVel() ) - (this->GetRadius() + others_sphere->GetRadius());
 				
 				ManifoldPoint mp;
 				mp.contactID1 = this;
-				mp.contactID2 = others_sphere;
-				mp.plane.pointOfImpact = pointOfImpact;
-				mp.plane.timeAfterCollision = time - timeOfImpact;
+				mp.contactID2 = otherSphere;
+				mp.pointOfImpact = pointOfImpact;
+				mp.timeAfterCollision = time - timeOfImpact;
 				mp.contactNormal = normalizedPOI;
 				mp.dist = dist/2;
 				contactManifold->Add(mp);
@@ -116,10 +101,42 @@ void Sphere::CollisionWithSphere(Sphere* others_sphere,float time, ContactManifo
 
 		}
 		
-	}
+	}*/
 
 }
 
+//void Sphere::CollisionWithSphere(Sphere* otherSphere, float time, ContactManifold* contactManifold) {
+//
+//	auto dist =	otherSphere->GetNewPos() -	this->GetNewPos();
+//	auto relVelocity = otherSphere->GetNewVel() - this->GetNewVel();
+//	auto r = otherSphere->GetRadius() - this->GetRadius();
+//	float c = glm::dot(dist, dist) - r * r;
+//	float s = glm::distance(otherSphere->GetNewPos(), this->GetNewPos()) - (this->GetRadius() + otherSphere->GetRadius());
+//	
+//	if(s < 0.0f) {
+//
+//		ManifoldPoint mp;
+//		mp.contactID1 = this;
+//		mp.contactID2 = otherSphere;
+//		mp.contactNormal =  glm::normalize (dist);
+//		mp.dist = s/2;
+//		contactManifold->Add(mp);
+//		
+//	}else {
+//
+//		float a = dot(relVelocity, relVelocity);
+//		if (a < glm::epsilon<float>()) return;
+//		float b = dot(relVelocity, dist);
+//		if (b >= 0.0f) return;
+//		float d = b * b - a * c;
+//		if (d < 0.0f) return;
+//
+//		auto t = (-b - sqrt(d)) / a;
+//		
+//	}
+//
+//	
+//}
 
 void Sphere::CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* contactManifold) {
 
@@ -134,8 +151,8 @@ void Sphere::CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* co
 			ManifoldPoint mp;
 			mp.contactID1 = this;
 			mp.contactID2 = nullptr;
-			mp.plane.pointOfImpact = this->GetPos() - dist * plane.normal;
-			mp.plane.timeAfterCollision = time;
+			mp.pointOfImpact = this->GetPos() - dist * plane.normal;
+			mp.timeAfterCollision = time;
 			mp.contactNormal = plane.normal;
 			contactManifold->Add(mp);
 			
@@ -172,8 +189,8 @@ void Sphere::CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* co
 					ManifoldPoint mp;
 					mp.contactID1 = this;
 					mp.contactID2 = nullptr;
-					mp.plane.pointOfImpact = pointOfImpact;
-					mp.plane.timeAfterCollision = time - timeOfImpact;
+					mp.pointOfImpact = pointOfImpact;
+					mp.timeAfterCollision = time - timeOfImpact;
 					mp.contactNormal = plane.normal;
 					contactManifold->Add(mp);
 					
@@ -185,8 +202,8 @@ void Sphere::CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* co
 						ManifoldPoint mp;
 						mp.contactID1 = this; 
 						mp.contactID2 = nullptr;
-						mp.plane.pointOfImpact = pointOfImpact + 2 * r * plane.normal;
-						mp.plane.timeAfterCollision = time - timeOfImpact;
+						mp.pointOfImpact = pointOfImpact + 2 * r * plane.normal;
+						mp.timeAfterCollision = time - timeOfImpact;
 						mp.contactNormal = glm::normalize(pointOfImpact + r * plane.normal  - glm::vec3(plane.topL.x, plane.topL.y, pointOfImpact.z));
 						contactManifold->Add(mp);
 					}
@@ -203,21 +220,7 @@ void Sphere::CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* co
 
 void Sphere::CollisionWithBowl(Sphere* sphere, float time, ContactManifold* contactManifold) {
 
-	const glm::vec3 pos1 = this->GetNewPos();
-	const glm::vec3 bowl = glm::vec3(0, -9, 0);
-	const auto bowlRadius = 25.0f;
-	//const float dist = glm::distance(pos1, bowl) + ( bowlRadius - this->GetRadius());
-	const float dist = glm::distance(pos1, bowl) + this->GetRadius();
 	
-	if (dist < 0.0f)
-	{
-		ManifoldPoint mp;
-		mp.contactID1 = this;
-		mp.contactID2 = nullptr;
-		mp.contactNormal = glm::normalize(bowl - pos1);
-		contactManifold->Add(mp);
-	}
-
 	
 }
 
@@ -246,19 +249,20 @@ void Sphere::CollisionResponseWithSphere(ManifoldPoint &point)
 	
 	//point.contactID1->SetNewVel(-0.8f*colNormal* glm::dot(colNormal, point.contactID1->GetVel()) );
 	//point.contactID1->SetNewVel(glm::vec3( point.contactID1->GetVel().x, -point.contactID1->GetVel().y, point.contactID1->GetVel().z ));
+	auto e = 0.6f;
 	
 	if(point.contactID2) {
 		
-		point.contactID1->SetNewPos(point.contactID1->GetNewPos() + point.dist);
-		point.contactID1->SetNewVel((point.contactID1->GetVel() - 1.5f * colNormal * glm::dot(colNormal, point.contactID1->GetVel())));
-		point.contactID2->SetNewPos(point.contactID2->GetNewPos() - point.dist);;
-		point.contactID2->SetNewVel((point.contactID2->GetVel() - 1.5f * colNormal * glm::dot(colNormal, point.contactID2->GetVel())));
+		point.contactID1->SetNewPos(point.contactID1->GetNewPos() + point.dist * colNormal);
+		point.contactID1->SetNewVel((point.contactID1->GetVel() - (1.0f + e) * colNormal * glm::dot(colNormal, point.contactID1->GetVel())));
+		point.contactID2->SetNewPos(point.contactID2->GetNewPos() - point.dist * colNormal);;
+		point.contactID2->SetNewVel((point.contactID2->GetVel() - (1.0f + e) * colNormal * glm::dot(colNormal, point.contactID2->GetVel())));
 		
 	}else {
 
 		//point.contactID1->SetNewPos(point.plane.pointOfImpact - (point.contactID1->GetRadius() + 0.01f) * point.contactNormal);
-		point.contactID1->SetNewVel((point.contactID1->GetNewVel() - 1.6f * colNormal * glm::dot(colNormal, point.contactID1->GetNewVel())));
-		point.contactID1->SetNewPos(point.plane.pointOfImpact + point.plane.timeAfterCollision * point.contactID1->GetNewVel() - point.contactID1->GetRadius()  * point.contactNormal);
+		point.contactID1->SetNewVel((point.contactID1->GetNewVel() - (1.0f + e) * colNormal * glm::dot(colNormal, point.contactID1->GetNewVel())));
+		point.contactID1->SetNewPos(point.pointOfImpact + point.timeAfterCollision * point.contactID1->GetNewVel() - point.contactID1->GetRadius()  * point.contactNormal);
 		
 
 		

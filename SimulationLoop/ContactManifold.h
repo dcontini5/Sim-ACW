@@ -4,19 +4,14 @@
 
 class Sphere;
 
-struct Plane {
-
-	glm::vec3 pointOfImpact;
-	float timeAfterCollision;
-	
-};
 
 struct ManifoldPoint {
 	Sphere *contactID1;
 	Sphere *contactID2;
-	Plane plane;
-	float dist;
 	glm::vec3 contactNormal;
+	glm::vec3 pointOfImpact;
+	float timeAfterCollision;
+	float dist;
 };
 
 class ContactManifold

@@ -44,7 +44,7 @@ public:
 	~Sphere(void);
 
 	void CalculatePhysics(float dt, float t);
-	void CollisionWithSphere(Sphere* sphere, float time, ContactManifold *contactManifold);
+	void CollisionWithSphere(Sphere* otherSphere, float time, ContactManifold *contactManifold);
 	//void CollisionWithSphere(Sphere* others_sphere, std::unique_ptr<ContactManifold> contactManifold);
 	void CollisionWithPlane(Sphere* sphere, float time, ContactManifold* contactManifold);
 	void CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* contactManifold);
