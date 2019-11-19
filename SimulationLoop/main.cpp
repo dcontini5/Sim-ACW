@@ -12,7 +12,7 @@ Game *game;
 
 
 
-int main(int argc, char *argv[], char *envp[]){
+int main(){
 
 	
 	
@@ -80,6 +80,10 @@ void processInput(GLFWwindow *window)
 		game->SetCameraPos(game->GetCameraPos() + cameraSpeed * game->GetCameraFront());
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
 		game->SetCameraPos(game->GetCameraPos() - cameraSpeed * game->GetCameraFront());
+	if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+		game->UpdateModel(2.0f * -cameraSpeed);
+	if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+		game->UpdateModel(2.0f * cameraSpeed);
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 		game->SetCameraPos(game->GetCameraPos() + cameraSpeed * game->GetCameraUp());
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)

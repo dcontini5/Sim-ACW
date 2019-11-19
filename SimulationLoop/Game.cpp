@@ -66,9 +66,9 @@ Game::Game() : m_previous_time_(0) {
 
 	_cylinder = new Mesh(_cylinderGeometry.vertices, _cylinderGeometry.indices);
 
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 10, 0 }, { 0, -5, 0 } }));
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 5, 0 }, { 0.5f, -0 ,0} }));
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, 0 }, { -1.0f, -20,0 } }));
+	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 10, 0 }, { 0, -5, 0 } }));
+	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 5, 0 }, { 0.5f, -0 ,0} }));
+	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, 0 }, { -1.0f, -20,0 } }));
 
 	auto tmp = CreateBoxGeometry();
 	_box = new Mesh(tmp.vertices, tmp.indices);
@@ -228,7 +228,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 
 	//draw ball
 
-	for (auto i : _sphereList) i->Render(m_shader_program, glm::vec3(i->GetNewPos().x, i->GetNewPos().y, 0.0f ));
+	for (auto i : _sphereList) i->Render(m_shader_program, glm::vec3(i->GetNewPos().x, i->GetNewPos().y, i->GetNewPos().z ));
 
 	_box->Render(m_shader_program, glm::vec3(0.0f));
 	_bottomTray->Render(m_shader_program, glm::vec3(0.0f));
@@ -407,27 +407,27 @@ Geometry Game::CreateBoxGeometry(){
 
 	for (auto i = 0; i < 4; i++) {
 
-		//if(i%2 == 0) {
-		//	PlaneInfo pl;
-		//pl.botL = geometry.vertices[4 + i].position;
-		//pl.topL = geometry.vertices[0 + i].position;
-		//pl.topR = geometry.vertices[(3 + i) % 4].position;
-		//pl.botR = geometry.vertices[4 + (3 + i) % 4].position;
-		//pl.normal = glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)); //CCW order
-		//pl.d = glm::dot(pl.normal, pl.botL);
-		//_planeList.push_back(pl);
-		//}else {
-		//	PlaneInfo pl;
-		//	pl.botL = geometry.vertices[0 + i].position;
-		//	pl.topL = geometry.vertices[4 + i].position;
-		//	pl.topR = geometry.vertices[4 + (3 + i) % 4].position;
-		//	pl.botR = geometry.vertices[(3 + i) % 4].position;
-		//	pl.normal = glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)); //CCW order
-		//	pl.d = glm::dot(pl.normal, pl.botL);
-		//	_planeList.push_back(pl);
+		if(i%2 == 0) {
+			PlaneInfo pl;
+		pl.botL = geometry.vertices[4 + i].position;
+		pl.topL = geometry.vertices[0 + i].position;
+		pl.topR = geometry.vertices[(3 + i) % 4].position;
+		pl.botR = geometry.vertices[4 + (3 + i) % 4].position;
+		pl.normal = glm::abs(glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)) ); //CCW order
+		pl.d = glm::dot(pl.normal, pl.botL);
+		_planeList.push_back(pl);
+		}else {
+			PlaneInfo pl;
+			pl.botL = geometry.vertices[0 + i].position;
+			pl.topL = geometry.vertices[4 + i].position;
+			pl.topR = geometry.vertices[4 + (3 + i) % 4].position;
+			pl.botR = geometry.vertices[(3 + i) % 4].position;
+			pl.normal = glm::abs(glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)) ); //CCW order
+			pl.d = glm::dot(pl.normal, pl.botL);
+			_planeList.push_back(pl);
 
-		//	
-		//}
+			
+		}
 		
 		
 		geometry.indices.push_back(4 + i);
@@ -459,7 +459,7 @@ Geometry Game::CreateTrayGeometry()
 	pl.topL = geometry.vertices[1].position;
 	pl.topR = geometry.vertices[2].position;
 	pl.botR = geometry.vertices[3].position;
-	pl.normal = glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)); //CCW order
+	pl.normal = glm::abs(glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)) ); //CCW order
 	pl.d = glm::dot(pl.normal, pl.botL);
 	_planeList.push_back(pl);
 	
@@ -572,8 +572,10 @@ Geometry Game::CreateTopTrayGeometry() {
 void Game::AddBall(){
 
 	auto spawn = glm::vec3(0, 10, 0);
+	auto vel = glm::two_pi<float>() / 10;
+	
 	if (!lastsphere || (lastsphere->GetPos().y <= spawn.y - lastsphere->GetRadius() * 2)) {
-		_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { {0, 10, 0},{3*cos(m_previous_time_), -5, 3*sin(m_previous_time_)} }));
+		_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { {0, 10, 0},{3*cos(vel * m_previous_time_), -5, 3 * sin(vel * m_previous_time_)} }));
 		lastsphere = _sphereList.back();
 	}
 }

@@ -8,7 +8,7 @@
 int Sphere::countID = 0;
 
 Sphere::Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices, State state) : Mesh(std::move(vertices),
-                                                                                       std::move(indices)), m_mass(20.0f), m_radius(0.5), m_state(
+                                                                                       std::move(indices)), m_mass(2.0f), m_radius(0.5), m_state(
 	                                                                                               std::move(state))
 {
 	m_objectID = countID;
@@ -156,15 +156,15 @@ void Sphere::CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* co
 			mp.contactNormal = plane.normal;
 			contactManifold->Add(mp);
 			
-		}	/*else {
+		}/*	else {
 
 			if (glm::distance((this->GetPos() - dist * plane.normal).x, plane.topL.x) - this->GetRadius() <= 0.0f ){
 				
 				ManifoldPoint mp;
 				mp.contactID1 = this;
 				mp.contactID2 = nullptr;
-				mp.plane.pointOfImpact = this->GetPos() - dist * plane.normal;
-				mp.plane.timeAfterCollision = time;
+				mp.pointOfImpact = this->GetPos() - dist * plane.normal;
+				mp.timeAfterCollision = time;
 				mp.contactNormal = glm::normalize(this->GetPos() - dist * plane.normal - glm::vec3(plane.topL.x, plane.topL.y, GetPos().z));
 				contactManifold->Add(mp);
 			}
@@ -262,7 +262,7 @@ void Sphere::CollisionResponseWithSphere(ManifoldPoint &point)
 
 		//point.contactID1->SetNewPos(point.plane.pointOfImpact - (point.contactID1->GetRadius() + 0.01f) * point.contactNormal);
 		point.contactID1->SetNewVel((point.contactID1->GetNewVel() - (1.0f + e) * colNormal * glm::dot(colNormal, point.contactID1->GetNewVel())));
-		point.contactID1->SetNewPos(point.pointOfImpact + point.timeAfterCollision * point.contactID1->GetNewVel() - point.contactID1->GetRadius()  * point.contactNormal);
+		point.contactID1->SetNewPos(point.pointOfImpact + point.timeAfterCollision * point.contactID1->GetNewVel() + point.contactID1->GetRadius()  * point.contactNormal);
 		
 
 		
@@ -305,16 +305,11 @@ float Sphere::GetRadius() const
 
 glm::vec3 Sphere::force(const State& state, float t) const {
 
-	const glm::vec3 gravity(0.0f, -9.81f * 3, 0.0f);
+	const glm::vec3 gravity(0.0f, -9.81f , 0.0f);
 	const float k = 10; //k*pos thrust
 	const float b = 1.0f;  //drag coefficient
-	return  (-k * state.position - b * state.velocity)  / t + gravity;
+	return  - b * state.velocity  + gravity *m_mass ;
 
-	//const glm::vec3 gravity(0.0f, -9.81f, 0.0f);
-	//const float k = 10; //k*pos thrust
-	//const float b = 0.0f;  //drag coefficient
-	//return  ( gravity * m_mass /*+ state.position*/ - b * state.velocity ) / m_mass ;
-	
 }
 
 void Sphere::integrate(State& state, float t, float dt) {
@@ -332,7 +327,6 @@ void Sphere::integrate(State& state, float t, float dt) {
 	m_newState.velocity = state.velocity + dvdt * dt;
 
 
-	
 }
 
 
@@ -345,7 +339,7 @@ Derivative Sphere::Evaluate(const State &initial, const float t, const float dt,
 	Derivative output;
 
 	output.dx = state.velocity;
-	output.dv = force(state, t + dt);
+	output.dv = force(state, dt);
 
 	return output;
 }

@@ -26,6 +26,7 @@ public:
 	glm::vec3 GetCameraUp() const { return _cameraUp; };
 	void SetCameraPos(glm::vec3 newPos) { _cameraPos = newPos; };
 	void UpdateView() { _view = glm::lookAt(_cameraPos, _cameraPos + _cameraFront, _cameraUp); };
+	void UpdateModel(float rot) { _model = glm::rotate(_model, glm::radians(rot), glm::vec3(1.0f, 0.0f, 0.0f)); }
 	//void SetCameraFront(glm::vec3 newFront);
 	//void SetCameraUp(glm::vec3 newUp);
 	void AddBall();
