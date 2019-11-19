@@ -413,7 +413,7 @@ Geometry Game::CreateBoxGeometry(){
 		pl.topL = geometry.vertices[0 + i].position;
 		pl.topR = geometry.vertices[(3 + i) % 4].position;
 		pl.botR = geometry.vertices[4 + (3 + i) % 4].position;
-		pl.normal = glm::abs(glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)) ); //CCW order
+		pl.normal = (1.0f - i) * glm::abs(glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)) ); //CCW order
 		pl.d = glm::dot(pl.normal, pl.botL);
 		_planeList.push_back(pl);
 		}else {
@@ -422,7 +422,7 @@ Geometry Game::CreateBoxGeometry(){
 			pl.topL = geometry.vertices[4 + i].position;
 			pl.topR = geometry.vertices[4 + (3 + i) % 4].position;
 			pl.botR = geometry.vertices[(3 + i) % 4].position;
-			pl.normal = glm::abs(glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)) ); //CCW order
+			pl.normal = (2.0f - i) * glm::abs(glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)) ); //CCW order
 			pl.d = glm::dot(pl.normal, pl.botL);
 			_planeList.push_back(pl);
 
@@ -575,7 +575,8 @@ void Game::AddBall(){
 	auto vel = glm::two_pi<float>() / 10;
 	
 	if (!lastsphere || (lastsphere->GetPos().y <= spawn.y - lastsphere->GetRadius() * 2)) {
-		_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { {0, 10, 0},{3*cos(vel * m_previous_time_), -5, 3 * sin(vel * m_previous_time_)} }));
+		_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { {0, 10, 0},{8*cos(vel * m_previous_time_), -5, 8 * sin(vel * m_previous_time_)} }));
 		lastsphere = _sphereList.back();
+		std::cout << _sphereList.size() << "\n";
 	}
 }

@@ -57,6 +57,7 @@ public:
 	void SetNewVel(const glm::vec3& vel);
 	void SetMass(float mass);
 	
+	
 	glm::vec3 GetPos() const;
 	glm::vec3 GetNewPos() const;
 	glm::vec3 GetVel() const;

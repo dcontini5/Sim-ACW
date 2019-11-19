@@ -145,8 +145,8 @@ void Sphere::CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* co
 	if (glm::abs(dist) <= this->GetRadius()) {
 
 		
-		if (this->GetPos().x >= plane.topL.x && this->GetPos().x <= plane.topR.x &&
-			this->GetPos().z >= plane.botL.z && this->GetPos().z <= plane.topL.z) {
+		if (this->GetPos().x >= -5.0f && this->GetPos().x <= 5.0f &&
+			this->GetPos().z >= -5.0f && this->GetPos().z <= 5.0f) {
 			
 			ManifoldPoint mp;
 			mp.contactID1 = this;
@@ -182,8 +182,8 @@ void Sphere::CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* co
 				
 				const auto pointOfImpact = this->GetPos() + timeOfImpact * this->GetVel() - r * plane.normal ;
 				
-				if(pointOfImpact.x >= plane.topL.x && pointOfImpact.x <= plane.topR.x &&
-					pointOfImpact.z >= plane.botL.z && pointOfImpact.z <= plane.topL.z) {
+				if(pointOfImpact.x >= -5.0f && pointOfImpact.x <= 5.0f &&
+					pointOfImpact.z >= -5.0f && pointOfImpact.z <= 5.0f) {
 				
 					
 					ManifoldPoint mp;
