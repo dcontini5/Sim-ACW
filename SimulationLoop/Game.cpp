@@ -575,7 +575,7 @@ void Game::AddBall(){
 	auto vel = glm::two_pi<float>() / 10;
 	
 	if (!lastsphere || (lastsphere->GetPos().y <= spawn.y - lastsphere->GetRadius() * 2)) {
-		_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { {0, 10, 0},{8*cos(vel * m_previous_time_), -5, 8 * sin(vel * m_previous_time_)} }));
+		_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { spawn,{18*cos(vel * m_previous_time_), -5, 8 * sin(vel * m_previous_time_)} }));
 		lastsphere = _sphereList.back();
 		std::cout << _sphereList.size() << "\n";
 	}
