@@ -1,5 +1,6 @@
 
 .vs/*
 Debug/*
+Release/*
 SimulationLoop/Debug/*
 SimulationLoop/Release/*

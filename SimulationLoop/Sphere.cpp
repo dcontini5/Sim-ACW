@@ -138,15 +138,106 @@ void Sphere::CollisionWithSphere(Sphere* otherSphere,float time, ContactManifold
 //	
 //}
 
+void Sphere::CollisionWithTopPlane(PlaneInfo plane, float time, ContactManifold* contactManifold) {
+
+
+	auto dist = glm::dot(plane.normal, this->GetPos()) - plane.d;
+
+	if (glm::abs(dist) <= this->GetRadius()) {
+
+
+		if (this->GetPos().x >= -5.0f && this->GetPos().x <= 5.0f &&
+			this->GetPos().z >= -5.0f && this->GetPos().z <= 5.0f &&
+			this->GetPos().y >= -10.0f && this->GetPos().y <= 10.0f) {
+
+			if(1){}
+			
+			ManifoldPoint mp;
+			mp.contactID1 = this;
+			mp.contactID2 = nullptr;
+			mp.pointOfImpact = this->GetPos() - dist * plane.normal;
+			mp.timeAfterCollision = time;
+			mp.contactNormal = plane.normal;
+			contactManifold->Add(mp);
+
+		}/*	else {
+
+			if (glm::distance((this->GetPos() - dist * plane.normal).x, plane.topL.x) - this->GetRadius() <= 0.0f ){
+
+				ManifoldPoint mp;
+				mp.contactID1 = this;
+				mp.contactID2 = nullptr;
+				mp.pointOfImpact = this->GetPos() - dist * plane.normal;
+				mp.timeAfterCollision = time;
+				mp.contactNormal = glm::normalize(this->GetPos() + dist * plane.normal - glm::vec3(plane.topL.x, plane.topL.y, GetPos().z));
+				contactManifold->Add(mp);
+			}
+
+		}*/
+
+	}
+	else {
+
+		const auto denom = glm::dot(plane.normal, this->GetVel());
+		if (denom * dist < 0) {
+
+			const auto r = dist > 0.0f ? this->GetRadius() : -this->GetRadius();
+			const auto timeOfImpact = (r - dist) / denom;
+			if (timeOfImpact <= time) {
+
+				const auto pointOfImpact = this->GetPos() + timeOfImpact * this->GetVel() - r * plane.normal;
+
+				if (pointOfImpact.x >= -5.0f && pointOfImpact.x <= 5.0f &&
+					pointOfImpact.z >= -5.0f && pointOfImpact.z <= 5.0f &&
+					this->GetPos().y >= -10.0f && this->GetPos().y <= 10.0f) {
+
+
+					ManifoldPoint mp;
+					mp.contactID1 = this;
+					mp.contactID2 = nullptr;
+					mp.pointOfImpact = pointOfImpact;
+					mp.timeAfterCollision = time - timeOfImpact;
+					mp.contactNormal = plane.normal;
+					contactManifold->Add(mp);
+
+
+				}
+				else {
+
+					dist = glm::distance((pointOfImpact + r * plane.normal).x, plane.topL.x) - (this->GetRadius());
+					if (dist < 0.0f) {
+						ManifoldPoint mp;
+						mp.contactID1 = this;
+						mp.contactID2 = nullptr;
+						mp.pointOfImpact = pointOfImpact + 2 * r * plane.normal;
+						mp.timeAfterCollision = time - timeOfImpact;
+						mp.contactNormal = glm::normalize(pointOfImpact + r * plane.normal - glm::vec3(plane.topL.x, plane.topL.y, pointOfImpact.z));
+						contactManifold->Add(mp);
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	
+}
+
 void Sphere::CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* contactManifold) {
 
 	auto dist = glm::dot(plane.normal, this->GetPos()) - plane.d;
+
+	auto inside = ( this->GetPos().x >= -5.0f && this->GetPos().x <= 5.0f) +
+		(this->GetPos().z >= -5.0f && this->GetPos().z <= 5.0f) +
+		(this->GetPos().y >= -10.0f && this->GetPos().y <= 10.0f);
 	
 	if (glm::abs(dist) <= this->GetRadius()) {
 
 		
-		if (this->GetPos().x >= -5.0f && this->GetPos().x <= 5.0f &&
-			this->GetPos().z >= -5.0f && this->GetPos().z <= 5.0f) {
+		if ( inside == 3 ) {
 			
 			ManifoldPoint mp;
 			mp.contactID1 = this;
@@ -165,7 +256,7 @@ void Sphere::CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* co
 				mp.contactID2 = nullptr;
 				mp.pointOfImpact = this->GetPos() - dist * plane.normal;
 				mp.timeAfterCollision = time;
-				mp.contactNormal = glm::normalize(this->GetPos() - dist * plane.normal - glm::vec3(plane.topL.x, plane.topL.y, GetPos().z));
+				mp.contactNormal = glm::normalize(this->GetPos() + dist * plane.normal - glm::vec3(plane.topL.x, plane.topL.y, GetPos().z));
 				contactManifold->Add(mp);
 			}
 
@@ -182,8 +273,7 @@ void Sphere::CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* co
 				
 				const auto pointOfImpact = this->GetPos() + timeOfImpact * this->GetVel() - r * plane.normal ;
 				
-				if(pointOfImpact.x >= -5.0f && pointOfImpact.x <= 5.0f &&
-					pointOfImpact.z >= -5.0f && pointOfImpact.z <= 5.0f) {
+				if( inside == 3 ) {
 				
 					
 					ManifoldPoint mp;

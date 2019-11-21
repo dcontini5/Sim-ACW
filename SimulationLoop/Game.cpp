@@ -235,8 +235,6 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	_topTray->Render(m_shader_program, glm::vec3(0.0f));
 	
 	
-
-	
 	trans = glm::translate(trans, glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::scale(trans, glm::vec3(2.0f));
