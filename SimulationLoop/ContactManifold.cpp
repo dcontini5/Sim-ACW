@@ -6,8 +6,7 @@ ContactManifold::ContactManifold(void) : m_numOfPoints(0)
 
 
 ContactManifold::~ContactManifold(void)
-{
-}
+= default;
 
 void ContactManifold::Add(const ManifoldPoint& point)
 {

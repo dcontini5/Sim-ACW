@@ -30,6 +30,18 @@ public:
 	//void SetCameraFront(glm::vec3 newFront);
 	//void SetCameraUp(glm::vec3 newUp);
 	void AddBall();
+	void RemoveTopTray() {
+		_moveTopTray = true;
+		topTray.direction = 1.0f;
+	};
+	void InsertTopTray() {
+		_moveTopTray = true;
+		topTray.direction = -1.0f;
+	};
+	void RemoveBottomTray() { _moveBottomTray = true; _planeList[4].direction = 1.0f; };
+	void InsertBottomTray() { _moveBottomTray = true; _planeList[4].direction = -1.0f; };
+	
+
 
 private:
 	void SimulationLoop();
@@ -43,9 +55,9 @@ private:
 	Geometry CreateBoxGeometry();
 	Geometry CreateTrayGeometry();
 	Geometry CreateTopTrayGeometry();
+	bool moveTray(PlaneInfo& plane, float dt);
+	void UpdateTrays(State& state, State& newState);
 
-	
-	
 
 private:
 
@@ -55,6 +67,7 @@ private:
 	float m_previous_time_;
 	std::vector<Sphere*> _sphereList;
 	std::vector<PlaneInfo> _planeList;
+	PlaneInfo topTray;
 	//Sphere *m_sphere1;
 	//Sphere *m_sphere2;
 	//Sphere *m_sphere3;
@@ -62,22 +75,17 @@ private:
 	Geometry _sphereGeometry;
 	Geometry _cylinderGeometry;
 	Sphere* lastsphere;
-#ifdef DEBUG
-	std::unique_ptr<Mesh> _box;
-	std::unique_ptr<Mesh> _bottomTray;
-	std::unique_ptr<Mesh> _topTray;
-	std::unique_ptr<Mesh> _cylinder;
-	std::unique_ptr<Mesh> _bowl;
-	std::unique_ptr<ContactManifold>  m_manifold;
-#else
+
 	Mesh* _box;
 	Mesh* _bottomTray ;
 	Mesh* _topTray ;
 	Mesh* _cylinder ;
 	Mesh* _bowl ;
 	ContactManifold* m_manifold;
-	
-#endif
+	bool _moveTopTray;
+	float  _topTrayDirection;
+	bool _moveBottomTray;
+	float  _bottomTrayDirection;
 	glm::mat4 _proj, _model, _view;
 	glm::vec3 _cameraPos, _cameraFront, _cameraUp;
 

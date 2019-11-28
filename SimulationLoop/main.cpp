@@ -66,15 +66,25 @@ int main(){
 void processInput(GLFWwindow *window)
 {
 	auto cameraSpeed = 0.1f;
+	
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
 	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
-			game->AddBall();
+		game->AddBall();
+	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+		game->InsertTopTray();
+	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
+		game->RemoveTopTray();
+	if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
+		game->InsertBottomTray();
+	if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
+		game->RemoveBottomTray();
 	if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
 		//delete game;
 		delete game;
 		game = new Game(); //todo solve memory leak
 	}
+	/*if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)*/
 		
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
 		game->SetCameraPos(game->GetCameraPos() + cameraSpeed * game->GetCameraFront());

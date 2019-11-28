@@ -2,62 +2,7 @@
 #include <GLFW/glfw3.h>
 #include "Game.h"
 
-#ifdef DEBUG 
-Game::Game() : m_previousTime(0) {
 
-	CreateSphereGeometry(_sphereGeometry.vertices, _sphereGeometry.indices);
-	CreateCylinderGeometry(_cylinderGeometry.vertices, _cylinderGeometry.indices);
-
-	_cylinder = std::make_unique<Mesh>(_cylinderGeometry.vertices, _cylinderGeometry.indices);
-	
-	
-	
-	_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 15, }, { 0, -5 } }));
-	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, }, { 0.5f, -0 } }));
-	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, -15, }, { -1.0f, -20 } }));
-	
-	auto tmp = CreateBoxGeometry();
-	_box = std::make_unique<Mesh> ( Mesh(tmp.vertices, tmp.indices));
-
-	tmp = CreateTrayGeometry();
-	_bottomTray = std::make_unique<Mesh>( Mesh(tmp.vertices, tmp.indices));
-	tmp = CreateTopTrayGeometry();
-	_topTray = std::make_unique<Mesh>( Mesh(tmp.vertices, tmp.indices));
-
-	std::vector<unsigned int>::const_iterator first = _sphereGeometry.indices.begin() + 918;
-	std::vector<unsigned int>::const_iterator last = _sphereGeometry.indices.end();
-	const std::vector<unsigned int> newVec(first, last);
-
-
-	_bowl = std::make_unique<Mesh>(Mesh(_sphereGeometry.vertices, newVec));
-
-	m_manifold = std::make_unique<ContactManifold>(ContactManifold());
-	m_shader_program = new ShaderProgram("VS.glsl", "FS.glsl");
-	
-	QueryPerformanceFrequency(&frequency);
-	QueryPerformanceCounter(&start);
-
-
-	_model = glm::mat4(1.0f);
-	_model = glm::rotate(_model, glm::radians(10.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-
-	_proj = glm::perspective(glm::radians(45.0f), (float)800 / (float)600, 0.1f, 200.0f);
-
-	_cameraPos = glm::vec3(0.0f, 0.0f, 50.0f);
-	_cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
-	_cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
-
-
-	const auto a = glm::vec3(5, 0, -5);
-	const auto b = glm::vec3(-5, 0, -5);
-	const auto c = glm::vec3(-5, 0, 5);
-	
-
-	UpdateView();
-	
-	
-}
-#else
 
 Game::Game() : m_previous_time_(0) {
 
@@ -70,6 +15,19 @@ Game::Game() : m_previous_time_(0) {
 	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 5, 0 }, { 0.5f, -0 ,0} }));
 	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, 0 }, { -1.0f, -20,0 } }));
 
+
+	auto a = glm::vec3(3, 4, 5);
+	auto b = glm::vec3(5, 6, 7);
+
+	auto dist = b - a;
+
+	auto distDot = glm::dot(dist, dist) - ( 0 + 1 ) * (0 + 1);
+
+
+	
+	auto distWdist = glm::distance(a, b) - (0 + 1);
+	
+	
 	auto tmp = CreateBoxGeometry();
 	_box = new Mesh(tmp.vertices, tmp.indices);
 	
@@ -104,12 +62,15 @@ Game::Game() : m_previous_time_(0) {
 	_cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
 	lastsphere = nullptr;
+	_moveBottomTray = false;
+	_moveTopTray = false;
+	
 	UpdateView();
 
 
 }
 
-#endif
+
 
 
 //Game::~Game(void)
@@ -172,7 +133,8 @@ void Game::CalculateObjectPhysics()
 {
 
 	for (auto i : _sphereList) i->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
-
+	if(_moveBottomTray) _moveBottomTray = moveTray(_planeList[4], m_dt);
+	if(_moveTopTray) _moveTopTray = moveTray(topTray, m_dt);
 	
 	
 }
@@ -185,6 +147,7 @@ void Game::DynamicCollisionDetection()
 	for (auto i : _sphereList) {
 		for(auto p : _planeList) i->CollisionWithPlane(p, m_dt, m_manifold);
 
+		i->CollisionWithTopPlane(topTray, m_dt, m_manifold);
 		i->CollisionWithBowl(i, m_dt, m_manifold);
 		
 		const std::vector<Sphere*>::const_iterator first = _sphereList.begin() + pos;
@@ -209,7 +172,10 @@ void Game::DynamicCollisionResponse() const {
 void Game::UpdateObjectPhysics()
 {
 	for (auto i : _sphereList) i->Update();
+	if (_moveBottomTray) UpdateTrays(_planeList[4].state, _planeList[4].new_state);
+	if (_moveTopTray) UpdateTrays(topTray.state, topTray.new_state);
 
+	
 }
 
 //**************************Render and display the scene in OpenGL***********************
@@ -231,8 +197,8 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	for (auto i : _sphereList) i->Render(m_shader_program, glm::vec3(i->GetNewPos().x, i->GetNewPos().y, i->GetNewPos().z ));
 
 	_box->Render(m_shader_program, glm::vec3(0.0f));
-	_bottomTray->Render(m_shader_program, glm::vec3(0.0f));
-	_topTray->Render(m_shader_program, glm::vec3(0.0f));
+	_bottomTray->Render(m_shader_program, _planeList[4].state.position);
+	_topTray->Render(m_shader_program, topTray.state.position);
 	
 	
 	trans = glm::translate(trans, glm::vec3(0.0f, 1.0f, 0.0f));
@@ -407,21 +373,21 @@ Geometry Game::CreateBoxGeometry(){
 
 		if(i%2 == 0) {
 			PlaneInfo pl;
-		pl.botL = geometry.vertices[4 + i].position;
+		auto botL = geometry.vertices[4 + i].position;
 		pl.topL = geometry.vertices[0 + i].position;
-		pl.topR = geometry.vertices[(3 + i) % 4].position;
-		pl.botR = geometry.vertices[4 + (3 + i) % 4].position;
-		pl.normal = (1.0f - i) * glm::abs(glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)) ); //CCW order
-		pl.d = glm::dot(pl.normal, pl.botL);
+		auto topR = geometry.vertices[(3 + i) % 4].position;
+		auto botR = geometry.vertices[4 + (3 + i) % 4].position;
+		pl.normal = (1.0f - i) * glm::abs(glm::normalize(glm::cross(botR - botL, pl.topL - botL)) ); //CCW order
+		pl.d = glm::dot(pl.normal, botL);
 		_planeList.push_back(pl);
 		}else {
 			PlaneInfo pl;
-			pl.botL = geometry.vertices[0 + i].position;
+			auto botL = geometry.vertices[0 + i].position;
 			pl.topL = geometry.vertices[4 + i].position;
-			pl.topR = geometry.vertices[4 + (3 + i) % 4].position;
-			pl.botR = geometry.vertices[(3 + i) % 4].position;
-			pl.normal = (2.0f - i) * glm::abs(glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)) ); //CCW order
-			pl.d = glm::dot(pl.normal, pl.botL);
+			auto topR = geometry.vertices[4 + (3 + i) % 4].position;
+			auto botR = geometry.vertices[(3 + i) % 4].position;
+			pl.normal = (2.0f - i) * glm::abs(glm::normalize(glm::cross(botR - botL, pl.topL - botL)) ); //CCW order
+			pl.d = glm::dot(pl.normal, botL);
 			_planeList.push_back(pl);
 
 			
@@ -453,12 +419,16 @@ Geometry Game::CreateTrayGeometry()
 	geometry.vertices.push_back({ glm::vec3(5.0f,  y, -5.0f) });
 
 	PlaneInfo pl;
-	pl.botL = geometry.vertices[0].position;
+	auto botL = geometry.vertices[0].position;
 	pl.topL = geometry.vertices[1].position;
-	pl.topR = geometry.vertices[2].position;
-	pl.botR = geometry.vertices[3].position;
-	pl.normal = glm::abs(glm::normalize(glm::cross(pl.botR - pl.botL, pl.topL - pl.botL)) ); //CCW order
-	pl.d = glm::dot(pl.normal, pl.botL);
+	auto topR = geometry.vertices[2].position;
+	auto botR = geometry.vertices[3].position;
+	pl.normal = glm::abs(glm::normalize(glm::cross(botR - botL, pl.topL - botL)) ); //CCW order
+	pl.d = glm::dot(pl.normal, botL);
+	pl.state.position = glm::vec3(0.0f);
+	pl.state.velocity = glm::vec3(2.5, 0, 0);
+
+	
 	_planeList.push_back(pl);
 	
 	
@@ -564,6 +534,20 @@ Geometry Game::CreateTopTrayGeometry() {
 
 	}
 
+
+	
+	
+	auto botL = geometry.vertices[0].position;
+	topTray.topL = geometry.vertices[80].position;
+	auto topR = geometry.vertices[87].position;
+	auto botR = geometry.vertices[7].position;
+	topTray.normal = glm::abs(glm::normalize(glm::cross(botR - botL, topTray.topL - botL))); //CCW order
+	topTray.d = glm::dot(topTray.normal, botL);
+	topTray.state.position = glm::vec3(0.0f);
+	topTray.state.velocity = glm::vec3(2.5, 0, 0);
+
+
+	
 	return geometry;
 }
 
@@ -577,4 +561,35 @@ void Game::AddBall(){
 		lastsphere = _sphereList.back();
 		std::cout << _sphereList.size() << "\n";
 	}
+}
+
+
+bool Game::moveTray(PlaneInfo& plane, float dt) {
+
+
+	plane.new_state.position = plane.state.position + plane.state.velocity * dt * plane.direction;
+	plane.new_state.velocity = plane.state.velocity;
+
+	
+	if(plane.state.position.x < 0.0f) {
+
+		plane.state.position.x = 0.0f;
+		return false;
+		
+	}
+	if(plane.state.position.x > 15.0f) {
+
+		plane.state.position.x = 15.0f;
+		return false;
+		
+	}
+	
+	return true;
+	
+}
+
+void Game::UpdateTrays(State& state, State& newState)
+{
+	state.velocity = newState.velocity;
+	state.position = newState.position;
 }
