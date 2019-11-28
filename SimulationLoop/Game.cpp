@@ -104,7 +104,7 @@ void Game::SimulationLoop()
 	
 	// calculate dt based on the simulation loop rate using a timer
 	QueryPerformanceCounter(&end);
-	m_dt = static_cast<float>((end.QuadPart - start.QuadPart) / static_cast<double>(frequency.QuadPart));
+	m_dt = static_cast<float>((end.QuadPart - start.QuadPart) * 2 / static_cast<double>(frequency.QuadPart));
 	start = end;
 	m_previous_time_ = static_cast<float>(end.QuadPart);
 
@@ -194,7 +194,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 
 	//draw ball
 
-	for (auto i : _sphereList) i->Render(m_shader_program, glm::vec3(i->GetNewPos().x, i->GetNewPos().y, i->GetNewPos().z ));
+	for (auto i : _sphereList) i->Render(m_shader_program, i->GetNewPos());
 
 	_box->Render(m_shader_program, glm::vec3(0.0f));
 	_bottomTray->Render(m_shader_program, _planeList[4].state.position);

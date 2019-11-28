@@ -54,10 +54,7 @@ int main(){
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
-/*
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &VBO);
-*/
+
 	glfwTerminate();
 	return 0;
 	
@@ -84,7 +81,7 @@ void processInput(GLFWwindow *window)
 		delete game;
 		game = new Game(); //todo solve memory leak
 	}
-	/*if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)*/
+	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
 		
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
 		game->SetCameraPos(game->GetCameraPos() + cameraSpeed * game->GetCameraFront());
