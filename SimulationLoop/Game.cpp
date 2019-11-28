@@ -50,7 +50,7 @@ Game::Game() : m_previous_time_(0) {
 
 	QueryPerformanceFrequency(&frequency);
 	QueryPerformanceCounter(&start);
-
+	
 
 	_model = glm::mat4(1.0f);
 	_model = glm::rotate(_model, glm::radians(10.0f), glm::vec3(1.0f, 0.0f, 0.0f));
@@ -64,7 +64,8 @@ Game::Game() : m_previous_time_(0) {
 	lastsphere = nullptr;
 	_moveBottomTray = false;
 	_moveTopTray = false;
-	
+	_pause = false;
+	_pauseCD = 0.0f;
 	UpdateView();
 
 
@@ -104,12 +105,11 @@ void Game::SimulationLoop()
 	
 	// calculate dt based on the simulation loop rate using a timer
 	QueryPerformanceCounter(&end);
-	m_dt = static_cast<float>((end.QuadPart - start.QuadPart) * 2 / static_cast<double>(frequency.QuadPart));
+	m_dt = static_cast<float>((end.QuadPart - start.QuadPart) / static_cast<double>(frequency.QuadPart));
 	start = end;
 	m_previous_time_ = static_cast<float>(end.QuadPart);
-
 	m_fps = static_cast<int>(1.0 / m_dt);
-
+	if (_pause) return;
 	// Calculate the physic calculations on all objects (e.g. new position, velocity, etc)
 	CalculateObjectPhysics();
 
@@ -200,13 +200,14 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	_bottomTray->Render(m_shader_program, _planeList[4].state.position);
 	_topTray->Render(m_shader_program, topTray.state.position);
 	
-	
+	trans = glm::translate(trans, topTray.state.position);
 	trans = glm::translate(trans, glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::scale(trans, glm::vec3(2.0f));
 	_cylinder->Render(m_shader_program, trans);
 
 	trans = glm::mat4(1);
+	trans = glm::translate(trans, topTray.state.position);
 	trans = glm::translate(trans, glm::vec3(0.0f, -1.0f, 0.0f));
 	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::rotate(trans, glm::radians(120.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -215,6 +216,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	_cylinder->Render(m_shader_program, trans);
 
 	trans = glm::mat4(1);
+	trans = glm::translate(trans, topTray.state.position);
 	trans = glm::translate(trans, glm::vec3(0.0f, -1.0f, 0.0f));
 	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::rotate(trans, glm::radians(240.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -223,6 +225,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 	_cylinder->Render(m_shader_program, trans);
 
 	trans = glm::mat4(1);
+	trans = glm::translate(trans, topTray.state.position);
 	trans = glm::translate(trans, glm::vec3(0.0f, -1.0f, 0.0f));
 	trans = glm::rotate_slow(trans, static_cast<float>(end.QuadPart*0.0000001), glm::vec3(0.0f, 1.0f, 0.0f));
 	trans = glm::translate(trans, glm::vec3(-2.0f, 4.0f, 0.0f));
@@ -372,7 +375,7 @@ Geometry Game::CreateBoxGeometry(){
 	for (auto i = 0; i < 4; i++) {
 
 		if(i%2 == 0) {
-			PlaneInfo pl;
+			PlaneInfo pl{};
 		auto botL = geometry.vertices[4 + i].position;
 		pl.topL = geometry.vertices[0 + i].position;
 		auto topR = geometry.vertices[(3 + i) % 4].position;
@@ -381,7 +384,7 @@ Geometry Game::CreateBoxGeometry(){
 		pl.d = glm::dot(pl.normal, botL);
 		_planeList.push_back(pl);
 		}else {
-			PlaneInfo pl;
+			PlaneInfo pl{};
 			auto botL = geometry.vertices[0 + i].position;
 			pl.topL = geometry.vertices[4 + i].position;
 			auto topR = geometry.vertices[4 + (3 + i) % 4].position;

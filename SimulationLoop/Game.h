@@ -40,7 +40,7 @@ public:
 	};
 	void RemoveBottomTray() { _moveBottomTray = true; _planeList[4].direction = 1.0f; };
 	void InsertBottomTray() { _moveBottomTray = true; _planeList[4].direction = -1.0f; };
-	
+	void TogglePause() { if (m_previous_time_ - _pauseCD > 1.0f) { _pause = !_pause; _pauseCD = m_previous_time_; } };
 
 
 private:
@@ -75,7 +75,8 @@ private:
 	Geometry _sphereGeometry;
 	Geometry _cylinderGeometry;
 	Sphere* lastsphere;
-
+	bool _pause;
+	float _pauseCD;
 	Mesh* _box;
 	Mesh* _bottomTray ;
 	Mesh* _topTray ;

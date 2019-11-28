@@ -82,7 +82,7 @@ void processInput(GLFWwindow *window)
 		game = new Game(); //todo solve memory leak
 	}
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
-		
+		game->TogglePause();
 	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
 		game->SetCameraPos(game->GetCameraPos() + cameraSpeed * game->GetCameraFront());
 	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
