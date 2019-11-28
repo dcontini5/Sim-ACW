@@ -99,6 +99,10 @@ void processInput(GLFWwindow *window)
 		game->SetCameraPos(game->GetCameraPos() - glm::normalize(glm::cross(game->GetCameraFront(), game->GetCameraUp())) * cameraSpeed);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		game->SetCameraPos(game->GetCameraPos() + glm::normalize(glm::cross(game->GetCameraFront(), game->GetCameraUp())) * cameraSpeed);
+	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
+		game->SetPropellerSpeed(-cameraSpeed);
+	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
+		game->SetPropellerSpeed(cameraSpeed);
 
 	game->UpdateView();
 }
