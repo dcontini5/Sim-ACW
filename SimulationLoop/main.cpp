@@ -111,6 +111,10 @@ void processInput(GLFWwindow *window)
 		game->setRadius(0.1f);
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
 		game->setRadius(-0.1f);
+	if (glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS)
+		game->setFric(0.01f);
+	if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
+		game->setFric(-0.01f);
 
 	game->UpdateView();
 }
