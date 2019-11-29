@@ -11,23 +11,6 @@ Game::Game() : m_previous_time_(0) {
 
 	_cylinder = new Mesh(_cylinderGeometry.vertices, _cylinderGeometry.indices);
 
-	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 10, 0 }, { 0, -5, 0 } }));
-	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 5, 0 }, { 0.5f, -0 ,0} }));
-	//_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { { 0, 0, 0 }, { -1.0f, -20,0 } }));
-
-
-	auto a = glm::vec3(3, 4, 5);
-	auto b = glm::vec3(5, 6, 7);
-
-	auto dist = b - a;
-
-	auto distDot = glm::dot(dist, dist) - ( 0 + 1 ) * (0 + 1);
-
-
-	
-	auto distWdist = glm::distance(a, b) - (0 + 1);
-	
-	
 	auto tmp = CreateBoxGeometry();
 	_box = new Mesh(tmp.vertices, tmp.indices);
 	
