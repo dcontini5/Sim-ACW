@@ -7,8 +7,8 @@
 
 int Sphere::countID = 0;
 
-Sphere::Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices, State state) : Mesh(std::move(vertices),
-                                                                                       std::move(indices)), m_mass(2.0f), m_radius(0.5), m_state(
+Sphere::Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices, State state, float radius) : Mesh(std::move(vertices),
+                                                                                       std::move(indices)), m_mass(2.0f), m_radius(radius), m_state(
 	                                                                                               std::move(state))
 {
 	m_objectID = countID;
@@ -44,8 +44,6 @@ void Sphere::SetMass(const float mass)
 {
 	m_mass = mass;
 }
-
-
 
 
 void Sphere::CalculatePhysics(const float t, const float dt)
@@ -324,7 +322,7 @@ void Sphere::Update()
 	m_state.position = m_newState.position;
 }
 
-void Sphere::CollisionResponseWithSphere(ManifoldPoint &point)
+void Sphere::CollisionResponseWithSphere(ManifoldPoint &point, float e)
 {
 	// ****************************************************************
 	// ******** This implementation is very basic and does not ********
@@ -335,7 +333,7 @@ void Sphere::CollisionResponseWithSphere(ManifoldPoint &point)
 
 	const glm::vec3 colNormal = point.contactNormal;
 	
-	auto e = 0.6f;
+	
 	
 	if(point.contactID2) {
 		

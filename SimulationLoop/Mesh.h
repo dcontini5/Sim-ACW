@@ -27,8 +27,10 @@ public:
 	Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices);
 	~Mesh();
 
+	void Mesh::Render(ShaderProgram* shaderProgram, const glm::mat4 position) const;
 	void Render( ShaderProgram* shaderProgram, const glm::vec3 position) const;
-	void Render( ShaderProgram* shaderProgram, const glm::mat4 position) const;
+	void Render( ShaderProgram* shaderProgram, const glm::vec3 position, float radius) const;
+	
 
 
 private:

@@ -4,7 +4,7 @@
 
 
 
-Game::Game() : m_previous_time_(0) {
+Game::Game() : m_previous_time_(0), coeficentOfElasicity(0.6f) {
 
 	CreateSphereGeometry(_sphereGeometry.vertices, _sphereGeometry.indices);
 	CreateCylinderGeometry(_cylinderGeometry.vertices, _cylinderGeometry.indices);
@@ -51,6 +51,11 @@ Game::Game() : m_previous_time_(0) {
 	_moveTopTray = false;
 	_pause = false;
 	_pauseCD = 0.0f;
+	_radiusCD = 0.0f;
+	_ballRadius = 0.5f;
+	_frictionMagnitude = 1.0f;
+
+	
 	UpdateView();
 
 
@@ -83,6 +88,40 @@ void Game::Update()
 
 }
 
+void Game::setCoE(float sum) {
+
+	coeficentOfElasicity += sum;
+	coeficentOfElasicity = coeficentOfElasicity < 0.1f ? 0.1f : coeficentOfElasicity;
+	coeficentOfElasicity = coeficentOfElasicity > 1.0f ? 1.0f : coeficentOfElasicity;
+	
+	ConsoleOutput();
+	
+	
+}
+
+
+void Game::setFric(float sum) {
+
+	_frictionMagnitude += sum;
+	_frictionMagnitude = _frictionMagnitude < 0.0f ? 0.0f : _frictionMagnitude;
+	
+	ConsoleOutput();
+	
+	
+}
+
+
+
+void Game::setRadius(float sum) {
+
+	if (m_previous_time_ - _radiusCD > 1.0f) {
+		
+		_ballRadius += sum;
+		_ballRadius = _ballRadius < 0.5f ? 0.5f : _ballRadius;
+		_radiusCD = m_previous_time_;
+	} 
+}
+
 void Game::SimulationLoop()
 {
 
@@ -106,7 +145,7 @@ void Game::SimulationLoop()
 
 	// Handle dynamic collision responses using the contact manifold
 	DynamicCollisionResponse();
-
+	
 	// Update the physics calculations on all objects (e.g. new position, velocity, etc)
 	UpdateObjectPhysics();
 }
@@ -116,8 +155,17 @@ void Game::SimulationLoop()
 
 void Game::CalculateObjectPhysics()
 {
-
-	for (auto i : _sphereList) i->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
+	auto count = 0;
+	for (auto i : _sphereList) {
+		if (i->GetPos().y < -20.0f) {
+			_sphereList.erase(_sphereList.begin() + count);
+			ConsoleOutput();
+			continue;
+		}
+		i->CalculatePhysics(static_cast<float>(start.QuadPart), m_dt);
+		count++;
+	}
+	
 	if(_moveBottomTray) _moveBottomTray = moveTray(_planeList[4], m_dt);
 	if(_moveTopTray) _moveTopTray = moveTray(topTray, m_dt);
 	CalculateRotorSpeed();
@@ -149,7 +197,7 @@ void Game::DynamicCollisionResponse() const {
 	for(int collision = 0; collision < m_manifold->GetNumPoints(); ++collision)
 	{
 		ManifoldPoint &point = m_manifold->GetPoint(collision);
-		point.contactID1->CollisionResponseWithSphere(point);
+		point.contactID1->CollisionResponseWithSphere(point, coeficentOfElasicity);
 	}
 }
 
@@ -179,7 +227,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 
 	//draw ball
 
-	for (auto i : _sphereList) i->Render(m_shader_program, i->GetNewPos());
+	for (auto i : _sphereList) i->Render(m_shader_program, i->GetNewPos(), i->GetRadius() + i->GetRadius());
 
 	_box->Render(m_shader_program, glm::vec3(0.0f));
 	_bottomTray->Render(m_shader_program, _planeList[4].state.position);
@@ -228,7 +276,7 @@ void Game::Render()									// Here's Where We Do All The Drawing
 // Code taken from http://www.songho.ca/opengl/gl_sphere.html
 void Game::CreateSphereGeometry(std::vector<Vertex>& vertices, std::vector<unsigned int>& indices) {
 
-	auto radius = 0.5;
+	auto radius = 0.5f;
 	auto sectorCount = 18;
 	auto stackCount = 18;
 
@@ -545,9 +593,10 @@ void Game::AddBall(){
 	auto vel = glm::two_pi<float>() / 10;
 	
 	if (!lastsphere || (lastsphere->GetPos().y <= spawn.y - lastsphere->GetRadius() * 2)) {
-		_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { spawn,{18*cos(vel * m_previous_time_), -5, 8 * sin(vel * m_previous_time_)} }));
+		_sphereList.push_back(new Sphere(_sphereGeometry.vertices, _sphereGeometry.indices, { spawn,{18*cos(vel * m_previous_time_), -5, 8 * sin(vel * m_previous_time_)} }, _ballRadius));
 		lastsphere = _sphereList.back();
-		std::cout << _sphereList.size() << "\n";
+		ConsoleOutput();
+		
 	}
 }
 
@@ -576,8 +625,21 @@ bool Game::moveTray(PlaneInfo& plane, float dt) {
 	
 }
 
+
+
 void Game::UpdateTrays(State& state, State& newState)
 {
 	state.velocity = newState.velocity;
 	state.position = newState.position;
+}
+
+inline void Game::ConsoleOutput() {
+
+	std::string output = "";
+
+	output += "Number of Balls:  " + std::to_string(_sphereList.size()) + "\n";
+	output += "Coeficient of Elasticity:  " + std::to_string(coeficentOfElasicity) + "\n";
+	output += "Friction Magnitude:  " + std::to_string(_frictionMagnitude) + "\n\n\n";
+	std::cout << output;
+	
 }

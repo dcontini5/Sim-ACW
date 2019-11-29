@@ -42,7 +42,9 @@ public:
 	void TogglePause() { if (m_previous_time_ - _pauseCD > 1.0f) { _pause = !_pause; _pauseCD = m_previous_time_; } };
 	void CalculateRotorSpeed() { _rotorSpeed += glm::pi<float>() / 4.0f * _speedMult * m_dt; };
 	void SetPropellerSpeed(float speedIncr) { _speedMult += speedIncr; };
-
+	void setCoE(float sum);
+	void setFric(float sum);
+	void setRadius(float sum);
 	
 private:
 	void SimulationLoop();
@@ -58,8 +60,10 @@ private:
 	Geometry CreateTopTrayGeometry();
 	bool moveTray(PlaneInfo& plane, float dt);
 	void UpdateTrays(State& state, State& newState);
+	void ConsoleOutput();
+	
 
-
+	
 private:
 
 	ShaderProgram *m_shader_program;
@@ -74,7 +78,7 @@ private:
 	Geometry _cylinderGeometry;
 	Sphere* lastsphere;
 	bool _pause;
-	float _pauseCD;
+	float _pauseCD, _radiusCD;
 	Mesh* _box;
 	Mesh* _bottomTray ;
 	Mesh* _topTray ;
@@ -89,6 +93,11 @@ private:
 	glm::vec3 _cameraPos, _cameraFront, _cameraUp;
 	float _rotorSpeed;
 	float _speedMult;
+	float coeficentOfElasicity;
+	float _frictionMagnitude;
+	float _ballRadius;
+
 	
 };
+
 

@@ -47,7 +47,7 @@ struct Derivative {
 class Sphere : public Mesh
 {
 public:
-	Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices, State state);
+	Sphere(std::vector<Vertex> vertices, std::vector<unsigned int> indices, State state, float radius);
 	~Sphere(void);
 
 	void CalculatePhysics(float dt, float t);
@@ -58,13 +58,12 @@ public:
 	void CollisionWithPlane(PlaneInfo plane, float time, ContactManifold* contactManifold);
 	void CollisionWithBowl(Sphere* sphere, float time, ContactManifold* contactManifold);
 	void Update();
-	static void CollisionResponseWithSphere(ManifoldPoint &point);
+	static void CollisionResponseWithSphere(ManifoldPoint &point, float e);
 	void SetPos(const glm::vec3& pos);
 	void SetVel(const glm::vec3& vel);
 	void SetNewPos(const glm::vec3& pos);
 	void SetNewVel(const glm::vec3& vel);
 	void SetMass(float mass);
-	
 	
 	glm::vec3 GetPos() const;
 	glm::vec3 GetNewPos() const;
@@ -79,6 +78,9 @@ public:
 	Derivative Evaluate(const State& initial, float t, float dt, const Derivative& d) const;
 	static void stepSimulation(float dt);
 
+
+	
+	
 private:
 	
 	float m_mass;
@@ -88,6 +90,7 @@ private:
 	int m_objectID;
 	GLuint m_texture;
 	
+	float coeficentOfElasicity;
 	
 	static int countID;
 };

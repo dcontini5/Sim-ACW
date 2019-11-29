@@ -103,6 +103,14 @@ void processInput(GLFWwindow *window)
 		game->SetPropellerSpeed(-cameraSpeed);
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
 		game->SetPropellerSpeed(cameraSpeed);
+	if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS)
+		game->setCoE(0.01f);
+	if (glfwGetKey(window, GLFW_KEY_L) == GLFW_PRESS)
+		game->setCoE(-0.01f);
+	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
+		game->setRadius(0.1f);
+	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
+		game->setRadius(-0.1f);
 
 	game->UpdateView();
 }

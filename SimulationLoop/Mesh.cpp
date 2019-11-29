@@ -61,3 +61,17 @@ void Mesh::Render(ShaderProgram* shaderProgram, const glm::mat4 position) const 
 	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, nullptr);
 
 }
+
+
+void Mesh::Render(ShaderProgram* shaderProgram, const glm::vec3 position, float radius) const {
+
+	glm::mat4 trans = glm::mat4(1);
+
+	trans = glm::translate(trans, position);
+	trans = glm::scale(trans, glm::vec3(radius));
+	shaderProgram->setMat4("transform", trans);
+
+	glBindVertexArray(VAO);
+	glDrawElements(GL_TRIANGLES, _indices.size(), GL_UNSIGNED_INT, nullptr);
+
+}
